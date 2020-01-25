@@ -1,0 +1,13 @@
+kepler.cpp     contains the main() function.
+               it uses the classes planet.h and vec3d.h
+planet.h       rather stupid class for planets
+vec3d.h        vector class providing the most important operations
+
+TO USE plot_energie.plt AND plot_traj.plt YOU NEED TO STORE THE FILE-OUTPUT IN
+A FILE CALLED `traj'
+THUS SIMPLY USE
+$ g++ -O2 kepler.cpp
+to compile and
+$ ./a.out > traj
+
+For documentation see comments in cource code...

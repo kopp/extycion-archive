@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="http://txt2tags.sf.net">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf8">
+<TITLE>Emacs Befehlesammlung</TITLE>
+<STYLE TYPE="text/css">
+body{
+	color: black;
+	font-family: serif;
+	max-width: 900px;
+	min-width: 300px;
+	margin-left: 20px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+
+pre{
+	margin-left: 10px;
+	font-family: monospace;
+	background: #e0e0e0;
+}
+
+
+dt{
+	color: #3900E6;
+	font-weight: bold;
+}
+
+
+a{
+	text-decoration: none;
+	color: #0000a0;
+}
+
+a:hover{
+	text-decoration: underline;
+	color: #0000ff;
+}
+
+
+
+h1{
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #003DF5;
+	background-color: #FFCC33;
+	padding-left: 30px;
+	margin-top: 55px;
+	margin-bottom: 35px;
+}
+
+h2{
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #002EB8;
+	background-color: #FFDF80;
+	padding-left: 50px;
+	margin-top: 55px;
+	margin-bottom: 35px;
+}
+
+
+h3{
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #002EB8;
+	background-color: #FFECB3;
+	padding-left: 70px;
+	margin-top: 55px;
+	margin-bottom: 35px;
+}
+
+	
+</STYLE>
+</HEAD><BODY BGCOLOR="white" TEXT="black">
+<P ALIGN="center"><CENTER><H1>Emacs Befehlesammlung</H1>
+<FONT SIZE="4">
+<I>Michael Kopp</I><BR>
+Version 1
+</FONT></CENTER>
+
+<P></P>
+<HR NOSHADE SIZE=1>
+<P></P>
+  <OL>
+  <LI><A HREF="#toc1">Konventionen</A>
+  <LI><A HREF="#toc2">Beenden</A>
+  <LI><A HREF="#toc3">Bewegen</A>
+    <UL>
+    <LI><A HREF="#toc4">3.1. Kursor</A>
+    <LI><A HREF="#toc5">3.2. Bewegung unter Beachtung des Inhalts</A>
+    <LI><A HREF="#toc6">3.3. Bildlauf</A>
+    <LI><A HREF="#toc7">3.4. Marken</A>
+    </UL>
+  <LI><A HREF="#toc8">Steuerbefehle</A>
+  <LI><A HREF="#toc9">Ausschneiden / Einfügen</A>
+  <LI><A HREF="#toc10">Dateien</A>
+  <LI><A HREF="#toc11">Weitere Befehle eingeben</A>
+  <LI><A HREF="#toc12">Modi</A>
+    <UL>
+    <LI><A HREF="#toc13">8.1. Hauptmodi</A>
+    <LI><A HREF="#toc14">8.2. Nebenmodi</A>
+    </UL>
+  <LI><A HREF="#toc15">Suchen</A>
+  <LI><A HREF="#toc16">Hilfe</A>
+  <LI><A HREF="#toc17">AucTeX</A>
+  </OL>
+
+<P></P>
+<HR NOSHADE SIZE=1>
+<P></P>
+<A NAME="toc1"></A>
+<H1>1. Konventionen</H1>
+<P>
+Ich schreibe hier im klassischen <I>emacs</I>-Stil: d.h. ein <CODE>C-a</CODE> steht für die
+Tastenkombination <I>Strg</I> und Taste <I>A</I> und entsprechend <CODE>M-a</CODE> für die
+Taste <I>Alt</I> und Taste <I>A</I>. <CODE>&lt;esc&gt;</CODE> steht für die <I>Escapte</I>-Taste und
+<CODE>&lt;SPC&gt;</CODE> für die <I>Leertaste</I>. 
+</P>
+<P>
+Wenn zwischen zwei Tastaturbefehlen ein Leerzeichen gesetzt ist ("`` ``"), dann
+heißt das, dass hier zwei Tastenkürzel <I>nacheinander</I> auszuführen sind. Also
+bei <CODE>C-x C-c</CODE> drückt man zuerst <I>Strg</I> und <I>X</I> und anschließend <I>Strg</I>
+und <I>C</I>. Dabei kann man als fauler Mensch die <I>Strg</I>-Taste auch gedrückt
+halten.
+</P>
+<A NAME="toc2"></A>
+<H1>2. Beenden</H1>
+<UL>
+<LI><CODE>C-x C-c</CODE> Beendet Emacs
+<LI><CODE>&lt;esc&gt; &lt;esc&gt; &lt;esc&gt;</CODE> ist ein "Fluchtbefehl"
+</UL>
+
+<A NAME="toc3"></A>
+<H1>3. Bewegen</H1>
+<A NAME="toc4"></A>
+<H2>3.1. Kursor</H2>
+<UL>
+<LI><CODE>C-n</CODE> nächste Zeile (next)
+<LI><CODE>C-p</CODE> vorige Zeile (previous)
+<LI><CODE>C-f</CODE> nächster Bucstabe (forwards)
+<LI><CODE>C-b</CODE> letzter Buchstabe (before)
+<P></P>
+<LI><CODE>C-a</CODE> Zeilenanfang
+<LI><CODE>C-e</CODE> Zeilenende
+</UL>
+
+<A NAME="toc5"></A>
+<H2>3.2. Bewegung unter Beachtung des Inhalts</H2>
+<UL>
+<LI><CODE>M-f</CODE> Ein Wort vor
+<LI><CODE>M-b</CODE> Ein Wort zurück
+<P></P>
+<LI><CODE>M-a</CODE> Satzanfang
+<LI><CODE>M-e</CODE> Satzende
+</UL>
+
+<A NAME="toc6"></A>
+<H2>3.3. Bildlauf</H2>
+<UL>
+<LI><CODE>C-v</CODE> Bild ab
+<LI><CODE>M-v</CODE> Bild auf
+<LI><CODE>C-l</CODE> aktuelle Zeile in Bildschrimmitte
+</UL>
+
+<A NAME="toc7"></A>
+<H2>3.4. Marken</H2>
+<UL>
+<LI><CODE>C-&lt;SPC&gt;</CODE> Setzt eine Marke
+<LI><CODE>C-u C-&lt;SPC&gt;</CODE> Geht zu den Marken -- eine nach der anderen
+</UL>
+
+<A NAME="toc8"></A>
+<H1>4. Steuerbefehle</H1>
+<UL>
+<LI><CODE>C-u &lt;ziffer&gt; &lt;Befehl&gt;</CODE> <I>&lt;befehl&gt;</I> wird <I>&lt;zahl&gt;</I> mal ausgeführt --
+<I>&lt;befehl&gt;</I> kann auch ein Zeichen sein.
+<LI><CODE>C-g</CODE> aktuellen Befehl abbrechen
+<LI><CODE>C-x u</CODE> Undo
+</UL>
+
+<A NAME="toc9"></A>
+<H1>5. Ausschneiden / Einfügen</H1>
+<UL>
+<LI><CODE>C-k</CODE> lösche bis Zeilenende in den Cache
+<LI><CODE>M-k</CODE> löscht bis Satzende in Cache
+<LI><CODE>C-y</CODE> stellt die Zeile aus dem Cache wieder her
+<LI><CODE>C-y M-y</CODE> durch Drücken von M-y werden die verschiedenen Caches nacheinander
+eingefügt
+<LI><CODE>C-&lt;SPC&gt;</CODE> Marke an Löschanfang setzen <CODE>C-w</CODE> oder <CODE>M-k</CODE> Marke an
+Löschende setzen
+<LI><CODE>C-d</CODE> löscht Zeichen unter Kursor
+<LI><CODE>M-d</CODE> löscht Zeichen bis Wortende
+</UL>
+
+<A NAME="toc10"></A>
+<H1>6. Dateien</H1>
+<UL>
+<LI><CODE>C-x C-f &lt;dateiname&gt;</CODE> Datei öffnen bzw anlegen
+<LI><CODE>C-x C-s</CODE> Datei dauerhaft speichern
+</UL>
+
+<A NAME="toc11"></A>
+<H1>7. Weitere Befehle eingeben</H1>
+<UL>
+<LI><CODE>C-x</CODE> ein weiters Zeichen als Befehl
+<LI><CODE>M-x</CODE> eine Zeichenkette als Befehl
+</UL>
+
+<A NAME="toc12"></A>
+<H1>8. Modi</H1>
+<A NAME="toc13"></A>
+<H2>8.1. Hauptmodi</H2>
+<P>
+Emacs hat verschiedene modi zur vefrügung: Zu erreichen durch
+</P>
+<PRE>
+  M-x &lt;name&gt;-mode &lt;enter&gt;
+</PRE>
+<P>
+Bspw. tex-mode, perl-mode, fundamental-mode, text-mode
+</P>
+<A NAME="toc14"></A>
+<H2>8.2. Nebenmodi</H2>
+<UL>
+<LI><CODE>M-x auto-fill-mode &lt;enter&gt;</CODE> automatischer Zeilenumbruch
+<LI><CODE>C-u &lt;zahl&gt; C-x f &lt;enter&gt;</CODE> &lt;zahl&gt; ist Zeilenlänge
+<LI><CODE>M-q</CODE> formatiert den aktuellen Abstaz entsprechend
+</UL>
+
+<A NAME="toc15"></A>
+<H1>9. Suchen</H1>
+<UL>
+<LI><CODE>C-s</CODE> vorwärts suchen und zur nächsten Fundstelle gehen
+<LI><CODE>&lt;backspace&gt;</CODE> geht zur vorherigen Fundstelle oder entferne das letzte
+Zeichen des Suchstrings
+<LI><CODE>&lt;enter&gt;</CODE> um die Suche zu beenden
+<LI><CODE>C-r</CODE> rückwärts suchen
+</UL>
+
+<A NAME="toc16"></A>
+<H1>10. Hilfe</H1>
+<UL>
+<LI><CODE>C-h c &lt;kommando&gt;</CODE> Einzeilige Befehlsbeschreibung
+<LI><CODE>C-h k &lt;kommando&gt;</CODE> Dokumentation zu &lt;kommando&gt;
+<LI><CODE>C-h f &lt;kommanod - langer name&gt;</CODE> Dokumentation zu &lt;kommando ...&gt;
+<LI><CODE>C-h v &lt;variable&gt;</CODE> Wert und Dokumentation einer Variablen
+<LI><CODE>C-h a &lt;string&gt;</CODE> Zeigt eine Liste von Befehlen an, die auf &lt;string&gt; passen
+</UL>
+
+<A NAME="toc17"></A>
+<H1>11. AucTeX</H1>
+<UL>
+<LI><CODE>C-c _</CODE> lässt einen ein Master-File definieren
+<LI><CODE>C-c C-C</CODE> kompiliert
+<LI><CODE>C-c C-p C-d</CODE> Vorschau für's Dokument
+<LI><CODE>C-c C-f</CODE> und weitere C-Kommandos: Schriftarten
+<LI><CODE>C-c ;</CODE> Region (aus)kommentieren (die Region (den Anfang) zuvor mit <CODE>C-&lt;SPC&gt;</CODE> setzen).
+</UL>
+
+
+<!-- html code generated by txt2tags 2.3 (http://txt2tags.sf.net) -->
+<!-- cmdline: txt2tags -\-toc -n -\-style=/home/skunk/programme/templates/txt2tags/style_html_01.css -\-css-inside -t html tastatur.t2t -->
+</BODY></HTML>

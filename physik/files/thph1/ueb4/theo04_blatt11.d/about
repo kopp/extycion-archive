@@ -1,0 +1,3 @@
+Numerische Berechnung von h(m) -- Ich habe nur die implizite Gl.
+( 8 N t h^2 a/mg )/( 27 b (h - b N / A ) ) - a/mg * N^2 / A - h^2 = 0
+bekommen... Diese wird numerisch fuer verschiedene Temperaturen geloest.

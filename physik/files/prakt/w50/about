@@ -1,0 +1,6 @@
+Hier sind die Dateien nach ihrer Verwendung getrennt...
+
+./trajektorien/ enthaelt schoene Plots mit Farben als Zeitachse
+
+./histo-3d/ enthaelt die zusaetzliche Moeglichkeit, 3-D-Histogramme zu
+erstellen

@@ -1,0 +1,7 @@
+wird jetzt ueber svn verwaltet:
+
+http://xp-dev.com/svn/ep-repo/
+
+Um die Daten mit Subversion (SVN) herunterzuladen:
+ $ svn checkout http://xp-dev.com/svn/ep-repo/
+

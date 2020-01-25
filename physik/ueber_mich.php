@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>Physiker-Blog: &Uuml;ber mich</title>
+    <meta name=Author content="Michael Kopp">
+		<link rel=stylesheet tpye=text/css href=style.css>
+    <style></style>
+  </head>
+  <body>
+
+
+
+
+<div id=navi>
+<?php
+include("navi.incl");
+?>
+</div>
+
+
+
+
+<div id=inhalt>
+
+
+<h1 id=seitentitel>&Uuml;ber mich</h1>
+
+
+
+
+<h3>Ich</h3>
+
+<p>Mein Name ist Michael. Meine Eltern haben beide recht 
+anst&auml;ndige Berufe und haben sich mit meiner Erziehung sehr 
+M&uuml;he gegeben, ich habe eine gute Schulbildung genossen und 
+k&ouml;nnte vermutlich schon was aus mir machen...<br>
+
+Aber nein: Ich habe mich entschieden, Physik zu studieren. Seit dem 
+Wintersemester 08/09 bin ich an der Uni Stuttgart immatrikuliert und 
+mal sehen, wie lange das Gastspiel hier noch dauert.</p>
+
+<p>Was gibe es &uuml;ber mich gro&szlig;artig zu erfahren? Mir macht 
+das Studium (noch) Spass und ich habe mich sogar dazu entschieden, die 
+<i>Hardcore</i>-Mathematik (also Mathe der Mathematiker) 
+mitzumachen. -- Nach der Weisheit, die der R&uuml;ckblick auf mittlerweile zwei 
+komplettierte Semester mit sich bringt, w&uuml;rde ich mich jederzeit wieder so 
+entscheiden: Auch wenn ich mittlerweile verlerne, auf 4 zu z&auml;hlen (der 
+Mathematiker z&auml;hlt 1, 2, 3, ... ;-) ) so taucht man hier sch&ouml;n ein 
+Wenig in die Welt der Mathematik ein...</p>
+
+
+
+<h3>Diese Seite</h3>
+
+
+<p>Aus einem altruistischen Denken heraus und weil ich etwas Webspace 
+&uuml;brig habe, kommen jetzt hier ein paar kleinen S&auml;chelchen 
+online, die m&ouml;glicherweise manchem gefallen k&ouml;nnten; ich mache den 
+Aufwand mit, weil ich schon von verschiedenen Seiten recht positive Kritik 
+dar&uuml;ber bekommen habe. (Ist schon toll, wie im Internet jeder Spinner sich 
+auslassen kann...) </p>
+
+
+
+
+
+
+
+
+
+</div>
+  
+  
+  
+  
+  </body>
+</html>

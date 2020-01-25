@@ -1,0 +1,553 @@
+\documentclass[a4paper,12pt]{article}
+
+%% Standard
+\usepackage[ngerman]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Mathe
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{latexsym}
+
+%% Aufzaehlungen
+\usepackage{enumerate}
+
+%% Bilder
+\usepackage{subfigure}
+\usepackage{graphicx}
+
+%% Absaetze usw
+\usepackage{multicol}   
+% zu verwenden mit 
+% \begin{multicols}{$$Spaltenanzahl$$} 
+%  text...
+% \end{multicols}
+
+%\setlength{\parindent}{0pt}    %Absatz-Einrueckung
+%\setlength{\parskip}{3pt}      %Absatz-Abstaende
+
+
+%% Fusszeilen
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{\NAME : \TITEL}
+\cfoot{}
+\rfoot{\thepage}
+\lhead{}
+\chead{}
+\rhead{}
+%\setlength{\headheight}{15pt}
+
+
+%% Links
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,%
+bookmarksnumbered=true,breaklinks=true,pdfstartview=FitH]{hyperref}
+
+%% Eigene Kommandos
+% Differenzialrechnung
+\newcommand{\diff}{\ensuremath{\mathrm d}}
+\newcommand{\dx}{\ensuremath{\mathrm dx}}
+\newcommand{\dvx}{\ensuremath{\mathrm d \vec x}}
+
+% Lineares
+\newcommand{\Mat}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\Ten}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\Ve}[1]{\ensuremath{\vec{#1}}}
+% Vektoren sind Fette buchstaben
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
+% Vektoren sind fett und nicht kursiv
+% \renewcommand{\vec}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\skp}[2]{\ensuremath{\langle #1 \,|\, #2 \, \rangle}}
+
+
+% Euler
+\newcommand{\e}{\ensuremath{\operatorname{e}}}
+\newcommand{\E}{\ensuremath{\operatorname{e}}}
+\newcommand{\ir}{\ensuremath{\operatorname{i}}}
+\newcommand{\I}{\ensuremath{\operatorname{i}}}
+
+% allg Mathe
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\folgt}{\ensuremath{\Rightarrow}}
+\newcommand{\gdw}{\ensuremath{\Leftrightarrow}}
+
+
+% Formatierung
+\newcommand{\abs}[0]{\bigskip\noindent}
+\newcommand{\const}{\ensuremath{\text{\emph{const}}}}
+\newcommand{\bild}[1]{\texttt{ ($\rightarrow$ Bild #1)}}
+\newcommand{\bildd}[2]{\texttt{ ($\rightarrow$ Bild #1,} #2 \texttt{ )}}
+
+
+% Umgebungen
+\newtheorem{satz}{Satz}[section]
+\newtheorem{defi}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+
+
+
+
+
+\begin{document}
+
+
+
+\newcommand{\NAME}{Michael Kopp}
+\newcommand{\FACH}{Praktikum}
+\newcommand{\TITEL}{Auswertung von A20}
+\newcommand{\DATUM}{\today}
+
+
+\pagestyle{plain} 
+	% auskommentieren fuer fusszeile
+
+
+
+%%%% Eigener Kopf
+
+\sloppy
+
+\begin{center}
+\FACH
+\hfill
+\DATUM
+\end{center}
+
+\vspace{-5mm} % weniger abstand
+
+\begin{center}
+  \begin{Large}
+ \textbf{\TITEL}
+  \end{Large}
+\end{center}
+
+\vspace{-3mm}
+
+\begin{center}
+\hrulefill
+%\quad
+ %\raisebox{-1.5mm}{\NAME}
+% \,
+\quad 
+\textit{\NAME}
+\,
+\hrulefill
+\end{center}
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+
+
+\section*{Formeln}
+\label{sec:formeln-1}
+
+Die Energiedifferenz $\Delta E$ zwischen zwei Niveaus im Atom wird
+durch ein Photon der Frequenz $\nu$ bzw. $\omega$ ausgeglichen; es
+gilt der Zusammenhang
+\begin{equation}
+  \label{eq:1}
+  \Delta  E = \omega \, \hbar = \nu \, h
+\end{equation}
+mit dem Planck'schen Wirkungsquantum $h$ und $\hbar = h/2\pi$.
+
+F"ur die Wellenl"ange gilt
+\begin{equation}
+  \label{eq:4}
+  \lambda = \frac{c}{\nu}
+\end{equation}
+mit der Lichtgeschwindigkeit $c$ und der Frequenz $\nu$.
+
+Mit \eqref{eq:1} und \eqref{eq:4} folgt
+\begin{equation}
+  \label{eq:5}
+  \lambda = \frac{h \, c}{\Delta  E} \;.
+\end{equation}
+
+
+
+
+\section*{Auswertung}
+\label{sec:auswertung}
+
+
+\subsection*{Kurvendiskussion}
+\label{sec:kurvendiskussion}
+
+
+Bei den beiliegenden Diagrammen auf der $x$-Achse stets die
+Beschleunigungsspannung $U_1$ in Volt und auf der $y$-Achse der Strom
+$I$ in Nano-Amp\'ere angegeben; alle weiteren Parameter sind im
+Diagramm gegeben.
+
+\abs
+Die Kurve, die in den Diagrammen mit $\Gamma$ bezeichnet ist, ist
+vermutlich nicht aussagekr"aftig: Sie passt in allen Diagrammen
+deutlich nicht in ein logisches Schema. Dies war die Kurve der
+allerersten Messung beim Hg-Aufbau; m"oglicherweise war die Maschine
+noch nicht richtig eingelaufen und so wurde diese "`falsche"'
+Linie produziert.
+
+
+\paragraph{Allgemeines}
+\label{sec:allgemeines}
+
+Die Maxima und Minima der Kurven scheinen stets mit wachsender
+Beschleunigungsspannung \emph{exponentiell} anzusteigen \bild 0, wobei
+kleine Spannungen systematisch nicht dazu passen wollen. Dieser
+Verlauf stimmt mit dem Verlauf einer Kennlinie bei einer
+Glimmentladung "uberein. In diesem Sinne k"onnte der exponentielle
+Anstieg auf zunehmende Ionisierung hinweisen, wie sie sich bei der
+Plasmabildung einer Glimmentladung einstellt. 
+
+Der exponentielle Anstieg von sowohl Minima als auch Maxima l"asst
+sich (auch) dadurch erkl"aren, dass die Elektronen nach $k$
+inelastischen St"o"sen noch eine gewissen Strecke zur"ucklegen, auf
+denen sie beschleunigt werden, aber nicht mehr sto"sen. Mit steigender
+Beschleunigungsspannung nimmt  die Zahl $k$ zu und besagte freie
+Laufl"ange nimmt ab. Dadurch, dass die freie Strecke immer k"urzer
+wird, sind hier weniger Atome, mit denen die Elektronen sto"sen
+k"onnten, und dadurch erreichen mehr den Detektor. Auch wenn ein
+Elektron seine $k$ St"o"se noch nicht absolviert hat -- also
+eigentlich noch einen machen m"usste -- sinkt so mit steigender
+Spannung die Wahrscheinlichkeit, diesen letzten Sto"s nachzuholen und
+damit erreichen mehr Elektronen den Detektor mit weniger absolvierten
+St"o"sen und sorgen f"ur einen "`Grundstrom"'.
+
+
+
+\paragraph{Variation der Temperatur (Hg)}
+\label{sec:variation_der_temperatur}
+
+Erh"oht man die Temperatur des Hg-Aufbaus, vermindert sich der Strom
+\bild 1.
+
+Das liegt vermutlich daran, dass sich zwischen dem fl"ussigen und dem
+gasf"ormigen Quecksilber ein gewisses Gleichgewicht einstellt, welches
+sich f"ur h"ohere Temperaturen eher in Richtung gasf"ormig
+verlagert\footnote{Prinzip von \textsc{Braun} und \textsc{Le
+    Chatellier}}. Dadurch, dass mehr Gasteilchen vorhanden sind, nimmt
+die Sto"swahrscheinlichkeit f"ur die Elektronen zu.
+
+Man kann die Betrachtungen auch "uber die Mittlere freie Wegl"ange
+$\lambda$ aufziehen: Ein Elektron wird so lange beschleunigt, bis es
+die n"otige Energie $E_a$ f"ur eine Anregung hat -- doch dann kann es
+diese nicht sofort abgebeb, sondern muss zuerst sto"sen. Dabei legt es
+\emph{im Mittel} die Strecke $\lambda$ zur"uck. Ist $\lambda$ gro"s,
+ist die Wahrscheinlichkeit, dass ein Elektron seine Energie durch
+St"o"se verliert, kleiner und bei steigender Termperatur sinkt die
+freie Wegl"ange.\footnote{Vermutlich nicht nur aufgrund des Mehr an
+  Teilchen, sondern auch, weil die Atome sich auch st"arker
+  (thermisch) bewegen.}
+
+Weiter kann man beobachten, dass die Minima der einzelnen Linien nicht
+genau "ubereinanderliegen -- und dass der Unterschied
+temperaturabh"angig ist. Bei kleiner Beschleunigungsspannung sind die Minima der
+"`kalten"' Linien st"arker gegen"uber den "`warmen"' Linien nach links
+(weniger Spannung) verschoben als bei hoher Spannung \bildd 1 {blaue
+  Striche}.
+
+Dies k"onnte daran liegen, dass die Elektronen bei den tiefen
+Temperaturen eine so gro"se freie Wegl"ange $\lambda$ zus"atzlich
+beschleunigt werden, dass ihre Energie ausreicht, um ein n"achst
+h"oheres Niveau als das Grundniveau anzuregen: Der "`normale"'
+Zustandswechsel $6s \to 6p_0$ hat eine Energiedifferenz von
+$4.67\operatorname{eV}$, der n"achst h"ohere $6s \to 6p_1$ die
+Differenz $4.89\operatorname{eV}$.\footnote{Der n"achst, $6s \to 6p_3$
+  h"atte $5.46\operatorname{eV}$, was ich schon f"ur zu hoch halte...}
+Bei\footnote{Der Effekt tritt bei $30\operatorname{V}$ auf, ich
+  sch"atze den Abstand Gitter-Kathode mit $0.75\operatorname{cm}$ ab.}  $E \sim 30\operatorname{V}/0.75\operatorname{cm}$ w"are dies bei
+$\lambda \sim 55\operatorname{\mu m}$ erreicht.  Dadurch verlieren die
+Elektronen mehr Energie, k"onnen also vergleichsweise weniger gut
+gegen die Bremsspannung ankommen.
+
+Bei gro"sen Spannungen
+relativiert sich dies wieder, weil dann auch bei kleineren $\lambda$
+durch das st"arkere E-Feld die h"ohere Anregungsenergie erreicht
+werden kann.\footnote{Ganz allgemein sorgt ebendieser Effekt, dass
+  Elektronen ein Mehr an Energie auf dem Weg $\lambda$ ansammeln
+  k"onnen dazu, dass f"ur h"ohere Ordnungen die Abst"ande zwischen den
+Maxima/Minima immer gr"o"ser werden \bild 2: Bei Ordnung $k$ hatten
+die Elektronen $k$ mal die Gelegenheit, zus"atzliche Energie auf der
+Strecke $\lambda$ zu sammeln und h"ohere Niveaus anzuregen. Mit der
+Spannung steigt dadurch die Wahrscheinlichkeit, die h"oheren Zust"ande
+anzuregen, was mehr Energie "`kostet"'.}
+
+
+
+
+
+
+\paragraph{Variation der Heizspannung (Hg) bzw. Saugspannung (Ne)}
+\label{sec:variation_der_heizspannung_hg}
+
+Erh"oht man die Heitzspannung steigt der Strom \bild 3.
+
+Die Erkl"arung d"urfte einfach die sein, dass mehr Elektronen aus der
+Kathode ausgel"ost werden und so wegen Ladungserhaltung auch ankommen
+m"ussen...
+
+Auch hier verschieben sich wieder die Maxima gro"ser
+Heitzspannungen f"ur kleine Beschleunigungsspannungen st"arker nach
+links \bildd 3 {blaue Linien}, was damit begr"undet werden k"onnte, dass mehr Elektronen da
+sind, die die freie Wegl"ange ausnutzen k"onenn, um Energie f"ur eine
+h"ohere Anregung zu sammeln; es machen also mehr Elektronen eine etwas
+h"oherenergetische Anregung und kommen so weniger gut gegen die
+Bremsspannung an.
+
+\abs
+Den selben Effekt finden man auch bei der Ne-Anordnung \bild {5a}
+(besser in \bild {5b}, wobei hier durch die Darstellung auf 2 Achsen
+die "Ubersichtlichkeit nicht die beste ist ...) -- auch wenn es
+hier keine Heitzspannung gibt, sondern eine Saugspannung, die aber den
+selben Zweck erf"ullt; eine h"ohere Saugspannung sorgt f"ur mehr
+Elektronen. Die Effekte sind also genau analog.
+
+
+
+\paragraph{Variation der Bremsspannung (Hg und Ne)}
+\label{sec:variation_der_bremsspannung_hg_und}
+
+F"ur gr"o"sere Bremsspannung wird der Strom kleiner \bild 4, \bild 6. 
+
+Das ist wieder einfach und logisch, weil weniger Elektronen die
+Barriere "uberwinden k"onnen und registriert werden k"onnen. Die
+Elektronen, die an die Anode kommen, sind in ihrer Energie
+verteilt. Senkt man die Bremsspannung, erlaubt man es zus"atzlich den
+Elektronen mit etwas weniger Energie, zu passieren. Deshalb ist auch
+die Strom"anderung f"ur eine Beschleunigungsspannung und zwei
+verschiedene Bremsspannungen abh"angig vom Absolutbetrag des Stromes
+an der entsprechenden Stelle.
+
+Interessant ist, wie beim Ne-Aufbau beim vorletzten sichtbaren Minimum
+f"ur die maximale Bremsspannung die Strom-Intensit"at wirklich auf $0$
+absinkt, f"ur geringere Bremsspannungen jedoch stets deutlich positiv
+bleibt; genau hier beginnt der unter "`Allgemeines"' besprochene Effekt.
+
+
+
+\abs
+Zus"atzlich sieht man noch sch"on, wie die Schaubilder um genau die
+Spannung auf der Abszisse verschoben werden, um die die Bremsspannung
+ge"andert wird \bild 7, einfach weil wenn die Bremsspannung um
+$0.5\operatorname{V}$ erh"oht wird, die Elektronen noch
+$0.5\operatorname{V}$ mehr Beschleunigungsspannung brauchen, um das
+selbe Intensit"atsniveau zu erreichen.
+
+
+
+
+
+
+\subsection*{Anregungsenergien}
+\label{sec:anregungsenergien}
+
+Wie man in \bild 2 sieht, ist es eigentlich wenig sinnvoll, die
+Anregungsenergie als Mittelwert der Abst"ande aller bestimmten Maxima
+zu nehmen...
+
+Tut man es dennoch, bekommt man, wenn man f"ur eine Linie den
+Mittelwert der
+Abst"ande der Maxima bildet und aus diesen Mittelwerten wiederum einen
+Mittelwert:
+\begin{equation}
+  \label{eq:2}
+  E_a^\text{Hg} = (4.89 \pm 0.22) \operatorname{eV} \;.
+\end{equation}
+Der Literaturwert\footnote{Haken Wolf} betr"agt $4.67\operatorname{eV}$...
+
+Auf die gleiche weise erh"alt man
+\begin{equation}
+  \label{eq:3}
+  E_a^\text{Ne} = (17.91 \pm 1.10)\operatorname{eV} \;.
+\end{equation}
+Der Literaturwert\footnote{C.E. Moore: Atomic Energy Levels} betr"agt
+$16.6\operatorname{eV}$ f"ur die erste Anregung.
+
+
+
+\subsection*{Anregungswellenl"angen}
+\label{sec:anregungswellenlangen}
+
+Die Energien $E_a^\text{Hg}$ und $E_a^\text{Ne}$ entsprechen den
+Wellenl"angen\footnote{Aus der Fehlerfortpflanzung $\Delta f
+  = \partial_i f \Delta x_i$ ergibt sich $\Delta \lambda = \left |
+    \frac{h\,c}{E^2} \right | \, \Delta E$.}
+\begin{equation}
+  \label{eq:6}
+  \lambda_a^\text{Hg} = (253 \pm 11.4) \operatorname{nm}
+\end{equation}
+und
+\begin{equation}
+  \label{eq:7}
+  \lambda_a^\text{Ne} = (69,2 \pm 4.25) \operatorname{nm} \;.
+\end{equation}
+
+
+
+
+
+
+
+\subsection*{Leuchtschichten}
+\label{sec:leuchtschichten}
+
+
+Im Ne-Aufbau bilden sich orange leuchtende Schichten senkrecht zum Elektronenfluss aus: Steigert man die Beschleunigungsspannung, so bildet sich eine Leuchtschicht knapp vor dem zweiten Gitter (also vor der Anode). Dieses wandert beim Erh"ohen der Spannung weiter in Richtung Elektronenquelle, bis es die Mitte zwischen den beiden Gittern erreicht hat. Wenn das passiert, bildet sich sofort eine zweite Schicht direkt am Gitter $G_2$, die auch wider wandert. Wenn sie ein Drittel des Gitterabstandes zur"uckgelegt hat, entsteht wieder eine Schicht und so weiter. 
+
+Man muss jedoch vorsichtig sein: Wenn zu viele Schichten entstanden sind, so kann es zu einer Glimmentladung kommen: Alle Schichten vereinigen sich dann und man sieht nur ein helles oranges Leuchten in der R"ohre. Dies besch"adigt die Apperatur und der Elektronenstrom muss abgebrochen werden.
+
+Zu erkl"aren sind diese Leuchterscheinungen dadurch, dass in diesen leuchtenden Zonen die Elektronen gerade ihren Sto"s ausf"uhren. Die verschiedenen Schichten bilden sich n"amlich immer genau dann, wenn die Spannung wieder einem vielfachen der Anregungsenergie entspricht. Man sieht hier auch, dass die Elektronen in der ersten Leuchtschicht genug Energie gesammelt haben um einmal zu sto"sen, dann beschleunigen m"ussen, um in der zweiten Leuchtschicht wieder sto"sen zu k"onnen usw.
+
+Das orangene Licht hat eine Wellenl"ange in der Gr"o"senordnung von $\lambda^\text{orange} \sim 600-630 \operatorname{nm}$, unsere Messungen legen eine ungef"ahr 8.9 mal h"ohere Energiedifferenz f"ur den "Ubergang Grundzustand--Anregegter-Zustand nahe; es ist also nicht m"oglich, dass wir hier tats"achlich diesen "Ubergang sehen.
+
+% Jedoch sieht man in \bildd {5b} {Bleistift} ein kleines, fast nicht
+% aufgel"ostes Maximum mit einer Energie von $7.6\operatorname{eV}$, was einer
+% Wellenl"ange von 
+
+
+Die Anzahl der Schichten ist damit ungef"ahr gegeben durch\footnote{$\lfloor x \rfloor$ beschreibt die n"achst kleinere Ganzzahl}
+\begin{equation}
+	m = \lfloor \frac {U_1} {E_a} \rfloor
+\end{equation}
+und deren Position durch
+\begin{equation}
+	x = \frac L {U_1 / E_a} \cdot k \text { mit } k = 1,2, ..., m \;,
+\end{equation}
+wobei $L$ der Abstand der beiden Gitter ist.
+
+
+
+
+
+
+
+\section*{Fehlerrechnung}
+\label{sec:fehlerrechnung}
+
+
+\subsection*{Anregungsenergien}
+\label{sec:anregungsenergien-1}
+
+Wie erwartet lagen beide ermittelten Durchschnittswerte zu hoch. In
+\bild 8 sind die Maxima graphisch aufgetragen, zusammen mit einer
+mutigen Ausgleichsgerade. Mit dieser kann man den Fehler
+m"oglicherweise absch"atzen, den die Zunahme der Differenzen der
+Maximaabszissen verursachen. Der Durchschnitt liegt irgendwo in der
+Mitte des Punktehaufens -- die Gerade soll auch hier durchlaufen. Man
+erh"alt also eine sehr grobe Absch"atzung f"ur den Fehler, wenn man sich
+anschaut, wo die Gerade $n=1$ ber"uhrt. Mit der Steigung
+$0.2\operatorname{eV}/5\text{Ordnungen}$ ergibt sich eine Differenz
+von der Gr"o"senordnung $0.2\operatorname{eV}$ -- diese w"urde unser
+Ergebnis n"aher an den Literaturwert r"ucken.
+
+
+
+
+\abs
+Bei Neon ist der Unterschied der Differenzen im Mittel bei
+$1.51\operatorname{eV}$; da wir hier f"ur die Bestimmung der
+Anregungsenergie die Differenzen der 3,4,5,... Sto"sordnungen
+verwendet haben, erhalten wir eine Korrektur in der Gr"o"senordnung
+$1.5\operatorname{eV}$. 
+
+Hier macht eine Graphik keinen Sinn, weil wir meist nur drei oder vier
+Maxima auswerten konnten; die Rechnung wurde in einer Tabelle angestellt.
+
+
+
+
+
+\subsection*{Einfluss der Saugspannung}
+
+Beim Ne-Aufbau ist auch dann ein Strom messbar, wenn dies eigentlich nicht
+m"oglich sein sollte: In \bild 9 sieht man, dass wir die Bremsspannung auf
+$U_2=7\operatorname V$ gesetzt haben, aber auch dann Elektronen detektiert
+wurden, wenn die Beschleunigungsspannung unter dieser Spannung liegt \bildd 9
+{Bleistift}. Bei kleinen Saugspannungen ist der Effekt klein, bei gro"sen
+gro"s. Deswegen vermute ich, dass die Saugspannung die Elektronen schon
+vorbeschleunigt -- und diese Vorbeschleunigung geht nicht in unsere Rechnungen
+ein (auch wenn sie einmalig ist und bei h"oheren Ordnungen nur wenig ins
+Gewicht fallen d"urften).
+
+\abs
+Dass die Saugspannung unabdingbar ist, sieht man jedoch in \bild {10}: Hier ist
+der Strom vernachl"assigbar klein selbst f"ur die maximale
+Beschleunigungsspannung, wenn nur die Saugspannung klein gew"ahlt wird. Ohne
+Saugspannung w"are der Versuch damit nicht durchf"uhrbar.
+
+Die (f"ur mich bisher) einleuchtendste Erkl"arung daf"ur ist, dass sich eine negative "`Ladungswolke"' hinter der Kathode bildet und die Elektronen sich nicht wirklich in die R"ohre bewegen, wo sie beschleunigt werden. Durch das Gitter $G_1$ wird diese Ladungswolke gezielt abgesaugt.
+
+
+
+
+
+\section*{Zusammenfassung}
+
+
+Wir konnten sch"on das Wechselspiel von beinahe "aquidistanten Minima und Maxima der Kurven beobachten -- jedoch auch, dass die Maxima eben nicht \emph{ganz genau} "aquidistant sind, sondern der Abstand linear mit der Ordnung der Maxima zunimmt, was vermutlich an der zus"atzlichen Beschleunigung auf der freien Wegl"ange liegt.
+
+Wir konnten die Abh"angigkeit der Kurven von verschiedenen Versuchsparametern beobachten und mit unserem Modell begr"unden.
+
+Als Anregungsenergien ergeben sich mit den Korrekturen aus der Fehlerrechnung
+\begin{align*}
+	E_a^\text{Hg} &= (4.69 \pm 0.42) \operatorname{eV}\\
+	E_a^\text{Ne} &= (16.41 \pm 2.60)\operatorname{eV} \;,
+\end{align*}
+was eine relative Abweichung\footnote{$F(x) = (x-\bar x)/\bar x$ mit Literaturwert $\bar x$} von den Literaturwerten von 
+\begin{align*}
+	F( E_a^\text{Hg} ) &\approx 0.4 \% \\
+	F( E_a^\text{Ne} ) &\approx -1.1 \% \\
+\end{align*}
+bedeutet.
+
+
+\abs
+Was ich an dem Versuch unheimlich reizvoll fand, war, dass er oberfl"achlich betrachtet sehr einfach ist, er aber gleichzeitig viel Raum f"ur tiefergehende "Uberlegungen und Detailanalysen bietet. Was leider weniger spannend war, ist die Versuchsdurchf"uhrung an sich...
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -1,0 +1,13 @@
+numlang.m
+kor_lang.pdf
+kor_ueber.pdf
+traj.pdf
+Zweite Aufgabe: Langevingleichung numerisch geloest. 
+Bilder sind Ausgabe davon: Trajektorie/Autokorrelation.
+Matlab File (getestet mit Octave)
+(Die Zeitscala ist um Faktor 1e6 falsch: Rechenfehler 
+(t/dt statt t*dt). bei vacf.pdf ist sie richtig.)
+
+vacf.*
+Autokorrelationsfunktion aus program `numlang.m' verglichen 
+mit Theorie

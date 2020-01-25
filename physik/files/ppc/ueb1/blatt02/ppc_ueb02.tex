@@ -1,0 +1,235 @@
+\documentclass[a4paper,12pt,draft]{article}
+
+%% Standard
+\usepackage[ngerman]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Mathe
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{latexsym}
+
+%% Aufzaehlungen
+\usepackage{enumerate}
+
+%% Bilder
+\usepackage{subfigure}
+\usepackage{graphicx}
+
+%% Absaetze usw
+\usepackage{multicol}   
+% zu verwenden mit 
+% \begin{multicols}{$$Spaltenanzahl$$} 
+%  text...
+% \end{multicols}
+
+%\setlength{\parindent}{0pt}    %Absatz-Einrueckung
+%\setlength{\parskip}{3pt}      %Absatz-Abstaende
+
+
+%% Fusszeilen
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{\NAME : \TITEL}
+\cfoot{}
+\rfoot{\thepage}
+\lhead{}
+\chead{}
+\rhead{}
+%\setlength{\headheight}{15pt}
+
+
+%% Links
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,%
+bookmarksnumbered=true,breaklinks=true,pdfstartview=FitH]{hyperref}
+
+%% Eigene Kommandos
+% Differenzialrechnung
+\newcommand{\diff}{\ensuremath{\mathrm d}}
+\newcommand{\dx}{\ensuremath{\mathrm dx}}
+\newcommand{\dvx}{\ensuremath{\mathrm d \vec x}}
+
+% Lineares
+\newcommand{\Mat}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\Ten}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\Ve}[1]{\ensuremath{\vec{#1}}}
+% Vektoren sind Fette buchstaben
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
+% Vektoren sind fett und nicht kursiv
+% \renewcommand{\vec}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\skp}[2]{\ensuremath{\langle #1 \,|\, #2 \, \rangle}}
+
+
+% Euler
+\newcommand{\e}{\ensuremath{\operatorname{e}}}
+\newcommand{\E}{\ensuremath{\operatorname{e}}}
+\newcommand{\ir}{\ensuremath{\operatorname{i}}}
+\newcommand{\I}{\ensuremath{\operatorname{i}}}
+
+% allg Mathe
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\folgt}{\ensuremath{\Rightarrow}}
+\newcommand{\gdw}{\ensuremath{\Leftrightarrow}}
+
+
+% Formatierung
+\newcommand{\abs}[0]{\bigskip\noindent}
+\newcommand{\const}{\ensuremath{\text{\emph{const}}}}
+
+
+% Umgebungen
+\newtheorem{satz}{Satz}[section]
+\newtheorem{defi}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+
+
+
+
+
+\begin{document}
+
+
+
+\newcommand{\NAME}{Michael Kopp}
+\newcommand{\FACH}{Physik am Komputer}
+\newcommand{\TITEL}{"Ubung 02}
+\newcommand{\DATUM}{\today}
+
+
+\pagestyle{plain} 
+	% auskommentieren fuer fusszeile
+
+
+
+%%%% Eigener Kopf
+
+\sloppy
+
+\begin{center}
+\FACH
+\hfill
+\DATUM
+\end{center}
+
+\vspace{-5mm} % weniger abstand
+
+\begin{center}
+  \begin{Large}
+ \textbf{\TITEL}
+  \end{Large}
+\end{center}
+
+\vspace{-3mm}
+
+\begin{center}
+\hrulefill
+%\quad
+ %\raisebox{-1.5mm}{\NAME}
+% \,
+\quad 
+\textit{\NAME}
+\,
+\hrulefill
+\end{center}
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+
+\paragraph{Aufgabe 1}
+\label{sec:aufgabe_1}
+
+Siehe \verb+fread03.cpp+.
+
+
+
+
+\paragraph{Aufgabe 2}
+\label{sec:aufgabe_2}
+
+\begin{itemize}
+\item Beim initialisieren verwende ich 0 als Startwert -- damit sieht
+  man, wenn am Schluss wieder 0 in der Variablen steht, dass etwas
+  nicht geklappt hat.
+\item Schleife die Maximalwerte ermittelt in \verb+fread04.cpp+.
+\item Schleife die gr"o"sere Zahl nach unten tauscht in \verb+fread05.cpp+
+\item Vollst"andiger Bubble-Sort: \verb+fread06.cpp+. Wichtig: Hier
+  kann eine Ausgabedatei als drittes Argument angegeben werden. Ohne
+  das wird in \verb+fread06_ausgabe+ ausgegeben.
+\item \verb+sort data > foo+ ausgef"uhrt;  
+\verb+diff foo fread06_ausgabe+ zeigt \emph{nichts} an -- also keine
+  Unterschiede.\footnote{Um das zu testen habe ich das Programm noch
+    ohne Parameter laufen lassen woraufhin 250 Messwerte gez"ahlt
+    wurden -- dann hat diff gemeckert... Bei dieser Gelegenheit
+  musste ich auch das Error-handeling neu schreiben; bei meinem
+  gcc scheint atoi ein NULL zur"uckzugeben, wenn
+  keine Zahl eingegeben wird.}
+\item F"ur die erste eingelesene Date (insg. $n$) werden $n$
+  Durchl"aufe gemacht, f"ur die zweite $n-1$, f"ur die $i$-te
+  $n-i+1$. F"ur $n$ Zahlen braucht man also
+  \begin{equation}
+    \label{eq:1}
+    \sum_{i=1}^n n-i+1 = -{{n^2+n}\over{2}}+n^2+n 
+  \end{equation}
+  Durchl"aufe. Der Algorithmus skaliert damit mit $O(n^2)$.
+\end{itemize}
+
+ 
+ 
+
+\paragraph{Aufgabe 3}
+\label{sec:aufgabe_3}
+
+Der Quicksort findet sich in \verb+quick01.cpp+; hier wurde auf
+Kontrollelemente verzichtet: Die Dateien m"ussen manuell im Quellcode
+angegeben werden.
+
+Das besondere ist, dass dieses Programm jeden Schritt ausgibt; diese
+kann man verwenden, um die Arbeitsweise zu visualisieren
+(vgl. Kommentare am Programmanfang). Dazu wurde die Datei
+\verb+anim.flv+ erzeugt.
+
+Der Quicksort braucht bei \verb+data+ f"ur \emph{alle} Daten ca. $9$
+sekunden (das kann man ermitteln indem man
+\verb+date && ./a.out > foo && date+
+ablaufen l"asst und die Sekunden bei \verb+date+ vergleicht. Der
+Bubble-Sort hat daf"ur wesentlich l"anger gebraucht.
+
+Der Grund liegt darin, dass quicksort im Idealfall mit $O(n \, \log
+n)$ arbeitet.
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

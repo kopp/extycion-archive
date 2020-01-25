@@ -1,0 +1,3 @@
+planeten/    I rewrote the program from the scratch
+	     My implementation is Object Oriented thus (hopefully) more easy to
+             comprehend and about four times faster.

@@ -1,0 +1,10 @@
+Ich habe das programm hist1.0.cpp geschrieben; damit kann man eine Liste wie 
+xy.dat -- diese ist von der Messung der Bewegung mit Laser -- auswerten: Es 
+wird ein zweidimensionales Histogramm gezeichnet: Anstatt nur die x- bzw. 
+y-Achse in bins zu unterteilen wird die xy-Ebene in einzelne Quadrate 
+unterteilt. das Programm zaehlt, wie oft Messpunkte jeweils in den Quadraten 
+liegen. Siehe dazu den Quellcode.
+
+Die Datei die entsteht ist von der Struktur xy_hist.data. Sie kann mit Gnuplot 
+ausgewertet werden -- siehe dazu die .plt Dateien.
+

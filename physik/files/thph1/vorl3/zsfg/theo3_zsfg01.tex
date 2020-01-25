@@ -1,0 +1,1629 @@
+\documentclass[a4paper]{article}
+
+%%%% Basics %%%%
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+
+
+
+
+%%%% Gestaltung %%%%
+% \usepackage[top=2.5cm,bottom=1.75cm,right=2cm,left=2.3cm]{geometry}
+\usepackage{framed}
+
+
+%%%% Bilder %%%%
+\usepackage{graphicx}
+\usepackage{subfigure} 
+% \usepackage{wrapfig}
+
+
+%%%% Mathe %%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+
+\usepackage{amsfonts}
+
+
+%%%% Spalten %%%%
+\usepackage{multicol}
+% zu verwenden mit \begin{multicols}{3} 3 steht fuer die
+%    spalenzahl \end{multicols}
+
+
+%%%% Zeilenabstand %%%%
+% \setlength{\parindent}{0pt} %Absatz-Einrückung
+% \setlength{\parskip}{12pt} %Absatz-Abstände
+%% oder
+% \usepackage{setspace} %Zeilenabstand bestimmbar in Dokumentenabschnitten
+%% oder
+% \linespread{$$Verhältnis_zu_normalem_Zeilenabstand$$} %Wirkt global
+
+
+%%%% Tabellen %%%%
+\usepackage{booktabs}
+\setlength{\tabcolsep}{5pt} 
+    %Abst zw Spalten
+\renewcommand{\arraystretch}{1.4}
+    %Vielfacher Spaltenabst zw Zeilen
+
+
+%%%% Aufzaehlungen %%%%
+%% description
+\usepackage{expdlist}
+    %mehr Moeglichkeiten
+%% enumerate
+\usepackage{enumerate}
+    %individuelle Aufzaehlungen
+    %nach \begin{enumerate}[(a)] erzeugt (a).. (b).., ...
+    %entsprechend mit (i) (A) (I) 1. Nr 1 usw.
+
+
+%%%% Kopfzeile %%%%
+\usepackage{fancyhdr} 
+% \pagestyle{myheadings} %Kopfzeile hinzufuegen
+%\markright{$$Kopfzeile$$} %Inhalt der Kopfzeile
+%%
+\pagestyle{fancy} %Genauer zu definierende Kopfzeile
+%\fancyhead[OL,OC,OR,EL,EC,ER]{} %O: ungerade seiten, E: gerade Seiten,
+\fancyhead[OL]{\textsc{Bauer, Kopp}: Zusammenfassung Elektrodynamik}
+\fancyhead[OR]{\thepage}
+\fancyfoot[OC]{} %keine Seitennummern unten mehr
+%\fancyfoot[OL,OC,OR,EL,EC,ER]{} %L:Links, C:Mitte, R:Rechts (leere Klammer {} löscht)
+%\renewcommand{\headrulewidth}{dicke} %Dicke der Linie oben
+%\renewcommand{\footrulewidth}{dicke} %Dicke der Linie unten
+%\addtolength{\headwidth}{laenge} %Breite wird vergroessrt (ragt ueber Text raus)
+%\addtolength{\headheight}{länge} %Hoehe wird vergroessert
+
+
+%%%%% Ueberschriften %%%%
+\setcounter{secnumdepth}{4} 
+    %Paragraph wird nummeriert
+%\def\theparagraph{\textit{\mdseries\underline{\roman{paragraph}.}}}
+\def\theparagraph{$\rhd$ (\alph{paragraph})} 
+    %Paragraph bekommt statt nummer ein Dreieck
+
+
+%%%% Andere Nummerierungen %%%%
+%\def\thefigure{\arabic{section}.\arabic{figure}\textsuperscript{\arabic{page}}}
+%\def\theequation{\arabic{section}.\arabic{equation}\textsuperscript{\arabic{
+%page}}}
+
+
+%%%% Referenzen %%%%
+%\usepackage[german]{varioref}
+% mit \vref{label} wird eine individuelle 
+% Bezeichnung verwendet; je nach dem,
+% wie weit label und vref auseinander liegen.
+
+
+%%%% Links %%%%
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,%
+bookmarksnumbered=true,breaklinks=true,pdfstartview=FitH]{hyperref}
+
+
+%%%% Index %%%%
+%\usepackage{makeidx}
+%\makeindex
+
+
+
+%%%% Eigene Komandos %%%%
+%% Differentialoperatoren
+\newcommand{\diff}{\ensuremath{\operatorname d}}
+\newcommand{\dd}{\ensuremath{\operatorname d}}
+\newcommand{\df}{\ensuremath{\operatorname d\vec{\mathrm f}}}
+\newcommand{\dfskal}{\ensuremath{\operatorname d{\mathrm f}}}
+\newcommand{\dr}{\ensuremath{\operatorname d\vec{\mathrm r}}}
+\newcommand{\dx}{\ensuremath{\operatorname d\vec{\mathrm x}}}
+\newcommand{\dV}{\ensuremath{\operatorname{d}{\mathrm{V}}}}
+\newcommand{\Grad}{\ensuremath{\operatorname{grad}}}
+\newcommand{\Div}{\ensuremath{\operatorname{div}}}
+\newcommand{\Rot}{\ensuremath{\operatorname{rot}}}
+\newcommand{\Laplace}{\ensuremath{\Delta}}
+
+%% reservierte Zeichen
+\newcommand{\Kurve}{\ensuremath{\mathscr C}}
+\newcommand{\Fl}{\ensuremath{\mathscr F}}
+\newcommand{\Fli}{\ensuremath{|\mathscr F|}}
+
+%% Vektoren, Matrizen, ...
+\newcommand{\Mat}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\Ten}[1]{\ensuremath{{\mathcal{#1}}}}
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
+
+%% Komplexes
+\newcommand{\E}{\ensuremath{\mathrm{e}}}
+\newcommand{\I}{\ensuremath{\mathrm{i}}}
+
+%% sonst.
+\newcommand{\const}{\ensuremath{\text{\emph{const}}}}
+\newcommand{\Ipl}{$\Rightarrow$}
+\newcommand{\Impl}{$\Rightarrow$}
+
+%% Format
+\newcommand{\zitat}[1]{{\slshape \sffamily #1}} 
+%hebt Zitate deutlich ab
+\newcommand{\abs}[0]{\bigskip \noindent}
+% bei Absaetzen
+
+%% Section Nummerierung mit roemischen Zahlen -- aber nur bei section.
+\def\thesection{\Roman{section}}
+\def\thesubsection{\arabic{section}.\arabic{subsection}}
+
+
+%%%% Definitionen, Saetze %%%%
+\usepackage{shadethm}
+\usepackage{color}
+%
+\newshadetheorem{Wichtig}{Wichtig!}
+\newtheorem*{Erfahrung}{Erfahrung}
+\newtheorem{Ident}{Identit\"at}
+% fuer mathematische Rechenidentit"aten, Vereinfachungen etc.
+\newtheorem*{Anw}{Anwendung}
+\newtheorem*{Bem}{Bemerkung}
+%
+\newshadetheorem{dumpDefi}{Definition}[section]
+\newenvironment{Def}[1][]{%
+\definecolor{shadethmcolor}{rgb}{.95,.95,.95}%
+\definecolor{shaderulecolor}{rgb}{0.8,0.8,0.8}%
+\setlength{\shadeboxrule}{1pt}%
+\begin{dumpDefi}[#1]%
+ }{\end{dumpDefi}}
+
+\begin{document}
+
+\begin{titlepage}
+	\begin{center}
+
+
+\vspace{4em}
+{ {\large \sc Michael Bauer} und {\large \sc Michael Kopp} } \\[11em]
+
+\hrule ~\\[0.6em]
+{\bf \fontsize{35px}{1px} \selectfont Elektrodynamik}\\[0.4em]
+\hrule ~\\[8em]
+{\bf \fontsize{24px}{1px} \selectfont Eine Zusammenfassung}\\[8em]
+{ Bei Prof. Dr. S. Dietrich, SS2010 }
+\vfill
+{ Stand \today \\Version 1.0 }
+
+
+	\end{center}
+\end{titlepage}
+
+%\sloppy %% von jetzt an keine rechts ueberstehenden Woerter mehr!
+
+\section*{Vorwort}
+Dieses sich Zusammenfassung nennende Schriftst"uck soll haupts"achlich eine
+Formelsammlung mit kleinen Erkl"arungen sein. Die physikalischen Herleitungen
+aus Versuchen, Beobachtungen und Erfahrungen oder Postulaten, welche in der
+Vorlesung erbracht worden sind, wurden hier nicht aufgenommen. Solches wird
+immer mit {\bf Erfahrung} markiert.
+Auch auf Herleitungen, wie sie ausf"uhrlich in der Vorlesung gemacht, wurde -- weitgehend -- verzichtet.
+Die Kapitelnummerierung ist jedoch dieselbe, wie in der Vorlesung. Auch wurde darauf geachtet, dieselben Buchstaben f"ur die Gr"o"sen wie in der Vorlesung zu w"ahlen. Insbesondere stehen kleine Buchstaben meist f"ur Dichten, gro"se Buchstaben f"ur Gr"o"sen, die keine Dichten sind, aber als Volumenintegral des zugeh"origen "`kleinen"' Buchstaben geschrieben werden k"onnen. Teils wurde der Wortlaut aus der Vorlesung "ubernommen.
+
+Bei allen hier verwendeten Volumina, Fl"achen und Kurven, und auch
+Vektorfeldern und Funktionen ist vorausgesetzt, dass sie hinreichend gutartig
+sind, d.h. beschr"ankt, orientierbar, ein- oder zweifach stetig differnzierbar
+usw.
+Jedenfalls haben die in der Vorlesungen angewandten S"atze Voraussetzungen, die
+erf"ullt sein sollten, um diese anzuwenden.
+Die Orientierung eines Normalenvektors $\vec n$ einer Fl"ache $\Fl$ ist immer
+so gew"ahlt, dass sie nach au"sen zeigt, bzw. Gradient der Funktion, die die
+Fl"ache (lokal) beschreibt, Normalenvektor und Tangentenvektor der Randkurve
+bilden ein rechtsh"andiges System (d.h. die Fl"ache liegt links, wenn der
+Normalvektor die Randkurve abf"ahrt und nach "`oben"' zeigt).
+Auch wurde oft die Einstein'sche Summenkonvention verwendet.
+\abs
+
+\hfill Michael "`$\ast$"' Kopp, Michael "`$\sim$"' Bauer \\ \abs 
+\hfill Stuttgart, Mai 2010
+
+\clearpage
+
+\tableofcontents
+
+\clearpage % eine Leerseite folgt
+
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+
+
+
+
+\section{Elektromagnetisches Feld}
+
+\subsection{Lorentzkraft, Superpositionsprinzip}
+
+Grundlegend f"ur die Elektrodynamik ist die Kopplung von Ladungen an Felder;
+dieses wird gew"ahrleistet durch die \textbf{Lorenztkraft}:\footnote{Hier wurde der relativistische Impuls $\gamma m \vec v$ verwendet!}
+\begin{align}
+\label{eq:lorentz}
+\frac{\dd}{\dd t}\vec P &=\frac{\dd}{\dd t} \left( \frac{m \vec v(t)}{\sqrt{1-\left( \frac{\vec v(t)}{c}\right)^2}} \right)\\
+\nonumber
+	&=\vec K(\vec r(t),t)=q\cdot\left(\vec E(\vec r(t),t)+\frac{1}{c}\cdot \vec v(t)\times\vec B(\vec r(t),t)\right)
+\end{align}
+Es wird auch die Kraftdichte $\vec k$ verwendet:
+\begin{Def}
+	[Kraftdichte $\vec k$] 
+	\label{def:kraftdichte}	
+	Die Kraftdichte gibt die Kraft von Elektromagnetischen Feldern auf ein differenziell kleines Volumen an:
+$$\vec k(\vec r,t)=\rho(\vec r,t)\, \vec E(\vec r,t)+ \frac{1}{c}\, \vec j(\vec r,t)\times\vec B(\vec r,t)$$
+\end{Def}
+
+\begin{Erfahrung}[Superpositionsprinzip]
+	 Feldtheorie ist linear; Felder k"onnen einfach addiert werden.
+\end{Erfahrung}
+
+\begin{Def}[Feld]
+	Ladungen und Str"ome erzeugen einen "`Erregungszustand"' im Raum, der
+	durch die Felder $\vec E,\vec B$ beschrieben wird.
+\end{Def}
+Im Grunde definiert man ein E- oder B-Feld dar"uber, was f"ur Kr"afte (bzw.
+Impuls"anderungen) ein Teilchen der Ladung $q$ gem"a"s \eqref{eq:lorentz}
+erf"ahrt. In unserer Beschreibung sind die Felder auch ohne
+Probeladungen vorhanden.
+
+
+\subsection{Elektrischer Flu"s}
+
+\begin{Def}[Flu"s $\Phi$ eines Vektorfeldes]
+Der  Flu"s $\Phi_\Fl(\vec V)$ eines Vektorfeldes $\vec V$ durch die  Fl"ache $\Fl$ ist:
+\begin{equation}
+\Phi_\Fl(\vec V) := \int_\Fl \vec V\cdot \vec n\,\dd f=\int_\Fl \vec V\cdot \df
+\end{equation}
+\end{Def}
+F"ur den \emph{Elektischen Flu"s} betrachten wir geschlossene Fl"achen, d.h.  solche, die ein Volumen $V$ beranden: $\Fl=\partial V,\; \partial \Fl= \partial \partial V=0$.
+Es ergibt sich als Flu"s des $\vec E$-Feldes f"ur eine gewisse Anzahl an Ladungstr"agern
+\begin{equation*}
+	{\Phi_\Fl(\vec E) = \int_{\partial V}\vec E \cdot \,\dd \vec f=4\pi \sum_{j\,\text{mit}\,\vec r(q_j)\in V} q_j} \;,
+\end{equation*}
+und entsprechend f"ur eine kontinuierliche Ladungsverteilung $\rho(\vec r,t):$
+
+\begin{equation}
+\boxed{\int_{\partial V}\vec E \cdot \,\dd \vec f=4 \pi \int_V \rho(\vec r,t)\,\dd V}
+\end{equation}
+Weil dieser Zusammenhang f"ur ein beliebiges Volumen und differenzierbares
+Vektorfeld $\vec E$ gelten soll, folgt mit dem Satz von Gau"s:
+
+\begin{Wichtig}[Ladungen sind Quellen des E-Feldes]
+\begin{equation}
+\Div \vec E=4\pi \rho
+\end{equation}
+\end{Wichtig}
+Bei statischen Ladungen k"onnen wir das elektromagnetische Feld schreiben als:
+$$\vec E(\vec r)=\sum_{j\,\text{mit}\,\vec r(q_j)\in V} q_j \frac{\vec r-\vec r'}{|\vec r-\vec r'|^3}\stackrel{\text{kontinuierlich}}{\longrightarrow}\int_V  \rho(\vec r)\cdot \frac{\vec r-\vec r'}{|\vec r-\vec r'|^3}\dV '$$
+
+
+
+\begin{Def}[Strom]
+Der Strom $I$ ist der Flu"s der Stromdichte $\vec j(\vec r,t)=\rho(\vec r,t)\cdot \vec v(\vec r,t)$ durch die Fl"ache \Fl; $\vec v$ die Geschwindigkeit der Ladungstr"ager:
+$$I:=\int_\Fl \vec j \cdot \vec n \dd f$$
+
+\end{Def}
+\begin{Erfahrung}
+Ladung kann weder entstehen, noch verschwinden.
+\end{Erfahrung}
+Gesamtladung in $V$: $Q_V(t)=\int_V\rho(\vec r,t)\, \dV$, d.h. 
+die \emph{Kontinuit"atsgleichung} soll gelten: 
+\begin{equation}
+\frac{\partial \rho}{\partial t}+\Div(\vec j)=0 \;. 
+\end{equation}
+und damit (f"ur zeitunabh"angiges Volumen):$\;-\frac{\partial}{\partial t}Q_V(t)=-\int_V\frac{\partial}{\partial t}\rho(\vec r,t)\, \dV=\int_V \Div(\vec j)\dV=\int_{\partial V}\vec j \cdot\,\df=I$
+\begin{Anw}
+Eine Folgerung hieraus ist z.B. das Kirchhoffsche Gesetz.
+\end{Anw}
+
+
+\subsection{Zirkulation eines Vektorfeldes / Strom und Magnetfeld}
+
+\begin{Def}[Zirkulation]
+Die Zirkulation eines Vektorfeldes $\vec V$ entlang einer Kurve $\mathscr{C}=\partial \Fl$ ist das Arbeitsintegral:
+\begin{equation}
+\Gamma_{\mathscr{C}}(\vec V)=\int_{\partial \Fl}\vec V(\vec r,t)\cdot \dd\vec r
+\end{equation}
+\end{Def}
+
+\begin{Erfahrung}
+Aus Beobachtungen folgt das Gesetz von Amp$\grave{\text{e}}$re bzw. \O rsted:
+
+\begin{equation}
+\frac{4\pi}{c}\cdot I= \boxed{\frac{4\pi}{c}\int_\Fl \vec j \cdot \vec n \dd f=
+\int_{\partial \Fl}\vec B(\vec r,t) \cdot\dd\vec r} =\Gamma_{\mathscr{C}}(\vec B) \;,
+\end{equation}
+sowie die Tatsache, dass es keine magnetischen Monopole gibt, bzw. magnetische Feldlinien geschlossen sind. 
+\end{Erfahrung}
+
+
+\begin{Wichtig}[Magnetfeld ist Quellenfrei]
+$$\int_{\partial V} \vec B\cdot \dd \vec f=0 \; \Leftrightarrow \; \Div(\vec B)=0$$
+\end{Wichtig}
+
+
+\subsection{Induktionsgesetz}
+
+\begin{Erfahrung}
+F"ur die Spannung an einer (bewegten) Leiterschleife ergibt sich:
+\begin{equation}
+\Gamma_{\partial \Fl_t}(\vec E)= \boxed{$$\int_{\partial \Fl_t}\vec E^{(e)}(\vec r,t)\cdot \dd\vec r=-\frac{1}{c}\frac{\dd}{\dd t}\int_{\Fl_t}\vec B\cdot \dd \vec f$$}=-\frac{1}{c}\frac{\dd}{\dd t}\Phi_{\Fl_t}(\vec B)
+\end{equation}
+\end{Erfahrung}
+ 
+\begin{Bem}
+Das erste Integral bescheibt dabei die gesamte elektromotorische Kraft im Leiter:
+\begin{equation}
+\vec E^{(e)}(\vec r,t)=\vec E(\vec r(t),t)+\frac{1}{c}\cdot \vec v(t)\times \vec B(\vec r(t),t)
+\end{equation}
+\end{Bem}
+
+\subsection{Maxwell'sche Gleichungen}
+\begin{align}
+\int_{\partial V}\vec E\cdot\dd \vec f&=4 \pi \int_V \rho\,\dd V
+\tag{MG I $\int$} \label{eq:MGI}\\
+\int_{\partial V} \vec B\cdot \dd \vec f&=0 \tag{MG II $\int$}\label{eq:MGII}\\
+\int_{\partial \Fl_t}\left( \vec E+\frac{1}{c} \, \vec v \times \vec
+  B\right)\cdot \dd\vec r &= -\frac{1}{c} \, \frac{\dd}{\dd
+  t}\int_{\Fl_t}\vec B \cdot\dd \vec f \tag{MG III $\int$} \label{eq:MGIII}\\
+ \int_{\partial \Fl}\vec B\cdot \dd\vec r&=\frac{4\pi}{c}\int_\Fl \vec
+ j  \cdot\df+\frac{1}{c}\int_{\Fl_t} \partial_t\vec E\cdot \df \tag{MG
+   IV $\int$} \label{eq:MGIV}
+\end{align}
+In \eqref{eq:MGIV} wurde als 2. Term die sog. \emph{Maxwellsche Erg"anzung}
+hinzugef"ugt. Sie folgt allein schon aus Konsistenzgr"unden, damit alle
+elektromagnetischen Ph"anomene korrekt beschrieben werden k"onnen. M"ochte man
+das B-Feld eines Plattenkondensators berechnen, so kommt man ohne die
+Erg"anzung auf der rechten Seite von \eqref{eq:MGIV} auf $0$, weil kein Strom
+$\vec j$ zwischen den Kondensatorplatten flie"st. Berechnet man aber das B-Feld
+ein kleines St"uckchen hinter den Platten -- also um den Leiter -- so ist hier
+$\vec j \neq 0$ und damit ist die rechte seite der Gl. von $0$ verschieden.
+
+Da man die Fl"ache $\Fl$ so w"ahlen kann, dass $\partial \Fl$ um den
+Kondensatorplattenzwischenraum verl"auft, die Fl"ache aber entweder durch den
+Zwischenraum oder durch den Leiter l"auft, bekommt man f"ur $\int_{\partial
+\Fl} \vec B \cdot \vec r$ -- wie oben skizziert -- zwei verschiedene Werte. Mit
+der Erg"anzung dagegen wird das Elektrische Feld zwischen den beiden Platten
+"`honoriert"' -- dergestalt dass die Gleichung \eqref{eq:MGIV} gilt.
+
+\begin{Wichtig}
+Alle vier Maxwellgleichungen, zusammen mit der Lorentzkraft \eqref{eq:lorentz},
+der Newtonschen Grundgleichung $\frac{\dd}{\dd
+t}\vec P=\vec K$ und dem Gravitationsgesetz sind die Grundlage der klassischen
+Physik. 
+\end{Wichtig}
+
+
+\begin{Bem}
+Die Maxwellgleichungen enthalten "`versteckte"' Eigenschaften wie das Superpositionsprinzip und die Kontinuit"atsgleichung.
+\end{Bem}
+
+\subsection*{Bedingungen an Grenzfl"achen} Wir betrachten zwei Volumina $G_1$ und
+  $G_2$ mit einer gemeinsamen Grenzfl"ache \footnote{$\exists U : U \subset
+  \partial G_1 \text{ und } U\subset \partial G_2$}. Ist $\vec n$ die Normale
+  f"ur $\partial G_1$ an der gemeinsamen Grenzfl"ache, so ist $-\vec n$ die
+  Normale von $\partial G_2$ an der gemeinsamen Grenzfl"ache. Auf der
+  Grenzfl"ache sei eine Fl"achenladungsdichte $\sigma$ und ein Fl"achenstrom $\vec
+  j$.
+
+  Wir integrieren "uber ein Volumen $V$ mit der Fl"ache $\Fl$
+  senkrecht zur Grenzfl"ache\footnote{Auf beiden Seiten der Grenzfl"ache
+    ist jeweils eine Fl"ache $\Fl$ senkrecht zu $\vec n$.}, dann ist\footnote{$\vec E_2$ ist das
+    E-Feld aus $G_2$} (f"ur verschwindende H"ohe des Volumens)
+  \begin{equation*}
+    \int_{\partial V} \vec E \cdot \df = \vec E_2 \cdot \vec n \, \Fl - \vec
+    E_1 \cdot \vec n \, \Fli = (\vec E_2 - \vec E_1) \cdot \vec n \,
+    \Fli \;,
+  \end{equation*}
+  wobei wir das "`$-$"' den beiden Normalen $\vec n$ und $-\vec n$ der
+  beiden Gebiete zu verdanken haben. Mit \eqref{eq:MGI} kann man dies
+  umschreiben zu
+  \begin{equation*}
+    \int_{\partial V} \vec E \cdot \df = 4\pi \, \int_V \rho \dV =
+    4\pi\,\sigma\,\Fli \;.
+  \end{equation*}
+  Mit den beiden Gleichungen folgt, dass f"ur $\sigma = 0$ die
+  Komponente\footnote{Beachte: Die Komponente des Vektors $\vec v$ in
+    $\vec \nu$-Richtung ist $\vec v \cdot \vec \nu$.} des E-Felds
+  \emph{normal} zur Grenzfl"ache stetig ist und f"ur $\sigma \neq 0$
+  sich ein Sprung um $4\pi\sigma$ beim "Ubergang zwischen den
+  Grenzfl"achen ergibt.
+
+  Analog erh"alt man mit \eqref{eq:MGII}
+  \begin{equation*}
+    \int_{\partial V} \vec B \cdot \df = (\vec B_2 - \vec B_1) \cdot
+    \vec n = 0 \;;
+  \end{equation*}
+  die \emph{Normalkomponente des B-Felds ist stetig} beim
+  Grenzfl"achen"ubergang.
+
+  Verwendet man nun eine Leiterschleife die eine neue Fl"ache $\Fl$ mit
+  Normalenvektor $\nu$ einschlie"st und von der eine Seite der L"ange
+  $\ell$ \emph{senkrecht} zu $\vec n$ ist, so ist (bei verschwindender
+  Breite der Schlaufe)
+  \begin{equation*}
+    \int_{\partial \Fl} \vec E \cdot \dr = (\vec E_2 - \vec E_1) \cdot (\vec
+    \nu \times \vec n) \, \ell 
+=
+\vec \nu \cdot \left [ \vec n \times (\vec E_2 -\vec E_1) \right ]\;,
+  \end{equation*}
+  einfach weil $\vec \nu \times \vec n$ parallel zum Leiter der L"ange
+  $\ell$ liegt. Das "`$-$"' kommt daher, dass der Leiter einmal
+  rundherum integriert wird -- also die L"ange einmal "`vorw"arts"'
+  und einmal "`r"uckw"arts"'. Die zweite Identit"at kann man mit dem
+  $\Ten\varepsilon$-Tensor beweisen. Wendet man nun \eqref{eq:MGIII}
+  an, so erh"alt man mit ($\vec v = \vec 0$)
+  \begin{equation*}
+    - \frac{1}{c} \frac{\diff }{\diff t} \int_{\Fl} \vec B \cdot \df
+    \to 0 \text{ wegen } \Fli \to 0 \;,
+  \end{equation*}
+  dass das obige Integral verschwinden muss. Da $\vec \nu$ beliebig
+  aus der Grenzfl"ache gew"ahlt werden kann, folgt nun $ \vec n \times
+  (\vec E_2 -\vec E_1) = 0$ -- also die \emph{Stetigkeit der
+    Tangentialkomponente von $\vec E$}.
+  
+  Analog folgt mit \eqref{eq:MGIV}, dass \emph{ohne Fl"achenstrom ($\vec j =
+  \vec 0$) die Tangentialkomponente von $\vec B$ stetig ist und mit
+  Strom einen Sprung um $\frac{4\pi}{c}\vec j$ macht}.
+
+
+\subsection{Feldgleichungen in differentieller Form}
+
+Mit Hilfe der Vektoranalysis, dem Satz von Stokes\footnote{Satz von Stokes \Impl $\;$Satz von Gau"s} lassen sich die Maxwellgleichungen als Differentialgleichungen schreiben, da diese immer f"ur beliebiges Volumen $V$ oder beliebige Fl"ache \Fl  $\,$gelten.\footnote{Ein Beispiel: Gilt $\int_{V} f(x) \dx = \int_{V}g(x)\dx$ f"ur beliebige Volumina $V$, so folgt notwendig, dass die Integranden f"ur alle Punkte gleich sind -- also $f = g$. \label{fn:intdiff}}
+
+\begin{Wichtig}[Lemma von Poincar$\acute{\text{e}}$]
+Sei G ein einfach zusammenh"angendes Gebiet
+, \vec A $\in C^1$ ein stetig diffb. Vektorfeld , $\phi\in C^2$ Skalarfeld. Dann sind "aquivalent:
+\begin{align}
+&\exists\, \phi \text{ mit } \vec A=\Grad \phi \,\text{(d.h. $\phi$ ist Potential von \vec A)} \\
+\Leftrightarrow&\Rot \vec A=\vec 0\\
+\Leftrightarrow&\text{ Integrabilit"atsbedingungen
+sind erf"ullt} \;.
+\end{align}
+\end{Wichtig}
+
+Hier steht \emph{einfach zusammenh"angend} daf"ur, dass man eine Beliebige Kurve $\Kurve$ in $G$ so stetig verformen kann -- also verdellen --, sodass am Ende der Verformungen ein Punkt aus dem Weg geworden ist. Dabei ist es wichtig, dass das Gebiet \emph{keine L"ocher} hat: Hat $G$ das Loch $a$, dann kann man eine Kurve $\Kurve$, die rund um $a$ herumf"uhrt \emph{nicht} zu einem Punkt zusammenziehen, weil man immer um $a$ herumlaufen muss, also kann man $\Kurve$ maximal auf einen $\varepsilon$ gro"sen Kreis um $a$ verformen.
+
+Die \emph{Integrabilit"atsbedingungnen} bedeuten
+\begin{equation*}
+	\partial_i A_j=\partial_j A_i \;, \forall i\in\{x,y,z\} \;.
+\end{equation*}
+Dies ist aber im $\mathbb{R}^3$ nur eine andere Schreibweise f"ur 
+\begin{equation*}
+	\Rot \vec A\Big|_{\vec r} = \vec 0 \text{ f"ur alle } \vec r \in G \;.
+\end{equation*}
+
+Man kann sich einfach merken: 
+\begin{Ident}
+	Ein Gradientenfeld hat keine Wirbel.
+	\begin{equation}
+		\Rot \Grad =0 \;.
+		\label{rotgrad0}
+	\end{equation}
+\end{Ident}
+
+\begin{Wichtig}[Lemma: \dd  $\;\circ$ \dd=0]
+Sei \vec A ein zweifach stetig diffb. Vektorfeld und \vec V einmal stetig diffb. Dann gilt:
+\begin{align}
+\Div \Vec V=0 \Leftrightarrow \exists \vec A: \vec V=\Rot \vec A
+\end{align}
+\vec A ist eindeutig bis auf Addition eines Gradientenfeldes \Grad $\phi$ (Eichfreiheitsgrad).
+\end{Wichtig}
+Anschaulich hei"st das, dass man jedes Quellenfreie Feld als Rotation eines Vektorpotentials scheiben kann. Andersherum gilt, dass jedes Rotationsfeld quellenfrei ist.
+
+Man kann sich einfach merken: 
+\begin{Ident}
+	Ein Wirbelfeld hat keine Quellen.
+	\begin{equation}
+		\Div \Rot =0 \;.
+		\label{divrot0}
+	\end{equation}
+\end{Ident}
+
+\begin{Bem}
+In der Sprache der Differentialformen: Sei $\omega$ eine diffb. k-Form. Dann gilt: Ist $\omega$ exakt, d.h. $\exists\, \eta$ mit $\dd \eta =\omega$, dann ist $\omega$ geschlossen, d.h. \dd $\omega =0$. Ist $\eta$ zweifach stetig diffb. dann gilt: $(\dd  \;\circ \dd)(\eta )=0$.
+\end{Bem}
+%* also im K"onigsberger ist es zumindest so, dass dd=0 ein Teil der Definition
+%der Differenzialformen war\dots Macht auch Sinn: "Anderungen in quadratischer
+%Ordnung werden weggelassen\dots
+%~ hm ja wird auch teils in die definition gepackt, aber beim br"udern wars mal n satz :)
+
+Wie zu Beginn dieses Kapitels beschrieben\footnote{vgl Fu"snote \ref{fn:intdiff}} folgt:
+%~ hm sag mal meinst du das bringt was die tags mit MG \int und MG \dd zu
+%machen? also wegen mir m"ussen wir da nicht unterscheiden
+%* wegen dem LaTeX-Compiler schon. Du siehst vllt die Fehlermeldungen nicht,
+%aber ermeckert immer, wenn man gleiche labels vergibt\dots
+%* ich hab jetzt nur das \int entfernt und die neuen Gleichungen kriegen als
+%labels eq:I..eq:IV.
+%~ ja find ich gut
+\begin{framed}
+\begin{align}
+\Div \vec E &= 4\pi\rho  \tag{MG I} \label{eq:I}\\
+\Div \vec B&=0 \tag{MG II}\label{eq:II}\\
+\Rot \vec E &= - \frac{1}{c}\frac{\partial}{\partial t}\vec B\tag{MG III} \label{eq:III}\\
+\Rot \vec B &= \frac{4\pi}{c}\vec j+\frac{1}{c}\frac{\partial}{\partial t}\vec E \tag{MG IV} \label{eq:IV}
+\end{align}
+\end{framed}
+
+\begin{Bem}
+Die Formulierung der Maxwellgleichungen in Integralschreibweise nimmt die Topologie der Gebiete auf; d.h. die Form der Volumina, Fl"achen und Wege, sowie die Tatsache, dass das Verformen der geometrischen Objekte keine Ver"anderung bringt, z.B. in \eqref{eq:MGIV} die Verformng von \Fl, oder in \eqref{eq:MGI}: "Andert man $\rho$, sodass die linke Seite des Integrals gleich bleibt, so bleibt auch die rechte Seite gleich. In differentieller Form hat man nur eine Punktweise Aussage. 
+\end{Bem}
+%* stimmt das mit der Topologie?
+%* nehme ich nicht eher Informationen "uber die Tats"achlichen _Verteilungen_ auf?
+%~ also das mit der topologie stammt vom dietrich... gemeint ist denke ich die form der oberfl"achen, volumina und wege...zB dass man seinen schmetterlingsf"anger verformen kann und so... hab mal versucht das mehr zu erkl"aren
+
+\begin{Wichtig}[relativistisch invariant]
+	Die Maxwellgleichungen \eqref{eq:I} bis \eqref{eq:IV} sind schon relativistisch invariant formuliert.
+\end{Wichtig}
+%* fand ich wichtig ;-)
+
+%~ wann sollen wir den fundamentalsatz der Vektoranalysis einf"ugen?
+%* gute frage; hab ich mir ausch schon ueberlegt\dots Ich hab ihn hier einfach
+%mal eingef"ugt ;-) Verr"ucken k"onnen wir ihn immernoch\dots
+%~ ok super
+
+
+
+
+
+\subsection{Energie-Impuls-Bilanz im elektromagnetischen Feld}
+Da geladenen Teilchen Impuls und Energie mit dem elektromagnetischen Feld
+austauschen, stellt sich die Frage, wie Impuls und Energie in den Feldern
+gespeichert sind.
+
+Dazu betrachten wir die Gleichung f"ur die Newton'sche Bewegungsgleichung
+\begin{equation}
+	\vec K=\frac{\dd}{\dd t}\vec P
+\end{equation}
+und betrachten die \emph{"Anderung der Kinetischen Energie} $E_\text{kin} = \vec p^2 / 2m$:
+\begin{equation}
+	\frac{\dd}{\dd t}\left(\frac{\vec P^2}{2m}\right)=\frac{2\dot{\vec P}\cdot\vec P}{2m}=\vec K\cdot \vec v \;.
+	\label{eq:diffEkin}
+\end{equation}
+
+
+
+
+
+\subsubsection{Energiebilanz}
+Setzt man in \eqref{eq:diffEkin} die Lorentzkraft aus \eqref{eq:lorentz} ein
+gilt\footnote{da $\vec v \times \vec B \bot \vec v$ ist $(\vec v \times \vec B)
+\cdot \vec v = 0$}
+\begin{equation}
+\vec K\cdot \vec v=q\cdot\left(\vec E+\frac{1}{c}\cdot \vec v\times\vec B\right)\cdot \vec v=q \vec E\cdot \vec v\stackrel{\text{kontinuierlich}}{\longrightarrow}\int_{V}\vec j\cdot \vec E \dV \;,
+	\label{eq:energie}
+\end{equation}
+wobei wir $q \, \vec v$ mit dem Strom $\vec j$ definiert haben. Eleganter h"atte man das auch bekommen, wenn man direkt ein differenziell kleines Volumen betrachtet h"atte und hier die Kraft\emph{dichte} $\vec k$ aus Def. \ref{def:kraftdichte} verwendet h"atte.
+
+Damit l"asst sich die mechanische Energiedichte $w_\text{mech}$ definieren: $\partial_t w_\text{mech}=\vec j\cdot \vec E$ und \eqref{eq:energie} wird zu:
+\begin{equation}
+\frac{\dd}{\dd t} E_{kin}=\int_{V}\partial_t w_{mech} \dV
+\end{equation}
+Eretzt man $\vec j$ mit \eqref{eq:IV} und verwendet
+\begin{Ident}
+	$$\Div ( \vec E \times \vec B ) = \vec B \cdot (\Rot \vec E) - \vec E \cdot (\Rot \vec B)$$
+\end{Ident}
+und hier wiederum
+\begin{Ident}
+	$$\vec E \cdot ( \Rot \vec B) = \vec B \cdot (\Rot \vec E) - \Div(\vec E \times \vec B)$$
+\end{Ident}
+so kommt man auf:
+
+\begin{equation}
+	\vec j\cdot \vec E=-\Div(\frac{c}{4\pi}\vec E \times \vec B)-\partial_t
+	(\frac{1}{8\pi}(\vec E^2+\vec B^2))=\partial_t w_{mech} \;.
+	\label{eq:poynting}
+\end{equation} 
+Diese Gleichung beschreibt eine Art Energietransfer aus einem differenziellen Volumen und sie spaltet sich offensichtlich in zwei Terme auf; diese definiert man \emph{unter Anderem} wegen dieser Gleichung folgenderma"sen:
+\begin{Def}[Feldenergiedichte, Energiestromdichte] ~\\
+Die im differenziellen Volumen in E- und B-Feld "`gespeicherte"' Energie --
+Feldenergiedichte: $$u_{Feld}=\frac{1}{8\pi}(\vec E^2+\vec B^2) \;,$$
+Den Fluss von Energie in bzw. aus dem differenziellen Volumen --
+Energiestromdichte (Poynting-Vektor): $$\vec S=\frac{c}{4\pi}\vec E \times \vec
+B \;.$$
+\end{Def}
+%* hier kann nich nicht viel sch"oner formatieren ;-)
+%* was fehlt dir denn?
+%~ och jetzt wo dus sagst passts eigentlich ;)
+Gleichung \eqref{eq:poynting} wird zu einem Energiesatz f"ur das Feld-Teilchensystem oder auch zu einer Art Kontinuit"atsgleichung:
+\begin{Wichtig}
+	[Energiesatz f"ur ein Feld=Teilchensystem]
+	\begin{equation}
+		\boxed{\Div\vec S + \partial_t u_\text{Feld}=-\partial_t w_\text{mech}}
+	\end{equation}
+\end{Wichtig}
+Oder etwas anschaulicher in integraler Schreibweise:
+\begin{equation}
+-\frac{\dd}{\dd t}\int_V u_{Feld} \dV = \frac{\dd}{\dd t} \int_V w_{mech}\dV+\int_{\partial V}\vec S \cdot \df
+\end{equation}
+Die Feldenergie kann in $V$ also nur abnehmen, wenn die mechanische Energie zunimmt oder sie in Form des Energiestromdichtefluss (Poynting-Vektor) durch $\partial V$ entweicht.
+
+\subsubsection*{Exkurs: reale Leiter und Ohmsches Gesetz}
+Experimentell folgt im Leiter: $\vec j= \sigma \vec E$ und damit altbekannte Formeln wie:
+\begin{align}
+U=R\cdot I\\
+R=\frac{l}{\sigma \Fli}
+\end{align}
+Hier ist $U$ eine Potentialdifferenz / Spannung, $R$ der Widerstand, $l$ eine Leiterl"ange und $\sigma$ die Leitf"ahigkeit (die im Allgemeinen ein Tensor ist). Dann folgt f"ur ein homogenes $\vec E$-Feld die Energie W:
+
+\begin{align}
+\partial_t w_{mech}&=\vec j\cdot \vec E=\sigma \vec E^2=\frac{l}{R\Fli}\left(\frac{U}{l}\right)^2=\frac{U^2}{RV}\\
+W&=\partial_t w_{mech}\cdot V \cdot \Delta t= U\cdot I \cdot \Delta t
+\end{align} 
+
+
+\subsubsection{Impulsbilanz}
+Die Kraftdichte $\vec k$ kann man mit Hilfe der Maxwellgleichungen nur in Abh"angigkeit von $\vec E$ und $\vec B$ ausdr"ucken und erh"alt in Komponentenschreibweise:
+
+\begin{equation}
+k_\alpha=\left(\partial_\beta(\frac{1}{4\pi}(E_\alpha E_\beta+B_\alpha B_\beta)-\delta_{\alpha \beta} u_{Feld})  \right)-\frac{1}{4\pi c} \partial_t (\vec E \times \vec B)_\alpha
+\end{equation}
+
+\begin{Def}[Impulsdichte des elmag. Feldes, Maxwellscher Spannungstensor]
+\begin{align}
+\vec p_{Feld}&=\frac{1}{4\pi c} \partial_t (\vec E \times \vec B)=\frac{1}{c}\vec S\\
+T_{\alpha \beta}&=\frac{1}{4\pi}(E_\alpha E_\beta+B_\alpha B_\beta)-\delta_{\alpha \beta} u_{Feld})=T_{\beta \alpha}  
+\end{align}
+\end{Def}
+Der Spannungstensor angewendet auf einen Vektor $T_{\alpha \beta}n_\beta=(\overleftrightarrow{\vec  T}\vec n)_\alpha$ ist zu verstehen als Kraft/Fl"ache in $\alpha$-Richtung auf Oberfl"achenelement mit Normalenvektor $\vec n$.
+
+\begin{Def}[Drehimpulsdichte]
+$$\vec l_{Feld}=\vec r \times \vec p_{Feld}$$
+\end{Def}
+
+
+Dann gilt mit $\frac{\dd}{\dd t}\vec P_{mech}=\int_V \vec k \dV$ die Impulsbilanz:
+
+\begin{align}
+\frac{\dd}{\dd t}(\vec P_{mech})_{\alpha}=\int_V \partial_\beta T_{\alpha \beta}  \dV-\frac{\dd}{\dd t}\int_V(\vec p_{Feld})_{\alpha} \dV\\
+\frac{\dd}{\dd t}(\vec P_{tot})_{\alpha}=\frac{\dd}{\dd t}(\vec P_{mech}+\vec P_{Feld})_{\alpha}=\int_V \partial_\beta T_{\alpha \beta}  \dV
+\end{align}
+
+\clearpage
+
+\section{Statische Felder und elektromag. Wellen}
+
+\subsection{Grundaufgabe der Elektro- und Magnetostatik}
+Im Folgenden seien $\rho$ und $\vec j$ zeitunabh"angig gegeben und au"serhalb einer gen"ugend gro"sen Kugel gleich Null sein. Au"serdem sollen deren R"uckwirkung auf Ladungen und St"ome vernachl"assigt werden. Gesucht sind nun zeitunabh"angige L"osungen der Maxwellgleichungen, die hier folgenderma"sen aussehen:
+
+\begin{align}
+\Div \vec E &= 4\pi\rho \label{eq:32}\\ 
+\Div \vec B &=0 \\
+\Rot \vec E &= 0 \label{eq:34}\\
+\Rot \vec B &= \frac{4\pi}{c}\vec j \label{eq:35}
+\end{align}
+Die Gleichungen f"ur $\vec E$ und $\vec B$ sind also hier entkoppelt. Wenn die Felder dann f"ur $r\to \infty$ so schnell wie $\frac{1}{r^2}$ klein werden,dann kann man Gleichungen \eqref{eq:32}-\eqref{eq:35} mit dem Fundamentalsatz der Vektoranalysis direkt l"osen.
+
+
+\subsection*{Einschub: Haupt-/Fundamentalsatz der Vektoranalysis}
+
+Oben haben wir die beiden wichtigen Zusammenh"ange $\Rot \Grad = \Div \Rot = 0$
+und das Poincar\'e'sche Lemma kennen gelernt; es folgt ein wichtiger
+Satz, der aufzeigt, dass das Verhalten von Rotationsfeldern und
+Gradientenfeldern die Untersuchung bei einem allgemeinen Feld auch
+betrifft:\footnote{Vergleiche hierzu das Vorwort und die Tatsache, dass hier
+Physiker rechnen -- dann gilt der Satz f"ur \emph{jedes} Vektorfeld $\vec v$.}
+
+\begin{Wichtig}[Fundamentalsatz der Vektoranalysis]
+	\label{wichtig:fundsatz_vektana}
+	Jedes "uberall definierte, stetig differenzierbare Vektorfeld $\vec v$,
+	welches im Unendlichen hinreichend schnell abf"allt l"asst sich in
+	einen \emph{Gradiententeil}
+\begin{equation*}
+	\vec v_{\text{grad}}(\vec r) := - \frac{1}{4\pi} \Grad_{\vec
+	r}\int_{\mathbb R^3} \frac{\Div_{\vec r'}\vec v(\vec r')}{\|\vec r -
+	\vec r'\|} \dV '
+\end{equation*}
+und einen \emph{Rotationsteil}
+\begin{equation*}
+	\vec v_{\text{rot}}(\vec r) := \frac{1}{4\pi} \Rot_{\vec
+	r}\int_{\mathbb R^3} \frac{\Rot_{\vec r'}\vec v(\vec r')}{\|\vec r -
+	\vec r'\|} \dV '
+\end{equation*}
+aufteilen (es gilt also $\vec v_{\text{grad}}(\vec r)  + \vec
+v_{\text{rot}}(\vec r)  = \vec v(\vec r)$).
+\end{Wichtig}
+Ein unbekanntes, schnell abfallendes Vektorfeld ist also eindeutig "uber seine Quellen und Wirbel gegeben.
+%~ habe mal \dr (vektor r) durch \dV ersetzt, weil wir das immer so bei volumenintegralen hatten.
+
+\begin{Anw}[Felder in der Elektrostatik]
+	Damit haben wir sogleich auch eine M"oglichkeit, das Elektrische
+	Potential $\phi$ einer beliebigen Ladungsverteilung oder das
+	Vektorpotential $\vec A$ einer beliebigen Stromverteilung zu ermitteln
+	und daraus nat"urlich die Felder $\vec B$ und $\vec E$:
+	\begin{align}
+		\phi(\vec r) &=&  \int_{\mathbb R^3}\frac{\rho(\vec r')}{\|\vec
+		r - \vec r'\|} \dV ' &\text{ und }& \vec E = - \Grad \phi \;,
+			\label{eq:rho-phi} \\
+		\vec A(\vec r) &=& \frac{1}{c} \int_{\mathbb R^3}^{} \frac{\vec
+		j(\vec r')}{\|\vec r - \vec r'\|} \dV ' &\text{ und }& \vec B =
+		\Rot \vec A \;.
+			\label{eq:j-A}
+	\end{align}
+\end{Anw}
+Um dies herzuleiten, setze in den Gleichungen von Wichtig
+\ref{wichtig:fundsatz_vektana} die Maxwellgleichungen ein und beachte dass
+$\partial_t \vec B = \partial_t \vec E = 0$.\footnote{wg. Elektro- und Magnetostatik}
+
+
+
+
+
+\subsubsection{Elektrostatik im $\mathbb{R}^3$}
+
+Gleichung \eqref{eq:34} sagt uns, dass wir $\vec E$ als Gradientenfeld schreiben k"onnen. Also ergibt sich mit \eqref{eq:32} die Poisson-Gleichung:
+$$\Laplace \phi= -4\pi \rho$$
+mit schneller als $\frac{1}{r}$ abfallendem $\phi$. Das "`$-$"' kommt daher,
+weil der Physiker im Allgemeinen ein Potential $a$ definiert, dass das
+entsprechende Vektorfeld $\vec v$ sich als $\vec v = - \Grad a$ ergibt.  
+
+Weil die DGL linear ist, besteht die allgemeine L"osung aus homogener L"osung
+-- also $\phi_\text{hom}$ was $\Laplace \phi_\text{hom} \equiv 0$ l"ost -- und
+einer partikul"aren L"osung $\phi_\text{part}$, die dann die Gleichung
+$\Laplace \phi_\text{part} = -4\pi\rho$ erf"ullt. Die Ladungen $\rho$ sind also eine \emph{Inhomogenit"at} und die Schwierigkeit besteht darin, den Teil $\phi_\text{part}$ zu finden.
+%$$\Laplace \phi_{hom}=0 \Rightarrow \phi_{hom}=0$$
+%~ hab noch nicht verstanden, warum das so ist.
+%* so macht's glaub ich mehr sinn ;-)
+%Damit ist die partikul"are L"osung die gesamte. 
+
+\abs
+Ein Weg, um $\phi$ bzw. $\phi_\text{part}$ zu bestimmen ist
+Gleichung \eqref{eq:rho-phi}: Dabei braucht man nur brav zu integrieren und sie
+liefert dann das Ergebnis und die Grundaufgabe der Elektrostatik ist
+bew"altigt.
+
+Andererseits kann das Problem mit einer \emph{Greensfunktion} $G(\vec r, \vec r')$
+gel"ost werden.  Sie soll das Potential einer Einheitspunktladung bei $\vec r'$ (also $\rho(\vec
+r)=\delta(\vec r-\vec r')$) darstellen und muss somit
+\begin{equation}
+	\Laplace G(\vec r, \vec r')=-4\pi \delta(\vec r-\vec r') \label{eq:Green}
+\end{equation}
+erf"ullen. Gem"a"s dem Superpositionsprinzip ergibt sich dann f"ur eine
+beliebige Ladungsverteilung $\tilde{\rho}(\vec r)$:
+$$\phi(\vec r)=\int_{\mathbb{R}^3}G(\vec r, \vec r')\tilde{\rho}(\vec r) \dV '\;:$$
+Wir stellen die beliebige Ladungsverteilung $\tilde \rho$ als
+infinitissimale Summe von Einheitsladungen dar -- also als Integral
+der Greens-Funktion.  Rein Mathematisch ist das die
+\emph{Faltung}\footnote{weil man $G(\vec r, \vec r')$ auch als $G(\vec
+  r - \vec r')$ schreiben kann}\footnote{Eine kurze Erkl"arung daf"ur
+  ist die folgende: Ein Problem $D\phi = \rho$ ist gegeben -- $D$ ist
+  ein Differenzialoperator, $\phi$ die gesuchte Funktion und $\rho$
+  eine Inhomogenit"at. F"ur eine Partikul"arl"osung verwendet man
+  dann, dass die Delta-Funktion $\delta$ das Neutrale Element der
+  Faltung ist ($\delta \ast f = f$) und weiter dass die Faltung
+  bzgl. einem Diff'operator $D$ $$D(f\ast g) = Df \ast g = f \ast Dg$$
+  erf"ullt.  Die Greensfunktion erf"ullt nach Definition $DG =
+  \delta$, also ist
+  $$\rho = \delta \ast \rho = DG \ast \rho = D(G\ast\rho)$$ und so folgt
+  insgesamt
+  $$D\phi = \rho = D(G\ast\rho) \text{ und daraus } \phi = G\ast\rho \;.$$}
+\begin{equation*}
+  \phi = G \ast \rho \;.
+\end{equation*}
+
+Damit ist das Problem auch gel"ost. 
+%falls $\phi$ die Poissongleichung erf"ullt. 
+%* verwirrt nur
+Das checken wir nach:
+$$
+\Laplace \phi=
+\int_{\mathbb{R}^3} \Laplace G(\vec r, \vec r')\tilde{\rho}(\vec r) \dV' =
+-\int_{\mathbb{R}^3} 4\pi \delta(\vec r-\vec r')\tilde{\rho}(\vec r) \dV' =
+-4\pi\rho 
+$$
+
+Die Greensfunktion f"r den Laplace-Operator kann mittels Fouriertransformation bestimmt werden, oder man err"at sie und pr"uft nach, ob das Erratene \eqref{eq:Green} erf"ullt. 
+
+Idee der Laplace-Transformation ist die, dass man so die \emph{Translationsinvarianz} einbaut. Wie allgemein in der Physik vereinfachen n"amlich Symmetrien das Finden von L"osungen (betr"achtlich) -- und die Greens-Funktion ist gewisserma"sen codierte Information "uber Geometrie und Symmetrie des Problems.
+
+"Uber die Fouriertransformierte $\hat G(\vec k)$ kann man $G$ darstellen via
+\begin{equation*}
+	G(\vec r) = \int \frac{1}{(2\pi)^3} \hat G(\vec k) \E^{\I \vec k \cdot \vec r} \diff k^3
+\end{equation*}
+und kann hier verwenden, dass sich $\nabla$ im $\vec k$-Raum zu $(\I \vec k)$ transformiert. Da $\delta$ die Darstellung
+\begin{equation*}
+	\delta(\vec r) = \int \frac{1}{(2\pi)^3} 1 \E^{\I \vec k \cdot \vec r} \diff  k^3
+\end{equation*}
+hat, kann man $\Laplace$ auf obige Darstellung von $G$ anwenden. Nun schreibt man Gleichung \eqref{eq:Green} mit den beiden Integralen in eine Integralgleichung um und erh"alt die Bedingung
+\begin{equation*}
+	\hat G(\vec k) = \frac{4\pi}{k^2}
+\end{equation*}
+und kann diese nun in die Fourierdarstellung von $G$ einsetzen, wodurch man erh"alt:
+\begin{equation}
+	G(\vec r, \vec r')=\frac{1}{\|\vec r-\vec r'\|} \;.
+	\label{eq:green-loes}
+\end{equation}
+
+\subsubsection{Magnetostatik im $\mathbb{R}^3$}
+Durch den Ansatz $\vec B=\Rot \vec A$ wird $\Div \vec B =0$ erf"ullt. Dabei ist $\vec A$ aber nicht eindeutig. $\vec A'=\vec A+\nabla\chi$ erf"ullt $\vec B=\Rot \vec A'$ ebenfalls. Wir haben also einen Eich-Freiheitsgrad. Wir betrachten zun"achst die sog. \emph{Lorenzeichung}; d.h. $\Div \vec A'=0$. Das ist immer m"oglich, denn wenn $\Div \vec A=4\pi f(\vec r) \neq 0$, dann bildet man $\vec A'= \vec A+ \nabla \chi$ sodass: 
+$$0=\Div A'= \Div A + \Delta \chi=4\pi f(\vec r)+\Delta \chi$$
+Wie oben gesehen, wissen wir, dass diese Poissongleichung l"osbar ist, also erhalten wir ein solches $\chi$ und damit auch das gew"unschte $\vec A'$. Damit k"onnen wir \eqref{eq:IV} schreiben als:
+$$\frac{4\pi}{c}\vec j = \Rot \vec B=\Rot \Rot \vec A'=\Grad \underbrace{\Div \vec A'}_{=0}-\Delta \vec A'=-\Delta \vec A'$$
+
+Damit haben wir eine vektorielle Poissongleichung, also gleich drei auf einmal.
+Mit der Greensfunktion kennen wir auch die L"osung:
+$$\vec A'(\vec r)=\frac{1}{c} \int_{\mathbb R^3}^{} \frac{\vec
+		j(\vec r')}{\|\vec r - \vec r'\|} \dV '$$
+\begin{eqnarray}
+\vec B(\vec r)&=& \Rot_{\vec
+	r}\vec A=\frac{1}{c} \int_{\mathbb R^3}\Rot_{\vec
+	r} (\frac{\vec j(\vec r')}{\|\vec r -
+	\vec r'\|}) \dV '\\&=&-\frac{1}{c} \int_{\mathbb R^3}\vec j(\vec r') \times \nabla_{\vec r}  (\frac{1}{\|\vec r -\vec r'\|}) \dV '\\
+&=&\frac{1}{c} \int_{\mathbb R^3}\vec j(\vec r') \times \frac{\vec r -\vec r'}{\|\vec r -\vec r'\|^3} \dV '
+\end{eqnarray}
+Dies ist das bekannte \emph{Biot-Savart-Gesetz}. Das Minus in der Rechnung ist leicht nachzuvollziehen, wenn man $\Rot$ in $\varepsilon$-Darstellung schreibt und ber"ucksichtigt, dass $\vec j$ hier konstant bzgl. dieser Ableitung ist.\\
+
+\begin{Wichtig}[Fazit]
+In der Elektro- und Magnetostatik k"onnen wir stets aus bekanntem $\rho$ und $\vec j$ mittels (numerischer) Integration und Gradientenbildung  $\phi$, $\vec B$ und $\vec E$ errechnen. In der Realit"at sind aber $\rho$ und $\vec j$ nicht im ganzen $\mathbb{R}^3$ bekannt. Meist hat man \emph{Randwertprobleme}.
+\end{Wichtig}
+
+\subsection{Multipolentwicklung in der Elektro- und Magnetostatik}
+ \paragraph*{karthesische Multipolentwicklung} Die Taylorentwicklung bis zur zweiten Ordung einer Funktion $g(\vec r')=f(\vec r -\vec r')$ im Punkt $\vec r'=\vec 0$, lautet\footnote{Das Minus vor dem zweiten Term kommt daher, dass man bei den Ableitungen eine Substitution $\vec r -\vec r' \mapsto \vec r$ durchf"uhrt}:
+\begin{eqnarray}
+f(\vec r -\vec r')&=&f(\vec r)+(\vec r'\cdot \nabla_{\vec r'})f(\vec r-\vec r')|_{\vec r'=\vec 0}\\
+&&+\frac{1}{2}(\vec r'\cdot \nabla_{\vec r'})^2f(\vec r-\vec r')|_{\vec r'=\vec 0}+\hbox{o}(\|\vec r -\vec r'\|^2) \\
+&=&f(\vec r)-(\vec r'\cdot \nabla_{\vec r})f(\vec r)+\frac{1}{2}(\vec r'\cdot \nabla_{\vec r})^2f(\vec r)+\hbox{o}(\|\vec r -\vec r'\|^2) 
+\end{eqnarray}
+
+und in Einstein-Notation:
+$$f(\vec r -\vec r')=f(\vec r)-x'_\alpha \partial _\alpha f(\vec r)+\frac{1}{2}x'_\alpha x'_\beta \partial _\alpha \partial _\beta f(\vec r)+\hbox{o}(\|\vec r -\vec r'\|^2) $$
+Wir betrachten die f"ur uns wichtige Funktion:
+\begin{eqnarray}
+\frac{1}{\|\vec r -\vec r'\|}&=&\frac{1}{r}-x'_\alpha \partial _\alpha \frac{1}{r}+\frac{1}{2}x'_\alpha x'_\beta \partial _\alpha \partial _\beta \frac{1}{r}+\hbox{o}(\|\vec r -\vec r'\|^2) \\
+&=&\frac{1}{r}+\frac{x'_\alpha x_\alpha}{r^3}+\frac{x'_\alpha x'_\beta}{2r^5}(3x_\alpha x_\beta-r^2\delta_{\alpha \beta})+\hbox{o}(\|\vec r -\vec r'\|^2) \\
+&=&\frac{1}{r}+\frac{\vec r \cdot \vec r'}{r^3}+\frac{1}{2r^5}[3(\vec r \cdot \vec r')^2-r^2r'^2]+\hbox{o}(\|\vec r -\vec r'\|^2)
+\end{eqnarray}
+Das haben wir berechnet, um die Integraldarstellung der elektromagnetischen Potentiale zu vereinfachen:
+\begin{eqnarray}
+\phi(\vec r) &=&  \int_{\mathbb R^3}\frac{\rho(\vec r')}{\|\vec r - \vec r'\|} \dV '\\
+&=& \frac{1}{r}\int_{\mathbb R^3}\rho(\vec r')\dV '+\frac{1}{r^3}\int_{\mathbb R^3}(\vec r \cdot \vec r')\;\rho(\vec r')\dV '\\
+&&+\frac{1}{2r^5}\int_{\mathbb R^3}[3(\vec r \cdot \vec r')^2-r^2r'^2]\;\rho(\vec r')\dV '+\hbox{o}\\
+\vec A(\vec r) &=& \frac{1}{c} \int_{\mathbb R^3}^{} \frac{\vec
+		j(\vec r')}{\|\vec r - \vec r'\|} \dV '\\
+&=& \frac{1}{cr} \int_{\mathbb R^3}^{} \vec
+		j(\vec r')\dV '+\frac{1}{cr^3} \int_{\mathbb R^3}^{} (\vec r \cdot \vec r') \;\vec j(\vec r')\dV '\\
+&&+\frac{1}{2cr^5} \int_{\mathbb R^3}^{} [3(\vec r \cdot \vec r')^2-r^2r'^2]\;\vec j(\vec r') \dV '+\hbox{o}
+\end{eqnarray}
+%~ weisst du wie die o-Terme Korrekt aussehn?
+Die ersten drei Terme dieser Entwicklung bezeichnet man als \emph{Mono-, Di-, und Quadrupol}.
+
+
+\subsubsection{Skalares Potential $\phi$: Elektrostatik}
+Wir betrachten nun zum Beispiel das skalare Potential $\phi$, mit dem Vektorpotential $\vec A$ kann man ebenso verfahren.
+Zun"achst der Monopol:
+$$\phi_1(\vec r)= \frac{1}{r}\int_{\mathbb R^3}\rho(\vec r')\dV '=\frac{q_{tot}}{r}$$
+Dazu berechnet man eine \emph{Ersatzladungsverteilung}:
+\begin{eqnarray}
+\Laplace \phi_1&=& -4\pi \rho_1\\
+\Laplace \frac{q_{tot}}{r}&=& -4\pi \rho_1\\
+-4\pi q_{tot} \delta(\vec r)&=& -4\pi \rho_1\\
+q_{tot} \delta(\vec r)&=&\rho_1\\
+\end{eqnarray}
+D.h. die Monopoln"aherung w"are exakt, wenn man eine Punktladung\footnote{also einen Monopol} h"atte. Anders gesagt behandelt die Monopolentwicklung die Ladungsverteilung so, als ob es nur eine Punktladung w"are. Zur Dipolentwicklung definieren wir:
+
+\begin{Def}[elektrisches Dipolmoment]
+$$\vec P:=\int_{\mathbb R^3} \vec r'\;\rho(\vec r')\dV '$$
+Verglichen mit dem Massenschwerpunkt kann man $\vec P$ auch als Ladungsschwerpunkt interpretieren; Der Unterschied ist, dass es keine \emph{negative} Masse gibt.
+\end{Def}
+
+\begin{Wichtig}
+Das Dipolmoment ist Abh"angig von der Wahl der Koordinatensystems. $\rho(\vec r')=\rho (\vec r''+\vec a) \Rightarrow \vec P=\int_{\mathbb R^3}(\vec r''+\vec a)\;\rho (\vec r''+\vec a)\dV ''=\vec P_{\vec a}+\vec a q_{tot} $ Falls $q_{tot}=0$ (wie z.B. bei einem Dipol) ist das Dipolmoment unabh"angig vom Koordinatensystem.
+\end{Wichtig}
+\begin{eqnarray}
+\phi_2(\vec r)&=&\frac{1}{r^3}\int_{\mathbb R^3}(\vec r \cdot \vec r')\;\rho(\vec r')\dV '=\frac{\vec r \cdot \vec P}{r^3}=-\vec P \cdot \nabla \frac{1}{r}\\
+\vec E_2(\vec r)&=&-\nabla \phi_2(\vec r)=\frac{1}{r^3}[3(\vec P\cdot \vec{\hat r})\vec{\hat r}-\vec P] \label{eq:E2}
+\end{eqnarray}
+
+Damit haben wir das elektrische Dipolfeld berechnet. Legen wir das Koordinatensystem, sodass $\vec P$ in z-Richtung zeigt, so ist in Kugelkoordinaten $\phi_2\propto \frac{\cos(\theta)}{r^2}$ und man hat die f"ur einen Dipol charakteristischen "Aquipotentialfl"achen.\\
+Wieder berechnen wir die \emph{Ersatzladungsverteilung}:
+\begin{eqnarray}
+\Laplace \phi_2&=& -4\pi \rho_2\\
+ -(\vec P \cdot \nabla)\Laplace \frac{1}{r}&=& -4\pi \rho_2\\
+4\pi (\vec P \cdot \nabla) \;\delta(\vec r)  &=&  -4\pi \rho_2\\
+-(\vec P \cdot \nabla)\; \delta(\vec r) &=&  \rho_2\
+\end{eqnarray}
+Um das interpretieren zu k"onnen, w"ahlen wir $\vec P$ wieder in z-Richtung und es vereinfacht sich: $\rho_2=-(\vec P \cdot \nabla) \delta(\vec r)=-P \partial_z \delta(x) \delta(y) \delta (z)$\\
+Da wir keinen Ausdruck f"ur die Ableitung der Delta-Distribution haben, m"ussen wir dies im Sinne des Diffenzenquotienten verstehen.
+$$\rho_2=-P\delta(x) \delta(y) \partial_z  \delta (z)=-\delta(x) \delta(y) \lim_{\varepsilon\to 0}\left[ \frac{P}{\varepsilon} \delta(z-\frac{\varepsilon}{2})-\frac{P}{\varepsilon} \delta(z+\frac{\varepsilon}{2})\right] $$
+Das stellt zwei Punktladungen dar, die sich immer n"aher kommen, wobei derern Ladung $\frac{P}{\varepsilon}$ auch immer h"oher wird.
+
+\begin{eqnarray}
+\phi_3(\vec r)&=&\frac{1}{2r^5}\int_{\mathbb R^3}[3(\vec r \cdot \vec r')^2-r^2r'^2]\;\rho(\vec r')\dV '\\
+&=&\frac{1}{6r^5}\int_{\mathbb R^3}[9(\vec r \cdot \vec r')^2-3r^2r'^2-3r^2r'^2+3r^2r'^2]\;\rho(\vec r')\dV '\\
+&=&\frac{1}{6r^5}\int_{\mathbb R^3}[9(x_\alpha x'_\alpha x_\beta x'_\beta)-3r'^2x_\alpha x_\alpha-3r^2x'_\alpha x'_\alpha\\
+&&+r^2r'^2\; \underbrace{\delta_{\alpha \alpha}}_{=3}]\;\rho(\vec r')\dV '\\
+&=&\frac{1}{6r^5}\int_{\mathbb R^3}[3x_\alpha x_\beta-r^2\delta_{\alpha \beta}][3x'_\alpha x'_\beta-r'^2\delta_{\alpha \beta}]\rho(\vec r')\dV '\\
+&:=& \frac{1}{6}Q_{\alpha \beta} \frac{3x_\alpha x_\beta-r^2\delta_{\alpha \beta}}{r^5}=\frac{1}{6}Q_{\alpha \beta} \partial_\alpha \partial_\beta \frac{1}{r}\label{eq:quad}
+\end{eqnarray}
+
+\begin{Def}[Tensor des elektrischen Quadrupolmomentes]
+$$Q_{\alpha \beta}:=\int_{\mathbb R^3}[3x'_\alpha x'_\beta-r'^2\delta_{\alpha \beta}]\rho(\vec r')\dV '$$
+Das ist die Basisdarstellung des Tensors des elektrischen Quadrupolmomentes bez"uglich der karthesischen Basis. Man kann alle neun Komponenten der Tensordarstellung als Matrix auffassen.
+\end{Def}
+Man sieht leicht: $\text{Spur} Q=Q_{\alpha \alpha}=0$, also k"onnen wir \eqref{eq:quad} auch scheiben als $\phi_3(\vec r)= \frac{1}{2}Q_{\alpha \beta} \frac{x_\alpha x_\beta}{r^5}$.
+
+\begin{Wichtig}
+Auch das Quadrupolmoment ist abh"angig von der Wahl des Bezugssystems. Man kann wieder wie vorher nachrechnen, dass Q unabh"angig vom Koordinatensystem sind, genau dann, wenn $\vec P=\vec 0$ und $q_{tot}=0$ .
+\end{Wichtig}
+
+\begin{Bem}
+Aus der Definition sehen wir, dass die zu Q geh"orige Matrix mit 9 Eintr"agen symmetrisch ist, was die Freiheitsgrade auf 6 reduziert. Wir wissen bereits, dass reelle, symmetrische Matrizen diagonalisierbar sind, und wir daher nur 3 Freiheitsgrade auf der Diagonalen "ubrig haben. Die "`verlorenen"' 3 Freiheitsgrade stecken in der Orientierung des Quadrupols. Wegen der Spurfreiheit von Q reduziert sich die Anzahl der unabh"angigen Matrixelemente nochmal um 1, sodass wir schlie"slich nur noch 2 "ubrig haben, in denen Information "uber die "`St"arke"' des Quadrupols steckt.
+\end{Bem}
+
+Wieder berechnen wir die \emph{Ersatzladungsverteilung}:
+\begin{eqnarray}
+\Laplace \phi_3&=& -4\pi \rho_3\\
+-4\pi \frac{1}{6}Q_{\alpha \beta} \partial_\alpha \partial_\beta \delta(\vec r) &=& -4\pi \rho_3\\
+\frac{1}{6}Q_{\alpha \beta} \partial_\alpha \partial_\beta \delta(\vec r) &=& \rho_3
+\end{eqnarray}
+
+Diese Ladungsverteilung anschaulich zu interpretieren ist nicht einfach. Man kann zur Vereinfachung sagen, dass $q_{tot}=\sum_i q_i=0$ und $\vec P=\sum_i \vec r_i q_i=\vec 0$ gelten soll, damit keine Mono- und Dipolmomente auftreten. Anschaulich hei"st das, dass man die gleiche Anzahl positiver wie negativer Ladungen braucht und sie in gewisser weise symmetrisch angeordnet sein m"ussen. Im Allgemeinen sind die Lage der Ersatzladungen aber nicht eindeutig bestimmt und man braucht wenigstens 4 Ladungen. Dazu muss aber auch noch die Spurfreiheit von Q gew"ahrleistet sein.
+
+\begin{Anw}
+Wir betrachten einen einfachen Fall der Ladungsverteilung $\rho(\vec r) = \delta(x)\;\delta(y)\; (q\delta(z-a)+q\delta(z+a)-2q\delta(z))$. Alle Eintr"age von Q, die nicht auf der Diagonalen liegen, sind null, wegen den Deltafunktionen.
+\begin{eqnarray}
+Q_{xx}&=&\int_{\mathbb R^3}[3x'^2-(x'^2+y'^2+z'^2)]\rho(\vec r')\dV '=-2qa^2=Q_{yy}\\
+Q_{zz}&=&\int_{\mathbb R^3}[3z'^2-(x'^2+y'^2+z'^2)]\rho(\vec r')\dV '=4qa^2
+\end{eqnarray}
+
+Man sieht nun, dass $\text{\emph{Spur}}Q=0$. Offensichtlich ist $q_{tot}=0$ und $\vec P=(0,0,2q)$, was bedeutet, dass auch ein Dipolpotential vorhanden ist. Betrachtet man nur das Quadrupolpotential:
+$$\phi_3(\vec r)= \frac{1}{2}Q_{\alpha \beta} \frac{x_\alpha x_\beta}{r^5}=\frac{1}{2r^5}\sum_{\alpha} Q_{\alpha \alpha} x_{\alpha}^2=\frac{Q_{xx}}{2r^5}(r^2-3z^2)=\frac{Q_{xx}}{2r^3}(1-3\cos^2\theta)$$
+Betrachten wir nun dessen "Aquipotentialfl"achen, so sieht man, dass f"ur $\cos^2\theta_0=\frac{1}{3},\; r\to 0$ gehen muss, damit $\phi_3$ konstant bleibt. Die Winkel $\theta_0=54,7\text{\textdegree} $ und $125,3\text{\textdegree}$ charakterisieren damit die Form der "Aquipotentialfl"achen.
+\end{Anw}
+
+Insgesamt ergibt sich also:
+\begin{eqnarray}
+\phi(\vec r)=\frac{q_{tot}}{r}+\frac{x_\alpha P_\alpha}{r^3}+\frac{1}{2}Q_{\alpha \beta} \frac{x_\alpha x_\beta}{r^5}+o
+\end{eqnarray}
+
+\paragraph*{sph"arische Multipolentwicklung} $\| \vec r-\vec r'\|=\sqrt{r^2+r'^2-2rr'\cos \alpha}$ , wobei $\alpha$ der Winkel zwischen $\vec r$ und $\vec r'$ ist. Wir definieren $R:=\max(r,r'), \; \tilde{r}:=\min(r,r')$. Dann gibt es eine neue Darstellung der Greensfunktion mit den Legendre-Polynomen $P_l$ und den Kugelfl"achenfunktionen $Y_{lm}$:
+
+\begin{eqnarray}
+\frac{1}{\|\vec r -\vec r'\|}&=&\frac{1}{R} \frac{1}{\sqrt{1+(\frac{\tilde{r}}{R})^2-2\frac{\tilde{r}}{R}\cos \alpha}}=\frac{1}{R} \sum_{l=0}^{\infty}(\frac{\tilde{r}}{R})^l\;P_l(\cos \alpha))\\
+&=&\frac{4\pi}{R} \sum_{l=0}^{\infty}\sum_{m=-l}^l \frac{1}{2l+1}(\frac{\tilde{r}}{R})^l\;Y_{lm}(\theta, \varphi) \;Y^*_{lm}(\theta', \varphi')
+\end{eqnarray}
+Der * bedeutet hier komplex konjugiert und die gestrichenen Winkel beziehen sich auf die Lage von $\vec r'$ in Kugelkoordinaten. Auch das k"onnen wir zur Berechnung von $\phi$ verwenden.
+
+\begin{eqnarray}
+\phi(\vec r) &=&  \int_{\mathbb R^3}\frac{\rho(\vec r')}{\|\vec r - \vec r'\|} \dV '\\
+&=&  \sum_{l=0}^{\infty}\sum_{m=-l}^l \frac{4\pi}{2l+1}Y_{lm}(\theta, \varphi)\int_{\mathbb R^3} \frac{\tilde{r}^l}{R^{l+1}}\; \;Y^*_{lm}(\theta', \varphi')\;\rho(\vec r') \dV '
+\end{eqnarray}
+Dabei muss man beachten, dass bei der Integration "uber $r'$ eine Fallunterscheidung zu machen ist, weil dann $R$ und $\tilde{r}$ die Rollen tauschen. Dazu teilt man das $r'$-Integral in zwei Teile auf.\\
+In der Fernfeldn"aherung kann man sich die Definition von $R$ und $\tilde{r}$ sparen und nimmt einfach an, dass $r>r'$. Es ergibt sich dann:
+
+$$\phi(\vec r)=\sum_{l=0}^{\infty}\sum_{m=-l}^l \frac{4\pi}{2l+1} Y_{lm}(\theta, \varphi)\frac{1}{r^{l+1}} \underbrace{\int_{\mathbb R^3} r'^l\; \;Y^*_{lm}(\theta', \varphi')\;\rho(\vec r') \dV '}_{\text{Multipolelemente } q_{lm}}$$
+
+Auch hier definiert man sich neue Multipolelemente $q_{lm}$, wobei es zu jedem $l$ $2l+1$ unabh"angige Komponenten gibt. Die Elemente mit $l=0$ nennt man Monopol-, die mit $l=1$ Dipol-, und die mit $l=2$ Quadrupolelemente.
+
+\paragraph*{Das Vektorpotential $\vec A$}
+Die karthesische Multipolentwicklung kann man ganz analog machen. Man definiert dann:
+
+\begin{Def}[Magnetisches Dipolmoment]
+$$\vec m:=\frac{1}{2c} \int_{\mathbb R^3} \vec r' \times \vec j(\vec r') \dV '$$
+\end{Def}
+Beispielsweise ergibt sich: 
+\begin{eqnarray}
+\vec A_2(\vec r)&=&\frac{\vec m \times \vec r}{r^3}\\
+\vec B_2(\vec r)&=&\Rot \vec A_2(\vec r)=\frac{1}{r^3}[3(\vec m\cdot \vec{\hat r})\vec{\hat r}-\vec m] \label{eq:B2}
+\end{eqnarray}
+Da ergibt sich aber ein Problem, da \eqref{eq:B2} und \eqref{eq:E2} von der Form her "ubereinstimmen\footnote{$\vec P$ und $\vec m$ sind konstant}, sie aber verschiedene Maxwellgleichungen erf"ullen m"ussen. Das Problem ist darin begr"undet, dass es nur N"aherungen sind.
+Verwendet man die
+\begin{Ident}
+$$\frac{\partial^2}{\partial x_\alpha \partial x_\beta}\frac{1}{\|\vec r\|}=-\frac{\delta_{\alpha \beta}}{\|\vec r\|^3}+3\frac{x_\alpha x_\beta}{\|\vec r\|^5}-\frac{4\pi}{3}\delta_{\alpha \beta}\;\delta^{(3)}(\vec r)$$
+\end{Ident}
+so ergibt sich aber bei der Berechnung von $\vec E_2$ und $\vec B_2$ ein Unterschied im Punkt $\vec r=\vec 0$.
+\begin{eqnarray}
+\vec E_2(\vec r)&=&\frac{1}{r^3}[3(\vec P\cdot \vec{\hat r})\vec{\hat r}-\vec P]-\frac{4\pi}{3}\;\delta^{(3)}(\vec r)\;\vec P\\
+\vec B_2(\vec r)&=&\frac{1}{r^3}[3(\vec m\cdot \vec{\hat r})\vec{\hat r}-\vec m] +\frac{8\pi}{3}\;\delta^{(3)}(\vec r)\;\vec m
+\end{eqnarray}
+Die Delta-Distributionen ber"ucksichtigen den Unterschied der gemachten N"aherungen. Man kann sich vorstellen, dass im elektrischen Fall zwei Ladungen unendlich nahe beieinander einen Dipol bilden; im magnetischen Falls eine unendlich kleine stromdurchflossene Leiterschleife.
+
+
+
+\subsection{Kr"afte und Drehmomente auf lokalisierte Ladungs- und Stromverteilung}
+
+\paragraph*{Kr"afte}
+
+Wir betrachten nun ein "`kleines"'  Gebiet G, in das wir unseren Ursprung legen mit Ladungsverteilung $\rho$ und Stromdichte $\vec j$. Von au"sen wirken die Felder $\vec E^{ext}$ und $\vec B^{ext}$, die statisch sind und nur langsam variieren. Wir gehen davon aus, dass $\rho^{ext}$ und  $\vec j^{ext}$, die zu $\vec E^{ext}$ und $\vec B^{ext}$ geh"oren in G $=0$ sind und dass $\rho$ und $\vec j$ in G nur vernachl"assigbare $\vec E$- und $\vec B$-Felder erzeugen. Dann k"onnen wir berechnen:
+
+\begin{eqnarray}
+\vec K= \int_G \vec k(\vec r) \dV&=&\int_G \rho(\vec r)\, \vec E^{ext} \dV+ \frac{1}{c}\,\int_G \vec j(\vec r)\times\vec B^{ext} \dV \\&=&\vec K_{el}+\vec K_{mag}
+\end{eqnarray}
+
+Weil in G gilt: $\Rot \vec E^{ext}=\vec 0$, $\Div \vec E^{ext}=0$, l"asst sich berechnen: $ \Laplace E_{\alpha}^{ext}=0$. Damit f"allt der "` $\delta$-Term "' in der Quadrupolentwicklung weg und wir erhalten:
+
+\begin{eqnarray}
+\vec K_{el}=q_{tot} \vec E^{ext}(0)+( \vec P \cdot \nabla ) \vec E^{ext}(0)+\frac{1}{6} (Q_{\alpha \beta} \partial_\alpha \partial_\beta) \vec E^{ext}(0)+o
+\end{eqnarray}
+
+oder speziell f"ur einen Dipol $\vec P$ der sich am Ort $\vec r_{Dipol}$ befindet:
+\begin{eqnarray}
+\vec K_{el}=( \vec P \cdot \nabla ) \vec E^{ext}|_{\vec r_{Dipol}}
+\end{eqnarray}
+
+F"ur das Feld $\vec B^{ext}(\vec r')=\vec B^{ext}(\vec 0)+(\vec r' \cdot \nabla_{\vec r})\vec B^{ext}(\vec r) +o$ :
+
+\begin{eqnarray}
+\vec K_{mag}&=&\frac{1}{c}\,\int_G \vec j(\vec r',t)\times\vec B^{ext}(\vec r')\dV '\\
+&=& \underbrace{\int_G \frac{\vec j(\vec r')}{c}\dV}_{=0}\times \vec B^{ext}(0)+\int_G \frac{\vec j(\vec r')}{c}\times(\vec r' \cdot \nabla_{\vec r})\vec B^{ext}(\vec r)\dV '\\
+&=& \int_G (\frac{\vec j(\vec r')}{c} \times \nabla_{\vec r}) (\vec r' \cdot \vec B^{ext}(\vec r))\dV ' \label{eq:rotB} \\
+&=&-\frac{1}{c}\nabla_{\vec r} \times \int_G \vec j(\vec r')   (\vec r' \cdot \vec B^{ext}(\vec r))\dV '
+\end{eqnarray}
+
+Um auf \eqref{eq:rotB} zu kommen, verwendet man, dass hier lokal $\Rot \vec B^{ext}=\vec 0$, also $\partial_{\beta} B^{ext}_{\alpha}=\partial_{\alpha} B^{ext}_{\beta}$.\\
+
+\begin{Ident}
+$$\int_G x_\alpha j_\beta \dV=-\int_G x_\beta j_\alpha \dV$$
+\end{Ident}
+Wir nutzen die "`bac-cab"'-Regel und Identit"at 6, was auch auf "Ubungsblatt 6, Nr.1c gezeigt wurde.
+%~ also scheint richtig zu sein, aber was ich nicht blicke: aus $\int_G x_\alpha j_\beta \dV=-\int_G x_\beta j_\alpha \dV$ folgt dass $\int_G \vec r \cdot \vec j \dV=0$, dann w"are aber auch jeder term in den 3 unteren zeilen =0 oder?
+
+\begin{eqnarray}
+&&\int_G \vec j(\vec r')   (\vec r' \cdot \vec B^{ext}(\vec r))\dV '\\&=&\frac{1}{2} \left( \int_G \vec j(\vec r')   (\vec r' \cdot \vec B^{ext}(\vec r))\dV '-\int_G \vec r' (\vec j(\vec r') \cdot  \vec B^{ext}(\vec r) )\dV ' \right)\\&=&-\frac{1}{2}\vec B^{ext}(\vec r)\times \underbrace{\int_G \vec r' \times \vec j(\vec r')  \dV '}_{=2c\vec m}
+\end{eqnarray}
+
+Wieder mit der "`bac-cab"'-Regel berechnen wir:
+\begin{eqnarray}
+\vec K_{mag}&=&\nabla_{\vec r} \times(\vec B^{ext}\times \vec m)\\
+&=& (\vec m \cdot \nabla) \vec B^{ext} -\vec m\underbrace{(\nabla \cdot \vec B^{ext})}_{=0}\\
+&=& (\vec m\cdot \nabla)\vec B^{ext}|_{\vec r_{Dipol}}=\nabla (\vec m \cdot \vec B^{ext})|_{\vec r_{Dipol}}
+\end{eqnarray}
+Die letzte Identit"at wurde wieder wie in \eqref{eq:rotB} gerechnet. Die erhaltene Form ist genauso, wie beim elektrischen Feld. Man sieht: $\vec K_{mag}=-\nabla U$ mit $U=-\vec m \cdot \vec B^{ext}$, was z.B. in der Atomphysik wichtig ist. Um U zu minimieren, versucht sich $\vec m$ also in Richtung des Magnetfeldes zu stellen.\\
+
+\paragraph*{Drehmomente}
+
+\begin{eqnarray}
+\vec N= \int_G\vec r \times \vec k(\vec r) \dV=\vec N_{el}+\vec N_{mag}
+\end{eqnarray}
+
+\begin{eqnarray}
+\vec N_{el}&=&\int_G \vec r \times (\rho(\vec r) \vec E^{ext}(\vec r)) \dV\approx- \vec E^{ext}(0) \times \underbrace{\int_G \rho(\vec r)  \vec r \dV}_{\vec P}\\
+&=&\vec P \times \vec E^{ext}|_{\vec r_{Dipol}}
+\end{eqnarray}
+
+\begin{eqnarray}
+\vec N_{mag}&=&\frac{1}{c}\int_G \vec r \times (\vec j(\vec r)\times\vec B^{ext}(\vec r)) \dV\\
+&\approx&\frac{1}{c}\int_G \vec r \times (\vec j(\vec r)\times\vec B^{ext}(0)) \dV\\
+&=&\frac{1}{c}\left(\int_G(\vec r \cdot\vec B^{ext}(0)) \vec j(\vec r) \dV -\int_G (\vec r \cdot \vec j(\vec r)) \vec B^{ext}(0) \dV \right)\\
+&=& -\vec B^{ext}(0)\times \vec m -\frac{1}{c} \vec B^{ext}(0) \underbrace{\int_G (\vec r \cdot \vec j(\vec r)) \dV}_{=0} \label{eq:rj}\\
+&=&\vec m \times \vec B^{ext}|_{\vec r_{Dipol}}
+\end{eqnarray}
+In \eqref{eq:rj} haben wir auch Identit"at 6 verwendet, mit $\alpha=\beta$.
+Man sieht also, dass Dipole in homogenen Feldern Drehmomente, aber keine Kr"afte erfahren. Inhomogene Felder "uben dagegen Kr"afte auf die Dipole aus.
+
+\subsection{Elektrostatik im begrenzten Raum}
+
+Wir betrachten ein durch $\partial V$ begrenztes Gebiet $V$. In $V$
+k"onnen Leiter $L$ und Ladungen $q_i$ bzw. Ladungsverteilungen $\rho$
+liegen. Am Rand von $L$ gilt -- da innerhalb von $L$ gelten muss $E =
+0$ -- 
+$$ 
+\vec n \times \left . \vec E \right | _{\partial L} \text{ stetig} \text{
+  und }
+\left . \vec E \right |_{\partial L} \propto \vec n \;;
+$$
+$\partial L$ ist also eine \emph{"Aquipotentialfl"ache}.
+
+Als Randbedingungen zu unserem Problem geben wir $\phi$ und $\rho$
+f"ur manche Gebiete vor.
+
+Es muss also weiterhin
+\begin{equation}
+  \Laplace \phi = -4\pi \rho \text{ \emph{in} $V$ }
+\label{eq:dirichlet}
+\end{equation}
+gelten und je nachdem, welche Bedingungen vorgegeben sind weiter
+\begin{equation}
+  \label{eq:dirichlet-randbed}
+  \left . \phi \right |_{\partial V} = f(\vec r) \;,
+\end{equation}
+was man als \emph{Dirichlet-Randbedingungen} bezeichnet oder
+\begin{equation}
+  \label{eq:neumann-randbed}
+    (\vec n \cdot \vec\nabla)\left . \phi \right |_{\partial V} =
+    g(\vec r) = - \vec E \cdot \vec n = 4\pi\sigma \;,
+\end{equation}
+was \emph{von-Neumann-Randbedingung} hei"st. F"ur beide Bedingungen
+ist die L"osung $\phi$ eindeutig bestimmt.
+
+
+
+\subsubsection{Methode der Spiegelladung}
+\label{sec:methode_der_spiegelladung}
+
+Eine Leiteroberfl"ache soll eine "Aquipotentialfl"ache sein -- also
+$\left.\phi\right|_{L} = 0$. Au"serhalb des Volumens $V$, f"ur das man
+eine L"osung $\phi$ haben m"ochte, kann man so viele Ladungen wie man
+will anbringen -- und das tut man. Dabei plaziert man diese Ladungen
+so, dass sich die Potentiale der Ladungen au"serhalb von $V$ und die
+der Ladungen innerhalb an der Grenzfl"ache gerade ausl"oschen.
+
+Die Ladungen au"serhalb st"oren in \eqref{eq:dirichlet} nicht weiter,
+weil $\Laplace$ auf eine Ladung au"serhalb blo"s ein $\rho$ liefert,
+das \emph{au"serhalb} von $V$ definiert ist. zu dem $\rho$
+\emph{innerhalb} $V$ liefert dies keinene Beitrag.
+
+
+
+\begin{Anw}
+  [Feld von Platte oder Kugel]
+F"ur eine \emph{Platte} ist dies trivialerweise der Fall wenn die Ladung
+exakt an der Platte gespiegelt wird.
+
+F"ur kompliziertere Probleme wie bspw. eine \emph{Kugel} muss man
+Ladung und Ort der Ladung educated guessen (also raten) und durch die
+Randbedingungen genau bestimmen.
+\end{Anw}
+
+
+
+
+
+\subsubsection{Methode der Greens-Funktion}
+\label{sec:methode_der_greens_funktion}
+
+Aus der Definition \eqref{eq:Green} f"ur die Greensfunktion folgt 
+\begin{equation}
+  \label{eq:1}
+  G(\vec r, \vec r') = \frac{1}{\| \vec r - \vec r' \|} + F(\vec
+  r,\vec r') \text{ wobei } \Laplace F(\vec r,\vec r') = 0 \text{
+    \emph{innerhalb} $V$ } \;.
+\end{equation}
+Das $F$ wird so gew"ahlt, dass die Randbedingungen befriedigt werden.
+
+Setzt man in den Satz von Green einmal das Potential $\phi$ und die
+Greensfunktion $G$ ein, so folgt (beachte: $\vec n' = -\vec n$)
+\begin{equation}
+  \label{eq:2}
+  \phi(\vec r) 
+= 
+\int_V \rho(\vec r') G(\vec r',\vec r) \dV' + \frac{1}{4\pi}
+\int_{\partial V} \phi(\vec r') \partial_{\vec n'} G(\vec r',\vec r) -
+G(\vec r',\vec r)\partial_{\vec n'} \phi(\vec r') \dfskal' \;;
+\end{equation}
+wobei das erste Integral den Beitrag der Raumladung einbringt, das
+zweite den Beitrag einer Dipolschicht auf der Oberfl"ache und das
+dritte dem Beitrag einer Obefl"achenladungsdichte entspricht --
+denn\footnote{Hier ist das $\vec n'$ jetzt genau passend, weil es
+  \emph{vom Leiter nach "`au"sen"'} zeigt.}
+$\partial_{\vec n'}\phi = -4\pi\sigma$.
+
+Durch vorgabe von Dirichlet- \eqref{eq:dirichlet-randbed} oder
+Von-Neumann-Randbedingungen \eqref{eq:neumann-randbed} ist stets eines
+der Oberfl"achenintegrale aus \eqref{eq:2} bestimmt; das andere kann
+man verschwinden lassen, indem man $F$ aus \eqref{eq:1} entsprechend
+w"ahlt:
+\begin{itemize}
+\item Dirichlet-Randbedingungen: W"ahle $F$ -- als Teil von $G$ -- so,
+  dass $G(\vec r,\vec r') \equiv 0$ f"ur $\vec r' \in \partial V$;
+  dann folgt aus \eqref{eq:2}:
+  \begin{equation}
+    \label{eq:3}
+    \boxed{
+  \phi(\vec r) 
+= 
+\int_V \rho(\vec r') G(\vec r',\vec r) \dV' 
++ \frac{1}{4\pi}\int_{\partial V} \phi(\vec r') \partial_{\vec n'}
+G(\vec r',\vec r) \dfskal' 
+}
+  \end{equation}
+\item Von-Neumann-Randbedingungen: \\W"ahle $F$ so, dass f"ur $\vec r
+  \in \partial V$ ~ $\partial_{\vec
+  n'} G(\vec r',\vec r) = \frac{4\pi}{|\partial V|}$ gilt; dann folgt
+
+\begin{equation}
+  \label{eq:4}
+  \boxed{
+  \phi(\vec r) 
+= 
+\int_V \rho(\vec r') G(\vec r',\vec r) \dV' - \frac{1}{4\pi}
+\int_{\partial V} G(\vec r',\vec r)\partial_{\vec n'} \phi(\vec r')
+\dfskal' 
++ \langle \phi  \rangle_{\partial V}
+}
+\end{equation}
+
+Hier ist $\langle \phi  \rangle_{\partial V} = \int_{\partial V}
+\frac{\phi(\vec r')}{|\partial V|} \dfskal$ -- das Mittel von $\phi$
+"uber die Oberfl"ache -- eine Konstante im Potential; hat also keine
+Auswirkungen auf $\vec E$.
+\end{itemize}
+
+$F$ hat die physikalische Bedeutung, dass es sich um das Potential am
+Ort $\vec r$ einer au"serhalb von $V$ liegend Ladung handelt, die
+gerade so gew"ahlt ist, dass sie zusammen mit dem Potential der Ladung
+1 bei $\vec r'$ (provided by der Greens-Funktion) auf der Oberfl"ache
+$\partial V$ die geforderten Randbedingungen erf"ullt.
+
+Im Prinzip ist das wieder die Spiegelungemethode nur mathematischer
+verpackt. Der Weg, \emph{wie} man auf die Greens-Funktion kommt, ist
+n"ahmlich auch -- neben Raten\footnote{Educated guess!} -- unter
+Anderem von der Einheitsladung bei $\vec r'$ eine Spiegelung
+vorzunehmen und so $G$ zu erhalten.
+
+
+
+
+
+
+\subsection{Elektromagnetische Wellen im Vakuum}
+
+Im Vakuum ist $\rho(\vec r,t)=0$ und $\vec j(\vec r,t)=\vec 0$. Die Maxwellgleichungen vereinfachen sich:
+\begin{framed}
+\begin{align}
+\Div \vec E &= 0  \\
+\Div \vec B&=0 \\
+\Rot \vec E &= - \frac{1}{c}\partial_t\vec B \\
+\Rot \vec B &= \frac{1}{c}\partial_t\vec E 
+\end{align}
+\end{framed}
+Wenden wir die Rotation auf die 3. oder 4. Gleichung an, und benutzen
+\begin{Ident}
+$$\Rot  \Rot \vec A=\nabla (\nabla \vec A)-\Laplace \vec A$$
+\end{Ident}
+so erhalten wir die 6
+\begin{Wichtig}{Wellengleichungen}
+\begin{eqnarray}
+\Box \psi:=(\Laplace-\frac{1}{c^2}\partial_t^2)\psi=0
+\end{eqnarray}
+mit $\psi \in \{E_i,B_i\}; i \in \{x,y,z\}$
+\end{Wichtig}
+Wir k"onnen sie mit dem Ansatz der ebenen Welle l"osen:
+$\psi(\vec r,t)=\psi_0 e^{i(\vec k\cdot \vec r -\omega t)}=|\psi_0|e^{i(\vec k\cdot \vec r -\omega t-\varphi_0)}$, $\psi_0 \in \mathbb C\;$;$\varphi_0 \in \mathbb R\;$. Durch einsetzen findet man die Dispersionsrelation f"ur das Vakuum: $\omega=\pm c |\vec k|$. Wie schon aus der Experimentalphysik bekannt ist $|\vec k|=\frac{2\pi}{\lambda};\; \omega=2\pi \nu=\frac{2\pi}{T}$ und $\nu \lambda=c$.\\
+Durch fouriertransformation der Maxwellgleichungen findet man, dass $|\vec E|=|\vec B|$ und $\vec k\bot \vec E \bot \vec B$\\
+Bilden wir die Fouriertransformierte $FT[\psi](\vec k, t)=\int \psi(\vec r,t) e^{-i\vec k \cdot \vec r} \dd {r^3}$ und die R"ucktransformierte $\psi(\vec r,t)=\frac{1}{(2\pi)^3}\int FT[\psi](\vec k, t) e^{i\vec k \cdot \vec r} \dd {k^3}$, so k"onnen wir das auch in die Wellengleichung einsetzen.
+\begin{eqnarray}
+0=\Box \psi=\frac{1}{(2\pi)^3}\int \underbrace{(-\vec k^2-\frac{1}{c}\partial_t^2) FT[\psi](\vec k, t)}_{=0} e^{i\vec k \cdot \vec r} \dd {k^3}
+\end{eqnarray}
+Wir erhalten eine neue Differentialgleichung zweiter Ordnung in t. Die allgemeine L"osung davon lautet: $ FT[\psi](\vec k, t)=\frac{1}{2}[a(\vec k)e^{-i\omega t}+b(\vec k)e^{i\omega t}]$ mit $\omega=\omega(\vec k)=c|\vec k|$.
+F"ur die L"osungen muss gelten: $\psi(\vec r,t)=\psi^*(\vec r,t)$ und damit $FT[\psi]^*(\vec k, t)=FT[\psi](-\vec k, t)$. Das liefert f"ur die Koeffizienten $a$ und $b$: $a^*(\vec k)=b(-\vec k);\;b^*(\vec k)=a(-\vec k);\; \Rightarrow b(\vec k)=a^*(-\vec k)$.
+
+\begin{eqnarray}
+\psi(\vec r,t)&=&\int \frac{\dd {k^3}}{(2\pi)^3} \left(e^{i\vec k \cdot \vec r}\frac{1}{2}a(\vec k)e^{-i\omega t}+ \underbrace{ e^{i\vec k \cdot \vec r}\frac{1}{2}\overbrace{a^*(-\vec k)}^{b(\vec k)}e^{i\omega t}}_{\vec k \rightarrow -\vec k} \right) \\
+&=&\int \frac{\dd {k^3}}{(2\pi)^3} \left(e^{i\vec k \cdot \vec r}\frac{1}{2}a(\vec k)e^{-i\omega t}+  e^{-i\vec k \cdot \vec r}\frac{1}{2}a^*(\vec k)e^{i\omega t}\right)\\
+&=&\int \frac{\dd {k^3}}{(2\pi)^3} \Re \left(  e^{i(\vec k \cdot \vec r-\omega t)}a(\vec k)\right)\\
+&=&\Re \int \frac{\dd {k^3}}{(2\pi)^3}  \left( a(\vec k) e^{i(\vec k \cdot \vec r-\omega(\vec k) t)}\right)
+\end{eqnarray}
+Man sieht also, dass alles L"osungen der Wellengleichung superpositionen von ebenen Wellen mit der Dispersionsrelation $\omega= c |\vec k|$ sind.
+
+
+\subsection{Die elektromagnetischen Potentiale}
+
+In der elektrostatik haben wir bereits die Potentiale $\phi$ und $\vec A$ kennengelernt, welche die Felder $\vec E$ und $\vec B$ beschreiben. Das versucht man nun f"ur zeitabh"angige Verteilungen $\rho(\vec r,t)$ und $\vec j(\vec r,t)$ zu verallgemeinern.\\
+Wir berachten zu n"achst die homogenen \footnote{d.h. diejenigen, in denen $\rho$ und $\vec j$ nicht vorkommen} Maxwellgleichungen.
+Aus \eqref{eq:II} folgt, dass es ein gewisses $\vec A$ gibt mit $\Rot \vec A=\vec B$. Das k"onnen wir in \eqref{eq:III} einsetzen und erhalten $\Rot (\vec E+\frac{1}{c}\partial_t \vec A)=\Rot \vec F=\vec 0$. Das heisst wiederum, das f"ur $\vec F$ die Integrabilit"atsbedingung erf"ullt ist und damit ein Potential $\phi$ existiert mit $-\nabla \phi= \vec F= \vec E+\frac{1}{c}\partial_t \vec A$. Also sind $\vec E$ und $\vec B$ gegeben durch: 
+
+\begin{Wichtig}{homogene Maxwellgleichungen}
+\begin{align}
+\vec B=\Rot \vec A; \;\; \vec E=-\nabla \phi-\frac{1}{c}\partial_t \vec A \tag{Pot} \label{eq:Pot}
+\end{align}
+\end{Wichtig}
+
+Jetzt betrachenten wir die inhomogenen\footnote{d.h. diejenigen, in denen $\rho$ und $\vec j$  vorkommen} Maxwellgleichungen. Die neue Darstellung f"ur $\vec E$ und $\vec B$  k"onnen wir jetzt in \eqref{eq:I} und \eqref{eq:IV} einsetzen: 
+\begin{eqnarray}
+\Div \vec E = 4\pi\rho=-\Laplace \phi -\frac{1}{c}\partial_t\nabla \cdot \vec A\\
+\Rot \vec B -\frac{1}{c}\partial_t\vec E= \frac{4\pi}{c}\vec j\\
+\underbrace{\Rot  \Rot \vec A}_{\nabla (\nabla \vec A)-\Laplace \vec A} +\frac{1}{c}\partial_t \nabla \phi +\frac{1}{c^2}\partial_t^2 \vec A = \frac{4\pi}{c}\vec j\\
+-\Box \vec A+\nabla (\nabla \cdot \vec A +\frac{1}{c}\partial_t \phi)= \frac{4\pi}{c}\vec j
+\end{eqnarray}
+
+
+\begin{Wichtig}{Inhomogene Maxwellgleichungen}
+\begin{align}
+ -4\pi\rho&=\Laplace \phi +\frac{1}{c}\partial_t\nabla \cdot \vec A \notag\\
+-\frac{4\pi}{c}\vec j&=\Box \vec A-\nabla (\nabla \cdot \vec A +\frac{1}{c}\partial_t \phi) \tag{IMG} \label{eq:IMG}
+\end{align}
+\end{Wichtig}
+
+\begin{Bem}
+\eqref{eq:Pot} und \eqref{eq:IMG} sind invariant unter Eichtransformationen: $$\vec A'= \vec A + \nabla \Lambda; \; \phi'=\phi-\frac{1}{c}\partial_t \Lambda$$ 
+f"ur beliebiges Skalarpotential $\Lambda$, was einfach nachzurechnen ist.
+Man halt also eine Freiheit in der Wahl von $\vec A$ und $\phi$, was man ausnutzt um \eqref{eq:IMG} zu vereinfachen.
+\end{Bem}
+\paragraph*{Lorenzeichung}
+Es soll gelten: $\nabla \cdot \vec A +\frac{1}{c}\partial_t \phi =0$.
+\eqref{eq:IMG} vereinfacht sich zu:
+
+\begin{Wichtig}{Inhomogene Maxwellgleichungen unter Lorenzeichung \footnote{Lorentzkraft und Lorentzeichung mit tz, Lorenzeichung mit z, denn diese sind nach unterschiedlichen Herren benannt.}}
+\begin{align}
+ -4\pi\rho&=\Box \phi \\
+-\frac{4\pi}{c}\vec j&=\Box \vec A
+\end{align}
+\end{Wichtig}
+
+Der Vorteil ist die gleichf"ormigkeit der obigen 4 Gleichungen, was eine lorenzinvariante Formulierung erm"oglicht.
+
+\paragraph*{Coulombeichung}
+Es soll gelten: $\nabla \cdot \vec A =0$.
+\eqref{eq:IMG} vereinfacht sich zu:
+
+\begin{Wichtig}{Inhomogene Maxwellgleichungen unter Coulombeichung}
+\begin{align}
+ -4\pi\rho&=\Laplace \phi \\
+\frac{1}{c}\partial_t\nabla \phi-\frac{4\pi}{c}\vec j:=-\frac{4\pi}{c}\vec j^\bot&=\Box \vec A \label{eq:CE}
+\end{align}
+\end{Wichtig}
+
+Man hat oben die \emph{transversale Stromdichte} $\vec j^\bot=\vec j-\frac{1}{4\pi}\partial_t\nabla \phi$ definiert\footnote{Man rechnet leicht $\Div\vec j^\bot=0$, was fouriertransformiert heisst: $\vec k \cdot FT[\vec j^\bot]=0$, also $j^\bot$ senkrecht auf dem Wellenvektor steht. Daher \emph{transversal.}} . Nur bei der Coulombeichung ist der Vorteil, dass man wie schon in Kapitel 2.1 gesehen $\phi(\vec r,t) = \int_{\mathbb R^3}\frac{\rho(\vec r',t)}{\|\vec r - \vec r'\|} \dV '$ mit Hilfe der Greensfunktion f"ur den $\mathbb R^3$ berechnen kann. Dadurch wird dann auch die linke Seite von \eqref{eq:CE} bekannt. Wir haben nun in Eichungen die Problemstellung $\Box \Psi(\vec r,t)=-4\pi f(\vec r,t)$ mit gegebenem $f(\vec r,t)$. Wir brauchen also noch eine Greensfunktion f"ur den D'Alembertoperator.
+
+\paragraph*{Greensfunktion im $\mathbb R^4$}
+Wir wollen G finden mit:
+$$\Box G(\vec r-\vec r',t-t')=-4\pi \delta(\vec r-\vec r')\delta(t-t')$$
+Dann k"onnen wir die L"osung der \eqref{eq:IMG} berechnen mit:
+$$\Psi(\vec r,t)=\Psi_{hom}(\vec r,t)+\int_{\mathbb R^4}G(\vec r-\vec r',t-t')f(\vec r,t) \dd {r^3} ' \dd t'$$
+$\Psi_{hom}$ ist eine L"osung der homogenen MG\footnote{also wie im Vakuum} $\Box\Psi_{hom}=0$. Die explizite Rechung ist etwas langwieriger. Man kann  zun"achst oBdA $\vec r'=0$ und $t'=0$ setzen, fouriertransformiert die obige Differentialgleichung, kann nach $FT[G]$ aufl"osen und muss r"ucktransformieren. Dabei erh"alt man Integrale "uber Funktionen, die reelle Polstellen haben. Um diese zu berechnen, betrachtet man alles in der Distributionentheorie. Man Regularisiert \footnote{Dass man das darf lernt man z.B. in H"oherer Analysis, als Theoretischer Physiker darf man das aber auch "`mogeln"' nennen.}, d.h. man verschiebt die Pole in die Komplexe Ebene und l"asst sie sp"ater im Limes gegen einen reellen Pol gehen. Das regularisierte Integral kann man dann mit dem Residuensatz berechnen. Man hat aber die Wahl die Pole nach oben oder unten ins Komplexe zu verschieben \footnote{was beides mathematisch korrekt ist}.Dann kann man einfach wieder $\vec r$ durch $\vec r-\vec r'$ und $t$ durch $\vec r-\vec r'$ ersetzen. Je nachdem erh"alt man:
+
+\begin{Wichtig}{retardierte Greensfunktion}
+$$G_{ret}(\vec r-\vec r',t-t')=\frac{\delta(t-t'-\frac{|\vec r-\vec r'|}{c})}{|\vec r-\vec r'|}$$
+\end{Wichtig}
+Sie beschreibt eine zur Zeit $t'$ von $\vec r'$ mit Lichtgeschwindigkeit auslaufende Kugelwelle.
+
+\begin{Wichtig}{avanvierte Greensfunktion}
+$$G_{ret}(\vec r-\vec r',t-t')=\frac{\delta(t-t'+\frac{|\vec r-\vec r'|}{c})}{|\vec r-\vec r'|}$$
+\end{Wichtig}
+Sie beschreibt eine \emph{r"uckw"arts} laufende Kugelwelle, die in einem \emph{Blitz} verschwindet.
+
+Durch Einsetzen in die urspr"ungliche Differentialgleichung sieht man, dass beide Greensfunktionen L"osungen sind. Jedoch muss man aus Kausalit"atsgr"unden die retardierte Grennsfunktion ausw"ahlen, denn nur diese ber"ucksichtigt Ursache und Wirkung. Bei der avancierten Greensfunktion w"urde die L"osung davon abh"angen, was in Zukunft an der Quelle passiert, was logisch keinen Sinn macht.
+
+Somit haben wir eine allgemeine L"osung f"ur die Maxwellgleichungen mit Lorenzeichung. Die \emph{Zeit-Integration} "uber eine $\delta$-Funktion k"onnen wir leicht ausf"uhren:
+
+\begin{Wichtig}
+\begin{eqnarray}
+\Psi(\vec r,t)&=&\Psi_{hom}(\vec r,t)+\int_{\mathbb R^4}G_{ret}(\vec r-\vec r',t-t')f(\vec r,t) \dd {r^3} ' \dd t'\\
+\phi(\vec r,t) &=&\phi(\vec r,t)_{hom}+  \int_{\mathbb R^3}\frac{\rho(\vec r',t-\frac{|\vec r-\vec r'|}{c})}{\|\vec
+r - \vec r'\|} \dV ' \\
+\vec A(\vec r,t) &=& \vec A(\vec r,t)_{hom} + \frac{1}{c} \int_{\mathbb R^3}^{} \frac{\vec
+j(\vec r',t-\frac{|\vec r-\vec r'|}{c})}{\|\vec r - \vec r'\|} \dV ' 
+\end{eqnarray}
+\end{Wichtig}
+Da die Greensfunktion eine Kugelwelle darstellt, ist die L"osung eine aufsummation von Kugelwellen, die mit einer Funktion $f$ gewichtet werden.
+Wir pr"ufen druch einsetzen in die Lorenzeichung nocheinmal nach: Der inhomogene Teil f"ur sich l"ost die Forderung der Lorenzeichung schon\footnote{wegen der Kontinuit"atsgleichung}. Man muss also darauf achten, dass der homogene Teil f"ur sich schon die Lorenzeichung erf"ullt.
+
+
+
+\clearpage
+
+\section{Spezielle Relativit"atstheorie}
+
+\subsection{Begriff der Raum-Zeit: historische Evolution}
+Aristoteles geht zun"achst von der Existenz eines ausgezeichneten Inertialsystems aus. Raum und Zeit sind unabh"angig und die Begriffe \emph{gleichzeitig} und \emph{gleichortig} sind Projektionen auf die Zeit- oder Raumachse. Alle Ereignisse sind "`absolut"'.\newline
+F"ur Galilei sind alle gleichf"ormig\footnote{d.h. unbeschleunigt} gegeneinander bewegten 
+Be\-zugs\-sys\-teme gleichberechtige Inertialsysteme. Zeit- und Raumkoordinaten kann man mit der Galileitransformation\footnote{Das ist eine Transformation, die aus r"aumlicher oder zeitlicher Verschiebung, Drehung oder \emph{Boost} (also eine gleichf"ormige Bewegung) besteht.}  umrechnen. \emph{Gleichortig} h"angt als davon ab, aus welchem Inertialsystem man ein Ereignis betrachtet. \emph{Gleichzeitig} ist aber noch ein absoluter Begriff. Diese Vorstellung entspricht unserer Wahrnehmung im Alltag am besten.\newline
+Man stellt jedoch fest, dass die Maxwellgleichungen nicht invariant unter Galileitransformation sind. Ein zun"achst angenommener \emph{"Ather} als Medium zur Ausbreitung von elmag. Wellen\footnote{auch im Vakuum }w"urde wieder f"ur das aristotelische Weltbild sprechen, da er ein absolutes Bezugssystem darstellen w"urde. Experimente\footnote{z.B. Michelson-Morley} widersprachen aber dem "Ather. Zur L"osung diese Problems stellte Einstein zun"achst die Forderungen auf, die Sinn machten:\newline
+\begin{Wichtig}[Forderungen an eine sinnvolle (Relativit"ats-)Theorie]\abs
+\begin{itemize}
+\item Existenz von Inertialsystemen: Kr"aftefreie Teilchen bewegen sich gleichf"ormig und geradlinig.
+\item Ein gleichf"ormig gegen"uber einem anderen Inertialsystem bewegtes System ist auch ein Inertialsystem.
+\item Eine Transformation \footnote{sp"ater Lorentztransformation} zwischen zwei Inertialsystemen soll alle Naturgesetze \emph{kovariant} \footnote{d.h. invariant in ihrer Form} lassen.
+\end{itemize}
+\end{Wichtig}
+
+\begin{Bem}
+Die Galileitransformation kann also nicht unsere gew"unschte Transformation sein, da sie die Maxwellgleichungen nicht forminvariant l"asst.
+\end{Bem}
+
+
+\subsection{Lorentztransformation}
+
+\begin{Wichtig}[weitere Anforderungen an die Transformation]\abs
+\begin{itemize}
+\item Homogenit"at von Raum und Zeit (es gibt keine ausgezeichneten Punkte)
+\item Isotropie des Raumes (es gibt keine ausgezeichnete Raumrichtung, die Zeit "`flie"st"' aber nur in eine Richtung)
+\item Gruppeneigenschaften (f"ur die Menge der Transformationen mit der Hintereinanderausf"uhrung):
+\begin{itemize}
+\item Abgeschlossenheit (die Hintereinanderausf"urung zweier Transformationen ist wieder eine Transformation)
+\item Assoziativit"at (Klammersetzen bei mehr als zwei Transformationen ist unerheblich)
+\item Existenz eines neutralen Elements
+\item Existenz eines inversen Elements
+\end{itemize}
+\item Im Grenzwert f"ur kleine Geschwindigkeiten soll die Transformation gegen die Galileitransformation gehen.
+\end{itemize}
+\end{Wichtig}
+
+Um jetzt die Lorentztransformation herzuleiten, benutzt man zun"achst die \emph{Standardkonfiguration}, was bedeutet, dass man zwei Inertialsysteme mit paralellen Achsen betrachtet, die sich mit Geschwindigkeit $v$ in x-Richtung relativ zueinander bewegen. Es l"asst sich zeigen, dass dieser Fall die Allgemeinheit nicht beschr"ankt, weil man ihn ohne Schwierigkeiten auf den Fall nichtparalleler Koordinatensysteme und beliebiger Geschwindigkeit $\vec v$ "ubertragen kann.  In einem Inertialsystem bezeichnet man die Koordinaten ohne, in dem anderen mit "`Strich"'. \newline
+Bei der Herleitung der Transformation aus obigen Forderungen taucht ein wichtiger Transformationsfaktor $$\gamma=\frac{1}{\sqrt{1-\frac{v^2}{V_0^2}}}$$ auf. $V_0$ ist dabei eine noch nicht bekannte, aber konstante Geschwindigkeit\footnote{Dass es sich um eine Geschwindigkeit handelt, ist ein reines Einheiten-Argument.}. Man findet: $$x'=\gamma(x-vt);\; y'=y; \; z'=z; \; t'=\gamma (t-\frac{v}{V_0^2}x)$$ in Standardkonfiguration.\newline
+Wird in ein weiteres Inertialsystem, das mit zwei "`Strichen"' gekennzeichnet wird, transferiert, findet man einen Term f"ur Geschwindigkeitsaddition: $$v''=\frac{v+v'}{1+\frac{vv'}{V_0^2}}$$ Man sieht leicht, dass dabei $V_0$ nicht "uberschritten werden kann, es also eine Grenzgeschwindigkeit darstellt, die in allen Inertialsystemen gleich ist. Aus Einsteins Postulat, dass auch der Lichtkegel\footnote{F"ur den Lichtkegel gilt:$|\vec r-\vec r_0|=c|t-t_0|$} Lorentzinvariant sein soll, folgt, dass die Grenzgeschwindigkeit $V_0$ gerade die Vakuumlichtgeschwindigkeit $c$ ist.\footnote{Man kann die Herleitung der Lorentztransformation auch mit zwei andern -- "aquivalenten Postulaten durchf"uhren: (1.) Alle Inertialsysteme sind gleichberechtigt -- die Gesetze der Physik haben in jedem die selbe form; (2.) Licht breitet sich im Vakuum mit Geschw. $c$ aus; unabh"angig vom Bewegungszustand der Quelle. Offenbar ist die  angesprochene Folgerung hier ein Postulat\dots} Au"serdem ergibt sich f"ur Koordinatendifferenzen zwischen zwei Ereignissen der Lorentzinvatiante Raum-Zeit-Abstand:
+\begin{eqnarray}
+(\Delta S)^2&=&(\Delta x)^2+(\Delta y)^2+(\Delta z)^2-c^2(\Delta t)^2 \label{eq:rzdist}\\
+&=&(\Delta x')^2+(\Delta y')^2+(\Delta z')^2-c^2(\Delta t')^2
+\end{eqnarray}
+Um eine vektorielle Transformation f"ur beliebige Richtungen zu erhalten, konstruiert man eine Formel, in der nur der Anteil der Geschwindigkeit in Richtung des zu transformierenden Vektors ber"ucksichtigt wird:
+$$\vec r'=\vec r + (\gamma -1)\frac{(\vec r \cdot \vec v) \vec v}{v^2}-\gamma \vec v t;\; t'=\gamma (t-\frac{\vec v \cdot \vec r}{c^2})$$
+
+\begin{Bem}
+Die obige Transformation nennt man auch \emph{Lorentzboost}. Um aber wirklich eine Gruppe zu erhalten, muss man um die \emph{Abgeschlossenheit} zu erf"ullen, auch die Raumdrehungen mit hinzu nehmen.\footnote{Seien $g$ und $h$ zwei Lorentzboosts und $g^{-1}$,$h^{-1}$ deren R"ucktransformationen, so ist mit Hintereinanderausfuhrung $\circ$ die Transformation $g\circ h \circ g^{-1}h^{-1}$ kein Boost mehr, sondern eine r"aumliche Drehung } Nimmt man noch r"aumliche und zeitliche Translationen hinzu, erh"alt man die Poincar$\acute{\text{e}}$gruppe und mit Zeit- und Raumspiegelungen die \emph{vollst"andige Poincar$\acute{\text{e}}$gruppe}.
+\end{Bem}
+
+\subsection{Raumzeitgeometrie}
+\paragraph*{L"angenkontraktion}
+Aus der Transformation $\Delta x'=\gamma(\Delta x-v\Delta t)$ l"asst sich das Prinzip der L"angenkontraktion herleiten. Man betrachtet in Standardkonfiguration aus dem ungestrichenen System einen vorbeifliegenden Stab der L"ange $L_0=\Delta x'$\footnote{in seinem Ruhesystem, also dem mit gestrichenen Koordinaten, gemessen}. Er erscheint dann in ungestrichenen Koordinaten mit der L"ange $L=\Delta x$. 
+Wir setzen $\Delta t = 0$, weil wir wenn wir L"angen messen wollen schlie"slich gleichzeitig\footnote{und fast alle vermeintlichen \emph{Paradoxien} der SRT haben genau hier, bei der \emph{Gleichzeitigkeit} ihren Knackpunkt} das Ma"sband an Anfang und Ende der zu messenden Strecke legen m"ussen; t"ate man dies nicht, so w"urde sich der Stab ja neben dem Ma"sband bewegen und schon bei kleinen Geschwindigkeiten eine Verzerrung der Messunge bewirken.\footnote{Beispiel: Misst man die L"ange eines fahrenden Autos und notiert im Abstand von $\Delta t = 1$ Sek wo Anfang und Ende (des Autos) sind, so bekommt man bei einer Autogeschwindigkeit von $v = 3.6 m/s$ eine L"angenabweichung von $\pm 3.6m$.}
+Eingesetzt erhalten wir also:
+$$L_0=\gamma L$$
+Da $\gamma >1$, ist $L_0>L$, also erscheint der Stab verk"urzt.\abs
+
+\paragraph*{Zeitdilatation}
+Wieder in Standardkonfiguration fliegt ein System mit Geschwindigkeit $v$ vorbei, in dem ein genormter Vorgang abl"auft. Das sei zum Beispiel ein Lichtpuls der eine Strecke $l$ durchl"auft, die aber senkrecht zur Bewegungsgeschwindigkeit des System liege, sodass diese nicht von der L"angenkontraktion betroffen ist. F"ur den mitbewegten Beobachter ist die Zeit die der Lichtpuls ben"otigt $T_0=\frac{l}{c}$. F"ur den relativ zur \emph{Lichtuhr} ruhenden Beobachter muss das Licht au"serdem die Strecke $s=vT$ zus"atzlich zur"ucklegen. Dabei ist $T$ die Zeit, die der Vorgang f"ur den ruhenden Beobachter dauert. $s$ ist dabei rechtwinklich zu $l$ und damit ergibt sich als Gesamtstrecke $d=\sqrt{l^2+s^2}$ und $T=\frac{d}{c}$. Man berechnet dann:
+
+\begin{eqnarray}
+s=vT&=&\sqrt{d^2-l^2}\\
+&=&\sqrt{c^2T^2-c^2T_0^2}\\
+v^2 T^2&=&c^2(T^2-T_0^2)\\
+T_0&=&\sqrt{1-\frac{v^2}{c^2}}T=\frac{T}{\gamma}
+\end{eqnarray}
+Da $\gamma >1$, ist $T_0<T$, also schein die Zeit im bewegten System langsamer zu laufen.\\
+
+\begin{Bem}
+Zeitdilatation und L"angenkontraktion sind reziproke Relationen zwischen zwei relativ zueinander bewegten gleichen Uhren, bzw. Ma"sst"aben. Myonen, die durch kosmische Strahlung in der oberen Atmosph"are entstehen, k"onnen klassisch nicht bis zur Erdoberfl"ache gelangen, weil sie zu schnell zerfallen. Warum sie es aber doch tun, kann je nach Beobachter, mit Zeitdilatation oder L"angenkontraktion erkl"art werden. F"ur die Myonen ist die Strecke relativistisch verk"urzt, da die Erde auf sie zu fliegt. F"ur den Beobachter auf der Erde l"auft die Zeit im Myonen-System langsamer, da es bewegt ist.
+\end{Bem}
+
+\paragraph*{Eigenzeit}
+In Gleichung \eqref{eq:rzdist} k"onnen wir zum differentiellen Abstand "ubergehen:
+\begin{eqnarray}
+(\dd S)^2&=&(\dd x)^2+(\dd y)^2+(\dd z)^2-c^2(\dd t)^2\\
+&=& (\dd \vec r)^2-c^2(\dd t)^2\\
+&=& ((\frac{\dd\vec r}{\dd t})^2-c^2)(\dd t)^2\\
+&=& (\vec v^2-c^2)(\dd t)^2
+\end{eqnarray}
+Dieser Raumzeitabstand ist aber in jedem Inertialsystem gleich:
+$$(\dd S)^2=(\vec v^2-c^2)(\dd t)^2=(\vec v'^2-c^2)(\dd t')^2$$
+Wir k"onnen auch ein \emph{momentanes Ruhesystem} w"ahlen mit $\vec v=\vec 0$ und definieren dann $t'=\tau$, was wir dann \emph{Eigenzeit} nennen. Dann gilt:
+$$\dd \tau=\sqrt{\frac{(\dd S)^2}{-c^2}}=\sqrt{\frac{(\vec v^2-c^2)(\dd t)^2}{-c^2}}=\frac{\dd t}{\gamma(t)}$$
+\begin{Def}[Eigenzeit]
+$$\dd \tau:=\sqrt{1-\frac{v(t)^2}{c^2}}\dd t$$
+\end{Def}
+Um die in einem Inertialsystem verstrichene Zeit zu berechnen, verwenden wir folgendes:
+Wegen $\gamma>1$ k"onnen wir eine Absch"atzung machen:
+$$\tau_B - \tau_A=\int_{\tau_A}^{\tau_B}\dd \tau=\int_{t_A}^{t_B}\sqrt{1-\frac{v(t)^2}{c^2}}\dd t<\int_{t_A}^{t_B}\dd t=t_B-t_A$$
+
+\begin{Anw}
+Wollen wir z.B. das Zwillingsparadoxon berechnen, so m"ussen wir erst $\vec v(t)$ bestimmen\footnote{falls noch nicht bekannt, wenn z.B. das Inertialsystem beschleunigt}. Dann k"onnen wir das Integral "uber $\dd t$ berechnen und erhalten die f"ur das bewegte System verstrichene Zeit.
+\end{Anw}
+
+
+\subsection{Vierertensoren}
+
+In der vierdimensionalen Raumzeit ist es sinnvoll mit \emph{Vierervektoren} zu arbeiten, d.h. Vektoren mit vier Komponenten (und einer gewissen Metrik). Diese k"onnen beispielsweise Ereignisse beschreiben. Dann ist die erste Komponente $x^0=ct$ Information "uber die Zeit, die letzten drei Komponenten $x^i, i=1,2,3$ sind wie gewohnt die Raumkoordinaten. Man kann aber auch Energie und Impuls im einem Vierervektor zusammenfassen. Alle Vierervektoren m"ussen aber mit der Lorentztransformation transformiert werden. Man schreibt dann $x^\mu=(x^0,x^1,x^2,x^3)$ In diesem Zusammenhang benutzt man meist die sog. \emph{Einsteinnotation} d.h. "uber zwei gleiche Indices wird summiert. Man schreibt dann leicht die Poincar$\acute{\text{e}}$transformation:
+$$x'^\mu=\Lambda^\mu_\nu x^\nu+a^\mu$$
+$a^\mu$ beschreibt die Raum- und Zeittranslation. Lorentzboost, Spiegelungen und Drehungen stecken in $\Lambda^\mu_\nu$, welche als Eintr"age einer $4\times 4$-Matrix aufgefasst werden. \newline
+F"ur die Differentiale und Ableitungen gilt per Kettenregel:
+$$\dd x'^\mu= \frac{\partial x'^\mu}{\partial x^\nu}\dd x^\nu:=\Lambda^\mu_\nu\dd x^\nu$$
+$$\dd x^\mu= \frac{\partial x^\mu}{\partial x'^\nu}\dd x'^\nu:=\bar{\Lambda}^\mu_\nu\dd x'^\nu$$
+$$\frac{\partial}{\partial x^\mu}= \frac{\partial x'^\nu}{\partial x^\mu}\frac{\partial}{\partial x'^\nu}:=\Lambda_\mu^\nu \frac{\partial}{\partial x'^\nu}$$
+$$\frac{\partial}{\partial x'^\mu}= \frac{\partial x^\nu}{\partial x'^\mu}\frac{\partial}{\partial x^\nu}:=\bar{\Lambda}_\mu^\nu \frac{\partial}{\partial x'^\nu}$$
+Hier sieht man: $\Lambda^\mu_\nu \bar{\Lambda}_\kappa^\nu=\delta_\kappa^\mu$: Das ist die \emph{Komponenten-Formulierung}, dass ein Element der Lorentzgruppe auf sein inverses angewandt die Einheit gibt: $\Lambda \circ \Lambda^{-1} = \mathbf 1$.
+Dann l"asst sich "uber deren Transformationseigenschaften gewisse Gr"o"sen definieren:
+
+\begin{Def}[Skalar]
+Ein Skalar ist eine Gr"o"se, die invariant unter Transformation ist.
+$$\phi(x^\mu)=\phi(x'^\nu)$$
+\end{Def} 
+
+\begin{Bem}
+  Dabei sollte man sich in Erinnerung f"uhren, dass f"ur bspw. die Massendichte $\rho$ gilt 
+  $$\rho(x^\mu) = \rho(x^\mu( x'^\nu )) =: \rho(x'^\nu).$$
+  Die Formulierungen in der Physik sind hier etwas lax -- die \emph{Funktion} $\rho$ wird sowohl f"ur die Abbildung "`Koordinaten $\mapsto$ Massendichte"' als auch "`Transformierte Koordinaten $\mapsto$ Massendichte"' verwendet, obwohl die beiden Funktionen eigentlich \emph{verschieden} sind!
+
+  Eigentlich m"usste man eine Funktion $\tilde \rho$ punktweise via 
+  $$\tilde \rho( x'^\nu ) := \rho(x^\mu( x'^\nu )) $$
+  definieren -- der faule Physiker setzt aber eben $\tilde{\rho} \equiv \rho$\dots
+\end{Bem}
+
+\begin{Def}[kontravarianter Vektor]
+Ein kontravarianter Vektor $A^\mu$ transformiert wie $\dd x^\mu$.
+$$A'^\mu=\Lambda^\mu_\nu A^\nu$$
+Der Index steht oben. Man schreibt: $A^\mu\in\mathbb{V}^1$. $\mathbb{V}^1$ ist hier die Vierdimensionale Raumzeit.
+\end{Def}
+
+\begin{Def}[kovarianter Vektor]
+Ein kovarianter Vektor $A_\mu$ transformiert wie $\partial_\mu=\frac{\partial}{\partial x^\mu}$.
+$$A'_\mu=\bar{\Lambda}_\mu^\nu A_\nu$$
+Der Index steht unten. Man schreibt: $A_\mu\in\mathbb{V}_1$. Das ist der Dualraum zu $\mathbb{V}^1$ \footnote{Das ist die Menge aller linearen Abbildungen von $\mathbb{V}^1$ in die reellen Zahlen.}.
+\end{Def}
+\begin{Anw}
+Man sieht dann: $A'^\mu B'_\mu=\Lambda^\mu_\nu \bar{\Lambda}_\mu^\lambda A^\nu B_\lambda=\delta^\lambda_\nu A^\nu B_\lambda= A^\nu B_\nu $, also ist $ A^\nu B_\nu$ ein Skalar.
+\end{Anw}
+
+\begin{Def}[Tensor]
+Ein (n,m)-Tensor $T^{\alpha_1 \dots \alpha_n}_{\beta_1 \dots \beta_m}\in \mathbb{V}_m^n$ transformiert wie $\dd x^{\alpha_1} \cdots \dd x^{\alpha_n} \partial_{\beta_1} \cdots \partial_{\beta_m}$. Der "Ubersichtlichkeit halber nur z.B. $T^{\alpha \beta}_\gamma\in \mathbb{V}_1^2$ $$T'^{\alpha \beta}_\gamma=\Lambda^\alpha _\kappa \Lambda ^\beta _\lambda \bar{\Lambda} ^\mu _\gamma T^{\kappa \lambda}_\mu$$
+\end{Def}
+
+\paragraph*{Mathematisch Exakt}
+Der Mathematiker w"urde sagen ein Tensor $T\in \mathbb{V}_m^n$ ist eine multilineare Abbildung\footnote{also einzeln linear in jedem seiner Argumente} vom Raum $\underbrace{\mathbb{V}_1\times \dots \times \mathbb{V}_1}_{n-mal}  \times \underbrace{\mathbb{V}^1 \times \dots \times \mathbb{V}^1}_{m-mal}\neq \mathbb{V}_m^n $ in den Grundk"orper, also hier die reellen Zahlen.
+ Damit ist ein Tensor Element des Raumes $\underbrace{\mathbb{V}^1\otimes \dots \otimes \mathbb{V}^1}_{n-mal}  \otimes \underbrace{\mathbb{V}_1 \otimes \dots \otimes \mathbb{V}_1}_{m-mal}:= \mathbb{V}_m^n$. Dabei ist $\otimes$ das sog. \emph{Tensorprodukt}. Im endlichdimensionalen ist das Tensorprodukt der Vektorraum, der vom Kreuzprodukt der Basen der anf"anglichen Vektorr"aume aufgespannt wird. Der Ausdruck $T^{\alpha_1 \dots \alpha_n}_{\beta_1 \dots \beta_m}$ sind lediglich die Komponenten oder Eintr"age des Tensors in einer Basisdarstellung (meist die karthesische Standardbasis), also auch nur reelle Zahlen. Physiker meinen mit \emph{Tensor} meist dessen Komponenten.
+
+\paragraph*{Metrik}
+In der SRT wird die Metrik durch eine symmetrische Bilinearform  $g_{\mu \nu}=g_{\nu \mu}$ dargestellt.  Sie  soll erf"ullen, dass $g_{\mu \nu}\dd x^\nu \dd x^\mu := \dd s ^2$ unter Lorentztransformation invariant, also ein Skalar, ist. 
+$g_{\mu \nu}$ ist also ein (0,2) Tensor.\abs
+%
+%Ebenso induziert die Metrik ein Skalarprodukt, welches auch einfach durch $g_{\mu \nu}$ gegeben ist. 
+{In Vektor-Schreibeweise "ubersetzt ist diese Bilinearform $\Gamma$ auf dem Minkowski-Raum definiert als $\Gamma( \vec u, \vec v) := \vec u ^T \cdot \Mat g \cdot \vec v$, wobei $\Mat g = (g_{\mu\nu})$ die Matrix der Bilinearform ist. Eine "`Metrik"' (leider ist ds Konstrukt nicht poitiv definit, was eigentlich f"ur eine Metrik wichtig w"are) ist dann $\delta$ auf dem Minkowski-Raum; mit ihr kann man die \emph{Raumzeitabst"ande} zwischen zwei Ereignissen $\vec u = (u^\alpha)$ und $\vec v = (v^\beta)$ bestimmen via $\delta(\vec u, \vec v) := \Gamma(\vec u - \vec v , \vec u - \vec v)$.  }\abs
+%
+F"ur eine Metrik muss gelten: $\det(g_{\mu \nu})\neq 0$ -- das ist mathemathisch "aquivalent dazu, dass die Metrik $\delta$ genau dann $0$ liefert, wenn die beiden Ereignisse identisch sind.\footnote{Der Kern muss trivial sein\dots}
+Damit ist die Matrix $g_{\mu \nu}$ dann auch invertierbar: $(g_{\mu \nu})^{-1}=(g^{\mu \nu})$. F"ur den Minkowskiraum nimmt man einen invarianten Lichtkegel an und erh"alt daraus und den oben zusammengetragenen Eigenschaften eine M"ogliche Form f"ur $g_{\mu\nu}$ als \footnote{W"urde man das Skalarprodukt f"ur den Euklidschen $\mathbb{R}^3$ wollen, mit einer unter \emph{Galileitransformation} invarianten Metrik, dann w"are $g_{\mu \nu}=\delta_{\mu \nu}$.}
+%* wenn du erst hier das Kronecker-Delta erw"ahnst, k"onnte es schon ein wenig sp"at sein ;-)
+%~ hast recht ;) ist entfernt
+$$(g_{\mu \nu})=\begin{pmatrix}
+-1 &0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{pmatrix}$$
+%* die schreibweise fand ich irgendwie toll, dass man die Komponenten in () setzt und eine Matrix draus macht
+%* wenn's dir nicht gef"allt, mach's weg ;-)
+%~ ne hast recht, ist halt physikerm��ig geschludert, aber soll ja korrekt sein
+
+% Es k"onnten auch alle Vorzeichen umgekehrt werden, was Konventionssache ist.\\
+Man muss also darauf achten, welche der beiden Konventionen gew"ahlt wurden, wenn man Formeln / Rechnungen nachvollzieht.
+\begin{Def}
+  [raum- und zeitartige Vektoren]
+  Wenn mit diesem $\Mat g$ eine Minkowskil"ange negativ ist, so spricht man von einem \emph{zeitartigen} Vektor; ist sie positiv, von einem \emph{raumartigen} Vektor.
+\end{Def}
+\begin{Wichtig}
+  Dies ist jedoch nur eine M"ogliche Wahl der $g_{\mu\nu}$; man k"onnte genausogut auch stattdessen $g'_{\mu\nu} := - g_{\mu\nu}$ verwenden. Dann sind auch \emph{raum-} und \emph{zeit}artige Vektoren gerade entgegengesetzt definiert.
+\end{Wichtig}
+% Achtung: das h"angt von der Vorzeichenkonvention der Metrik ab; mit der alternativen Definition w"are raum- und zeitartig genau anders herum definiert
+
+
+%* Ich hab den Paragraph bis hierher jetzt mal etwas umstrukturiert -- 
+%  so gef"allt er mir viel besser ;-)
+
+Die Lorentztransformation in x-Richtung kann in Matrixschreibweise einfach dargestellt werden\footnote{$\beta=\frac{v}{c}$}:
+$$(\Lambda_{\mu \nu})=\begin{pmatrix}
+\gamma &-\beta \gamma&0&0\\
+-\beta \gamma&\gamma&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{pmatrix}$$
+
+
+\subsection{Relativistische Mechanik}
+
+Weltlinien sind Kurven im vierdimensionalen Minkowskiraum. Sie werden nach der Eigenzeit parametrisiert: $x^\nu (\tau)$. Der Tangentialvektor ist dann: \\$u^\nu:=\frac{\dd}{\dd \tau} x^\nu (\tau)=\gamma(\tau) \frac{\dd}{\dd t} x^\nu (t)|_{t=t(\tau)}$. Weil $x^\nu$ ein Vierervektor und $\dd \tau$ ein Skalar ist, muss $u^\nu$ auch ein Vierervektor sein. Sei $x^\nu=(ct,\vec r (t))$, dann ist $u^\nu=\gamma (c,\vec v (t))$; man berechnet $u_\nu u^\nu = g_{\mu \nu} u^\mu u^\nu=\gamma^2(-c^2+v^2)=-c^2$ und sieht, dass die \emph{Minkowskil"ange} des Tangentialvektors konstant ist. Aus der Differentialgeometrie wei"s man dann, dass der Kurvenparameter $\tau$ proportional zur Bogenl"ange ist, als differentialgeometrisch eine praktische Gr"o"se.\abs
+%Wenn, wie hier, eine Minkowskil"ange negativ ist, so spricht man von einem Zeitartigen Vektor; ist sie positiv, von einem Raumartigen Vektor\footnote{Achtung: das h"angt von der Vorzeichenkonvention der Metrik ab; man k"onnte statt $g^{\mu\nu}$ auch $g'^{\mu\nu} = -g^{\mu\nu}$ w"ahlen k"onenn; dann w"are raum- und zeitartig genau anders herum definiert}.\\
+%* verwechselst du da nicht was: Zeitartig/Raumartig ist bei ds^2, nicht bei Geschwindigkeiten [oder ich kannte es nicht von Geschwindigkeiten]\dots
+%~ hm also so stands halt in meinen aufschrieben vom dietrich\dots
+%eigentlich bezieht sich der begriff auf ereignisse, daher nehme ichs mal raus
+%~ war doch wichtig: Ich hab's wo anderst hin kopiert\dots
+
+Man m"ochte also die Newtonsche Mechanik so verallgemeinern, dass man im Limes f"ur kleine Geschwindigkeiten die klassische Mechanik erh"alt. In Tabelle \ref{tab:srt} sind die wichtigsten Gr"o"sen gegen"uber gestellt.\newline
+Vor allem die Formel $E_{kin}=\gamma m c^2$ ist bemerkenswert, denn f"ur $v \to 0$ geht $\gamma$ gegen $1$ und man erh"alt die so ber"uhmte Formel $E=mc^2$.
+
+%Analog zum Newtonschen Fall nimmt man $p^\mu=mu^\mu=0$ f"ur ein freies Teilchen
+
+\begin{table}[t]
+\centering
+\begin{tabular}{l|l}
+klassisch & relativistisch\\
+\hline
+$\vec p =0$& $p^\mu=mu^\mu=0$\\
+$\frac{1}{2}m v^2$ & $\gamma m c^2$\\
+$\frac{\dd}{\dd t} \vec p = \vec F$& $\frac{\dd}{\dd \tau} p^\mu=F^\mu$\\
+$\frac{\dd}{\dd t}(\frac{1}{2}m v^2)= \vec F \cdot \vec v $&$\frac{\dd}{\dd t}(\gamma m c^2)= \vec F \cdot \vec v $
+
+
+\end{tabular}
+\caption{Vergleich der mechanischen Gr"o"sen}
+\label{tab:srt}
+\end{table}
+
+
+
+
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+
+
+
+
+
+
+
+
+\end{document}
+

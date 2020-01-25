@@ -1,0 +1,13 @@
+<p>Navigation:</p>
+<ul>
+<li><a href=index.php>Home</a></li>
+<li><a href=ueber_mich.php>&Uuml;ber mich</a></li>
+<li><a href=aktuell.php>Aktuelles</a></li>
+<li><a href=pinnwand.php>Pinnwand</a></li>
+<li><a href=files.php>Download</a></li>
+<li><a href=links.php>Links</a></li>
+<li><a href=linksb.php>Links, erweiterbar</a></li>
+<li><a href=disclaimer.php>Disclaimer</a></li>
+</ul>
+
+<img src=f_xi02_s.png>

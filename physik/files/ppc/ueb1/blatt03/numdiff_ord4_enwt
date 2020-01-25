@@ -1,0 +1,39 @@
+Maxima 5.21.1 http://maxima.sourceforge.net
+using Lisp SBCL 1.0.37
+Distributed under the GNU Public License. See the file COPYING.
+Dedicated to the memory of William Schelter.
+The function bug_report() provides bug reporting information.
+(%i1) /* entwicklung um punkt x; y1=f'(x), y2=f''(x) .... */  entw : y + r*y1 + r^2/2*y2 + r^3/6*y3 + r^4*y4/24 + r^5*y5/120;
+                    5       4       3       2
+                   r  y5   r  y4   r  y3   r  y2
+(%o1)              ----- + ----- + ----- + ----- + r y1 + y
+                    120     24       6       2
+(%i2) /* entwicklungen in verschiedene Richtungen und l"angen */ f5 : entw, r : 2*h;
+                 5         4         3
+              4 h  y5   2 h  y4   4 h  y3      2
+(%o2)         ------- + ------- + ------- + 2 h  y2 + 2 h y1 + y
+                15         3         3
+(%i3) f4 : entw, r : h$
+
+(%i4) f2 : entw, r : -h$
+
+(%i5) f1 : entw, r : -2*h$
+
+(%i6) /* einsetzen in angenaehrte Ableitunge */ abl : -(f5 - 8*f4 + 8*f2 - f1)/(12*h);
+           5       4       3       2
+          h  y5   h  y4   h  y3   h  y2
+(%o6) (8 (----- + ----- + ----- + ----- + h y1 + y)
+           120     24       6       2
+         5       4       3       2                     5         3
+        h  y5   h  y4   h  y3   h  y2               8 h  y5   8 h  y3
+ - 8 (- ----- + ----- - ----- + ----- - h y1 + y) - ------- - ------- - 4 h y1)
+         120     24       6       2                   15         3
+/(12 h)
+(%i7) factor(%);
+                                   4
+                                  h  y5 - 30 y1
+(%o7)                           - -------------
+                                       30
+(%i8) /* hier sieht man, dass die Abweichung der Differenziation durch Approximation mit einem Polynom der Ordnung 4 von Der Gr"o"senordnung O(h^4) ist */ foo;
+(%o8)                                 foo
+(%i9) 

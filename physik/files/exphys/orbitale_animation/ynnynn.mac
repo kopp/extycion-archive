@@ -1,0 +1,55 @@
+
+/* Kugelflaechenfunktionen */
+y00 : 1/(2*sqrt(%pi))$
+y10 : sqrt(3)*cos(t)/(2*sqrt(%pi))$
+y20 : sqrt(5)*(3*cos(t)^2-1)/(4*sqrt(%pi))$
+y21 : -sqrt(15)*%e^(%i*p)*cos(t)*sin(t)/(2^(3/2)*sqrt(%pi))$
+y22 : -sqrt(15)*%e^(2*%i*p)*sin(t)^2/(2^(5/2)*sqrt(%pi))$
+
+/* Ueberlagerungen */
+r1(x):=abs(y00+y10*exp(%i*x))^2$
+r2(x):=abs(y10+y20*exp(%i*x))^2$
+r3(x):=abs(y00+y20*exp(%i*x))^2$
+r4(x):=abs(y20+y21*exp(%i*x))^2$
+r5(x):=abs(y20+y22*exp(%i*x))^2$
+
+/* animationen */
+movie1(n):=apply(draw,
+       append([terminal = animated_gif,delay = 50],
+              makelist(gr3d(xrange = [-0.3,0.3],yrange = [-0.3,0.3],
+                            zrange = [-0.6,0.6],surface_hide = true,
+                            rot_vertical = 80,
+                            spherical(r1(0.05*k*%pi),p,0,2*%pi,t,0,%pi)),k,1,
+                       n)))$
+
+movie2(n):=apply(draw,
+       append([terminal = animated_gif,delay = 50],
+              makelist(gr3d(xrange = [-0.35,0.35],yrange = [-0.35,0.35],
+                            zrange = [-1.3,1.3],surface_hide = true,
+                            rot_vertical = 80,enhanced3d = true,
+                            spherical(r2(0.05*k*%pi),p,0,2*%pi,t,0,%pi)),k,1,
+                       n)))$
+
+movie3(n):=apply(draw,
+       append([terminal = animated_gif,delay = 50],
+              makelist(gr3d(xrange = [-0.35,0.35],yrange = [-0.35,0.35],
+                            zrange = [-1,1],surface_hide = true,
+                            rot_vertical = 80,
+                            spherical(r3(0.05*k*%pi),p,0,2*%pi,t,0,%pi)),k,1,
+                       n)))$
+
+movie4(n):=apply(draw,
+       append([terminal = animated_gif,delay = 50],
+              makelist(gr3d(xrange = [-0.3,0.3],yrange = [-0.3,0.3],
+                            zrange = [-0.6,0.6],surface_hide = true,
+                            rot_horizontal = 10,
+                            spherical(r4(0.05*k*%pi),p,0,2*%pi,t,0,%pi)),k,1,
+                       n)))$
+
+movie5(n):=apply(draw,
+       append([terminal = animated_gif,delay = 50],
+              makelist(gr3d(xrange = [-0.6,0.6],yrange = [-0.6,0.6],
+                            zrange = [-0.6,0.6],surface_hide = true,
+                            rot_horizontal = 10,
+                            spherical(r5(0.05*k*%pi),p,0,2*%pi,t,0,%pi)),k,1,
+                       n)))$

@@ -1,0 +1,20 @@
+Dies ist eine Zusammenstellung von Animationen von Kugelflächenfunktionen. Der 
+Dateiname zeigt, welche miteinander kombiniert wurden:
+	y<nn>y<mm>-<i>.gif
+<nn> und <mm> sind die Quantenzahlen der jeweiligen Kugelflächenfunktion und 
+verschiedene <i> stehen einfach dafür, dass diese Überlagerun in 
+verschiedenen Versionen vorliegt.
+
+Hier sieht man schön die Auswahlregeln des optischen Übergangs: Wenn
+	l' = l + 1  oder  l' = l - 1
+gilt (also bspw. bei y00y10), so verschiebt sich der Ladungsschwerpunkt: Er 
+oszilliert. Ist diese Regel nicht erfüllt (bspw. y00y20), dann bleibt der 
+Ladungsschwerpunkt auf einer Stelle sitzen.
+
+Die Diagramme y20y21 und y20y22 zeigen, was passiert, wenn die Auswahlregel
+	m' = m
+nicht erfüllt ist: Die Orbitale rotieren lediglich.
+
+Die Dateien ynnynn enthalten Informationen, wie man die Bilder `baut': Die
+Datei ynnynn.mac kann man mit maxima laden und in ynnynn.log steht, wie ich
+die Bilder erzeugt habe -- leider etwas krude und unübersichtlich...

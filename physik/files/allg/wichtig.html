@@ -1,0 +1,556 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="http://txt2tags.sf.net">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf8">
+<TITLE>About using LaTeX with emacs</TITLE>
+<STYLE TYPE="text/css">
+body{
+	color: black;
+	font-family: serif;
+	max-width: 900px;
+	min-width: 300px;
+	margin-left: 20px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+
+pre{
+	margin-left: 10px;
+	font-family: monospace;
+	background: #e0e0e0;
+}
+
+
+dt{
+	color: #3900E6;
+	font-weight: bold;
+}
+
+
+a{
+	text-decoration: none;
+	color: #0000a0;
+}
+
+a:hover{
+	text-decoration: underline;
+	color: #0000ff;
+}
+
+
+
+h1{
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #003DF5;
+	background-color: #FFCC33;
+	padding-left: 30px;
+	margin-top: 55px;
+	margin-bottom: 35px;
+}
+
+h2{
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #002EB8;
+	background-color: #FFDF80;
+	padding-left: 50px;
+	margin-top: 55px;
+	margin-bottom: 35px;
+}
+
+
+h3{
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #002EB8;
+	background-color: #FFECB3;
+	padding-left: 70px;
+	margin-top: 55px;
+	margin-bottom: 35px;
+}
+
+	
+</STYLE>
+</HEAD><BODY BGCOLOR="white" TEXT="black">
+<P ALIGN="center"><CENTER><H1>About using LaTeX with emacs</H1>
+<FONT SIZE="4">
+<I>Michael Kopp</I><BR>
+Version 1
+</FONT></CENTER>
+
+<P></P>
+<HR NOSHADE SIZE=1>
+<P></P>
+  <OL>
+  <LI><A HREF="#toc1">Installieren</A>
+  <LI><A HREF="#toc2">Darstellung</A>
+    <UL>
+    <LI><A HREF="#toc3">2.1. Code folding</A>
+    <LI><A HREF="#toc4">2.2. Formeln und Bilder darstellen</A>
+    <LI><A HREF="#toc5">2.3. Screenshots</A>
+    </UL>
+  <LI><A HREF="#toc6">Navigation</A>
+  <LI><A HREF="#toc7">Labels</A>
+    <UL>
+    <LI><A HREF="#toc8">4.1. Index</A>
+    <LI><A HREF="#toc9">4.2. Labels</A>
+    </UL>
+  <LI><A HREF="#toc10">Eigene Tastenkürzel</A>
+  <LI><A HREF="#toc11">Anhang</A>
+    <UL>
+    <LI><A HREF="#toc12">6.1. Anpassung der .emacs</A>
+    <LI><A HREF="#toc13">6.2. Install-File für Templates</A>
+    </UL>
+  </OL>
+
+<P></P>
+<HR NOSHADE SIZE=1>
+<P></P>
+<A NAME="toc1"></A>
+<H1>1. Installieren</H1>
+<P>
+Ich habe brav aus den Linux-Quellen den Code von <CODE>Emacs22</CODE> (die
+X-Server-version) bezogen und installiert.
+</P>
+<P>
+Danach braucht man noch das Packet <CODE>auctex</CODE> und <CODE>preview-latex</CODE>.
+</P>
+<P>
+<CODE>Templates</CODE> ist etwas schwerer zu bekommen und erfordert etwas Handarbeit.
+Siehe dazu die Installationsanleitung im Anhang. Zu bekommen ist das komplette
+Packt unter <A HREF="http://emacs-template.sourceforge.net/">http://emacs-template.sourceforge.net/</A>.
+</P>
+<A NAME="toc2"></A>
+<H1>2. Darstellung</H1>
+<A NAME="toc3"></A>
+<H2>2.1. Code folding</H2>
+<P>
+Damit kann man eine praktisch WYSIWYG Darstellung erhalten. Macht den Code schön
+übersichtlich. Zum Aktivieren (oder Deaktivieren)
+</P>
+<PRE>
+  C-c C-o C-f
+</PRE>
+<P>
+eingeben. Um dann das Dokumen zu <I>folden</I>
+</P>
+<PRE>
+  C-c C-o C-b
+</PRE>
+<P>
+Oder nur für eine Region
+</P>
+<PRE>
+  C-c C-o C-r
+</PRE>
+<P></P>
+<A NAME="toc4"></A>
+<H2>2.2. Formeln und Bilder darstellen</H2>
+<P>
+Hierfür <CODE>preview-latex</CODE> zuständig. Um die Funktion zu aktivieren einfach
+</P>
+<PRE>
+  C-c C-p C-d
+</PRE>
+<P>
+einzugeben, damit im ganzen Dokument die Formeln und Bilder durch Vorschauen
+ersetzt werden.
+</P>
+<A NAME="toc5"></A>
+<H2>2.3. Screenshots</H2>
+<P>
+So sieht das mit <B>Kate</B> uns Syntax-Highlighting aus:
+</P>
+<P>
+<IMG ALIGN="middle" SRC="kate.png" BORDER="0" ALT="">
+</P>
+<P>
+Und so mit <B>emacs</B> mit <B>code-folding</B> und <B>preview-latex</B>:
+</P>
+<P>
+<IMG ALIGN="middle" SRC="emacs.png" BORDER="0" ALT="">
+</P>
+<P>
+Ganz unten habe ich auf eine <CODE>equation</CODE> geklickt -- um sie zu bearbeiten.
+</P>
+<A NAME="toc6"></A>
+<H1>3. Navigation</H1>
+<P>
+Ein Inhaltsverzeichnis öffnet man mit 
+</P>
+<PRE>
+  C-c =
+</PRE>
+<P>
+und kann hier mit <CODE>n</CODE> und <CODE>p</CODE> nach oben / unten navigieren. Mit 
+</P>
+<PRE>
+  &lt;Leertaste&gt; 
+</PRE>
+<P>
+Springt man an die entsprechende Stelle, um sie sihc anzusehen und mit
+</P>
+<PRE>
+  &lt;Enter&gt;
+</PRE>
+<P>
+springt man an die Stelle und die Inhaltsangabe schließt sich.
+</P>
+<P>
+Mit 
+</P>
+<PRE>
+  &lt;
+</PRE>
+<P>
+bzw
+</P>
+<PRE>
+  &gt;
+</PRE>
+<P>
+kann man die Einträge in der Hierarchie hoch- bzw. herunterstufen.
+</P>
+<P>
+Betätigt man
+</P>
+<PRE>
+  f
+</PRE>
+<P>
+so bewegt der Cursor im Text sich mit dem Cursor im Inhaltsverzeichnis-buffer
+mit.
+</P>
+<A NAME="toc7"></A>
+<H1>4. Labels</H1>
+<A NAME="toc8"></A>
+<H2>4.1. Index</H2>
+<P>
+Um das vorangegabgene Wort in <CODE>\index{Wort}Wort</CODE> umzuwandeln, einfach auf das
+Wort gehen und
+</P>
+<PRE>
+  C-c /
+</PRE>
+<P>
+eingeben. Um noch ein wenig präziser den Indexeintrag anzugeben, kann man 
+</P>
+<PRE>
+  C-u C-c /
+</PRE>
+<P>
+verwenden.
+</P>
+<A NAME="toc9"></A>
+<H2>4.2. Labels</H2>
+<P>
+Das Programm <CODE>RefTeX</CODE> ist auch dafür verantwortlich, dass in jedem Ordner, in
+dem man die LaTeX-Dateien bearbeitet ein Ordner <CODE>auto</CODE> angelegt wird. Hierin
+befindet sich eine Liste der benutzten Labels und man kann mit diesen bequem
+zum gewünschten navigieren.
+</P>
+<P>
+Gibt man über <CODE>C-c C-m</CODE> den Befehl <CODE>\ref</CODE> ein, kommt man in ein Menü, in dem
+man zum passenden label scrollen kann und dieses auswählen kann. Um sich den
+Aufwand zu sparen, kann man auch einfach <CODE>C-c )</CODE> drücken. Das Programm erkennt
+sogar, wenn man vorher <CODE>Gl.</CODE> oder <CODE>Abb.</CODE> geschrieben hat und findet so
+automatisch nur eben Formeln oder Bilder.
+</P>
+<A NAME="toc10"></A>
+<H1>5. Eigene Tastenkürzel</H1>
+<P>
+Um sich Tipparbeit zu sparen, habe ich mir eigene Tastenkürzel entworfen; hier
+eine Auswahl:
+</P>
+<DL>
+<DT>C-c f</DT><DD>
+Für <CODE>\fraction{}{}</CODE>
+<DT>C-c s</DT><DD>
+Für Skalarproduktklammern
+<DT>C-c o</DT><DD>
+Für <CODE>\operatorname</CODE> (also bspw. um Einheiten in <CODE>equations</CODE> in passender
+Schrift zu setzen).
+</DL>
+
+<P>
+Auch noch ganz nett, wenn auch nicht von mir: Das Auskommentieren. Mit
+<CODE>C-SPACE</CODE> Marke setzen und und mit <CODE>C-c ;</CODE> am Ende wird der gesamte Bereich
+auskommentiert.
+</P>
+<A NAME="toc11"></A>
+<H1>6. Anhang</H1>
+<A NAME="toc12"></A>
+<H2>6.1. Anpassung der .emacs</H2>
+<P>
+Hier meine eigene <CODE>~/.emacs</CODE>: Ich habe sie dahingegen modifiziert, das man
+damit besser LaTeX-Dokumente bearbeiten kann. Sie sorgt u.a. für:
+</P>
+<UL>
+<LI>RefTex wird standardmäßig aktiviert
+<LI>Eine gut Lesbare Font wird verwendet
+<LI>Auto-Fill-Mode ist aktiviert
+<LI>In dem LaTeX-Math-Mode kommt man mit <CODE>ß</CODE>
+<LI>Klammerpaare werden automatisch hervorgehoben
+<LI>Meine eigenen Mathe-Makros eben
+</UL>
+
+<PRE>
+  ;; ;; Templates - Unterstuetzung ;; ;;
+  ;; ;; Mit template 3.1 ;; ;;
+  (setq load-path (cons (expand-file-name "~/.emacs.d/lisp") load-path))
+  (require 'template)
+  (template-initialize)
+  
+  
+  ;; ;; RefTex ;; ;;
+  ;; Fuer Navigation im LaTeX Dokument ;;
+  ;; Soll mit aucTeX zusamenarbeiten:
+  (setq reftex-plug-into-AUCTeX t)
+  ;; Soll zusammen mit AUCTex aktiviert werden:
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  
+  (custom-set-variables
+    ;; custom-set-variables was added by Custom.
+    ;; If you edit it by hand, you could mess it up, so be careful.
+    ;; Your init file should contain only one such instance.
+    ;; If there is more than one, they won't work right.
+   '(LaTeX-babel-hyphen "--")
+   '(LaTeX-eqnarray-label "eqn_")
+   '(LaTeX-equation-label "eqn_")
+   '(LaTeX-figure-label "abb_")
+   '(LaTeX-indent-level 3)
+   '(LaTeX-item-indent -3)
+   '(LaTeX-section-label (quote (("part" . "part_") ("chapter" . "kap_")
+  ("section" . "kap_") ("subsection" . "kap_") ("subsubsection" . "kap_"))))
+   '(LaTeX-table-label "tab_")
+   '(inhibit-startup-screen t)
+   '(reftex-derive-label-parameters (quote (5 50 t 1 "-" ("der" "die" "das" "eine"
+  "einer" "eines" "wie" "wo" "wann" "warum") t)))
+   '(reftex-section-prefixes (quote ((0 . "part_") (1 . "kap_") (t . "kap_")))))
+  (custom-set-faces
+    ;; custom-set-faces was added by Custom.
+    ;; If you edit it by hand, you could mess it up, so be careful.
+    ;; Your init file should contain only one such instance.
+    ;; If there is more than one, they won't work right.
+   )
+  
+  ;; ;; Fonts ;; ;;
+  ;;
+  ;; Courrier new
+  (set-default-font "-monotype-courier new-demibold-r-*-*-16-*-*-*-*-*-*-*")
+  ;;Die Zahl (an 7. Stelle) gibt die Schriftgroesse an
+  ;;
+  ;;Arial
+  ;;(set-default-font "-monotype-arial-bold-r-*-*-*-*-*-*-*-*-*-*")
+  ;;
+  
+  
+  ;; ;; Auto Fill mode
+  ;;
+  (setq text-mode-hook 'turn-on-auto-fill)
+  
+  
+  ;; ;; LaTeX Math mode
+  ;;
+  ;; Prefix um Mathesymole einzugeben:
+  (setq LaTeX-math-abbrev-prefix "ß")
+  
+  
+  
+  
+  
+  ;; ;; Gepaarte Klammern automatisch finden ;; ;;
+  ;; zu jedem Klammer-Auf wird das passende Klammer-Zu
+  ;; und umgekehrt hervorgehoben, wenn der Cursor
+  ;; auf bzw. hinter einem der beiden steht.
+  ;; http://tpoly2.physik.uni-freiburg.de/
+  ;; 	Einfuehrung/Emacs.19.html
+  ;; (load "paren")
+  (show-paren-mode t)
+  ;; (setq blink-matching-paren t)
+  ;; (setq blink-matching-delay 1)
+  ;;
+  
+  
+  
+  
+  
+  ;; ;; EIGENE MAKROS ;; ;;
+  ;;
+  ;; ;; Für LaTeX ;;
+  ;;
+  ;; Es kann sein, dass ein Befehl nicht so funktioniert, wie
+  ;; er eigentlich sollte. Das kann dann daran liegen, dass
+  ;; ein Systemeigener Befehl schon den selben Namen hat.
+  ;; Das Problem loest man, indem man die Befehlsnamen anders
+  ;; waehlt: `myLaTeX' statt `LaTeX' usw.
+  ;;
+  ;; Bruch einfuegen
+  (defun myLaTeX-math-fraction()
+    (interactive)
+    (insert "\\frac{}{}")
+    (backward-char 3)
+  )
+  ;; Skalarproduktklammern einfuegen
+  (defun LaTeX-math-skalprod()
+    (interactive)
+    (insert "\\langle  \|  \\rangle")
+    (backward-char 11)
+  )
+  (defun LaTeX-math-operatorname()
+    (interactive)
+    (insert "\\operatorname{}")
+    (backward-char 1)
+  )
+  (defun LaTeX-math-sqrt()
+    (interactive)
+    (insert "\\sqrt\{\}")
+    (backward-char 1)
+  )
+   (defun LaTeX-math-unten()
+     (interactive)
+     (insert "\_\{\}")
+     (backward-char 1)
+   )
+  (defun LaTeX-math-oben()
+     (interactive)
+     (insert "^\{\}")
+     (backward-char 1)
+  )
+  (defun LaTeX-math-partiell()
+     (interactive)
+     (insert "\\frac{\\partial }{\\partial }")
+     (backward-char 12)
+  )
+  (defun LaTeX-math-total()
+     (interactive)
+     (insert "\\frac{\\diff }{\\diff }")
+     (backward-char 9)
+  )
+  (defun myLaTeX-math-text()
+     (interactive)
+     (insert "\\text{}")
+     (backward-char 1)
+  )
+  (defun myLaTeX-math-klammern()
+     (interactive)
+     (insert "\\left (  \\right )")
+     (backward-char 9)
+  )
+  (defun myLaTeX-math-epsilon()
+     (interactive)
+     (insert "\\varepsilon")
+     (backward-char 0)
+  )
+  
+  
+  
+  ;; Den Befehlen (oben) Tastenkuerzel zuweisen
+  (add-hook 'LaTeX-mode-hook
+  	  (lambda ()
+  	    (define-key LaTeX-mode-map "\C-cf" 'myLaTeX-math-fraction)
+  	    (define-key LaTeX-mode-map "\C-cs" 'LaTeX-math-skalprod)
+  	    (define-key LaTeX-mode-map "\C-co" 'LaTeX-math-operatorname)
+  	    (define-key LaTeX-mode-map "\C-cw" 'LaTeX-math-sqrt)
+  	    (define-key LaTeX-mode-map "\C-cn" 'LaTeX-math-unten)
+  	    (define-key LaTeX-mode-map "\C-cm" 'LaTeX-math-oben)
+  	    (define-key LaTeX-mode-map "\C-cb" 'LaTeX-math-partiell)
+  	    (define-key LaTeX-mode-map "\C-ca" 'LaTeX-math-total)
+  	    (define-key LaTeX-mode-map "\C-ct" 'myLaTeX-math-text)
+  	    (define-key LaTeX-mode-map "\C-ck" 'myLaTeX-math-klammern)
+  	    (define-key LaTeX-mode-map "\C-ce" 'myLaTeX-math-epsilon)
+  	    )
+  	  )
+  
+  
+  ;; Um einen Befehl global zu aktivieren:
+  ;; (global-set-key "\C-cf" 'LaTeX-math-fraction)
+  
+</PRE>
+<P></P>
+<A NAME="toc13"></A>
+<H2>6.2. Install-File für Templates</H2>
+<PRE>
+  ### INSTALL for template.el: Template Package for Emacs
+  
+  ## Copyright 2002 Free Software Foundation, Inc.
+  ##
+  ## Author: Christoph Wedler &lt;wedler@users.sourceforge.net&gt;
+  ## Keywords: Emacs, template, comment decoration, auto-updating, data, tools
+  ## X-URL: http://emacs-template.sourceforge.net/
+  
+  
+  The installation process with explanations (all files mentioned here are
+  relative to top-level directory "template/" in the distribution):
+  
+  
+   1. Copy file "lisp/template.el" to your load-path.  That means:
+  
+      Use C-h v load-path RET to check the value and the documentation of
+      Emacs' load-path.
+  
+      You must copy "lisp/template.el" to one of the directories in the
+      value list.  If no directory in the default value is appropriate, you
+      must add "your own" directory to that list.
+  
+      The cases:
+  
+        (a) You want to copy the file to DIR, i.e., one of the listed
+            directories: copy "lisp/template.el" to DIR.
+  
+        (b) You use Emacs and install Template in your home directory:
+            create directory "~/.emacs.d/lisp/" and copy "lisp/template.el"
+            to it.  Add the following lines at the beginning of your Emacs
+            init file:
+  
+               (setq load-path (cons (expand-file-name "~/.emacs.d/lisp")
+                               load-path))
+  
+        (c) You use XEmacs-20.3 or higher and install Template in your
+            home directory: create directory
+            "~/.xemacs/xemacs-packages/lisp/".  It will be automatically
+            added to `load-path' if you start XEmacs the next time.
+  
+        (d) You install Template system-wide: the target directory is
+            "EMACS/site-lisp/" or "XEMACS/site-packages/lisp/".  But you
+            probably know that if you are responsible for Emacs or XEmacs
+  	  on your site.
+  
+  
+   2. Byte-compile file "template.el": visit file "template.el" (that is,
+      the copy) and use menu entry
+  
+         "Emacs-Lisp"/"Lisp" &gt;&gt; "Byte-compile This File"
+      or
+          M-x byte-compile-file RET template.el RET.
+  
+      Note: during compilation, you get warnings about missing functions.
+      You can ignore them, since these functions will not be used in the
+      Emacs/XEmacs branch or version you are using.
+  
+  
+   3. Visit your Emacs init file.
+  
+       - The Emacs init file is usuall file "~/.emacs".
+       - In XEmacs-21.4 or higher, it is usually "~/.xemacs/init.el".
+       - For a system-wide installation, the init file is "default.el".
+  
+      Add the following lines into your init file (it should be inserted
+      after the lines from case 1b):
+  
+         (require 'template)
+         (template-initialize)
+  
+   4. You might want to copy the template files "templates/*.tpl" to
+      "~/.templates/" and change them according to your preferences.
+  
+  
+  ### INSTALL ends here
+</PRE>
+
+<!-- html code generated by txt2tags 2.3 (http://txt2tags.sf.net) -->
+<!-- cmdline: txt2tags -\-toc -n -\-style=/home/skunk/programme/templates/txt2tags/style_html_01.css -\-css-inside -t html wichtig.t2t -->
+</BODY></HTML>

@@ -1,0 +1,163 @@
+%%%% Basics %%%%
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+
+%%%% Gestaltung %%%%
+% \usepackage[top=2.5cm,bottom=1.75cm,right=2cm,left=2.3cm]{geometry}
+\usepackage{framed}
+
+
+%%%% Bilder %%%%
+\usepackage{graphicx}
+\usepackage{subfigure} 
+% \usepackage{wrapfig}
+
+
+%%%% Mathe %%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+
+
+%%%% Spalten %%%%
+\usepackage{multicol}
+% zu verwenden mit \begin{multicols}{3} 3 steht fuer die
+%    spalenzahl \end{multicols}
+
+
+%%%% Zeilenabstand %%%%
+% \setlength{\parindent}{0pt} %Absatz-Einrückung
+% \setlength{\parskip}{12pt} %Absatz-Abstände
+%% oder
+% \usepackage{setspace} %Zeilenabstand bestimmbar in Dokumentenabschnitten
+%% oder
+% \linespread{$$Verhältnis_zu_normalem_Zeilenabstand$$} %Wirkt global
+
+
+%%%% Tabellen %%%%
+\usepackage{booktabs}
+\setlength{\tabcolsep}{5pt} 
+    %Abst zw Spalten
+\renewcommand{\arraystretch}{1.4}
+    %Vielfacher Spaltenabst zw Zeilen
+
+
+%%%% Aufzaehlungen %%%%
+%% description
+\usepackage{expdlist}
+    %mehr Moeglichkeiten
+%% enumerate
+\usepackage{enumerate}
+    %individuelle Aufzaehlungen
+    %nach \begin{enumerate}[(a)] erzeugt (a).. (b).., ...
+    %entsprechend mit (i) (A) (I) 1. Nr 1 usw.
+
+
+%%%% Kopfzeile %%%%
+\usepackage{fancyhdr} 
+% \pagestyle{myheadings} %Kopfzeile hinzufügen
+%\markright{$$Kopfzeile$$} %Inhalt der Kopfzeile
+%%
+%\pagestyle{fancy} %Genauer zu definierende Kopfzeile
+%\fancyhead[OL,OC,OR,EL,EC,ER]{} %O: ungerade seiten, E: gerade Seiten,
+%\fancyfoot[OL,OC,OR,EL,EC,ER]{} %L:Links, C:Mitte, R:Rechts (leere Klammer {} löscht)
+%\renewcommand{\headrulewidth}{dicke} %Dicke der Linie oben
+%\renewcommand{\footrulewidth}{dicke} %Dicke der Linie unten
+%\addtolength{\headwidth}{länge} %Breite wird vergrößert (ragt über Text raus)
+%\addtolength{\headheight}{länge} %Höhe wird vergrößert
+
+
+%%%%% Ueberschriften %%%%
+%\setcounter{secnumdepth}{4} 
+    %Paragraph wird nummeriert
+%\def\theparagraph{\textit{\mdseries\underline{\roman{paragraph}.}}}
+%\def\theparagraph{$\rhd$ (\alph{paragraph})} 
+    %Paragraph bekommt statt nummer ein Dreieck
+
+
+%%%% Andere Nummerierungen %%%%
+%\def\thefigure{\arabic{section}.\arabic{figure}\textsuperscript{\arabic{page}}}
+%\def\theequation{\arabic{section}.\arabic{equation}\textsuperscript{\arabic{
+%page}}}
+
+
+%%%% Referenzen %%%%
+%\usepackage[german]{varioref}
+% mit \vref{label} wird eine individuelle 
+% Bezeichnung verwendet; je nach dem,
+% wie weit label und vref auseinander liegen.
+
+
+%%%% Links %%%%
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,%
+bookmarksnumbered=true,breaklinks=true,pdfstartview=FitH]{hyperref}
+
+
+%%%% Index %%%%
+%\usepackage{makeidx}
+%\makeindex
+
+
+
+%%%% Eigene Komandos %%%%
+%% Differentialoperatoren
+\newcommand{\diff}{\ensuremath{\operatorname d}}
+\newcommand{\dd}{\ensuremath{\operatorname d}}
+\newcommand{\df}{\ensuremath{\operatorname d\vec f}}
+\newcommand{\dV}{\ensuremath{\operatorname d V}}
+\newcommand{\Grad}{\ensuremath{\operatorname{grad}}}
+\newcommand{\Div}{\ensuremath{\operatorname{div}}}
+\newcommand{\Rot}{\ensuremath{\operatorname{rot}}}
+
+%% reservierte Zeichen
+\newcommand{\Kurve}{\ensuremath{\mathscr C}}
+\newcommand{\Fl}{\ensuremath{\mathscr F}}
+
+%% Vektoren, Matrizen, ...
+\newcommand{\Mat}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\Ten}[1]{\ensuremath{{\mathcal{#1}}}}
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
+
+%% sonst.
+\newcommand{\const}{\ensuremath{\text{\emph{const}}}}
+\newcommand{\Ipl}{$\Rightarrow$}
+\newcommand{\Impl}{$\Rightarrow$}
+
+%% Format
+\newcommand{\zitat}[1]{{\slshape \sffamily #1}} 
+%hebt Zitate deutlich ab
+\newcommand{\abs}[0]{\bigskip \noindent}
+% bei Absaetzen
+
+
+%% Komplexe Zahlen
+\newcommand{\E}[0]{\ensuremath{\mathrm{e}}}
+\newcommand{\I}[0]{\ensuremath{\mathrm{i}}}
+
+
+%%%% Definitionen, Saetze %%%%
+\usepackage{shadethm}
+\usepackage{color}
+%
+\newshadetheorem{Wichtig}{Wichtig!}
+\newtheorem*{Erfahrung}{Erfahrung}
+\newtheorem{Ident}{Identit"at}
+% fuer mathematische Rechenidentit"aten, Vereinfachungen etc.
+\newtheorem*{Anw}{Anwendung}
+%
+\newshadetheorem{dumpDefi}{Definition}[section]
+\newenvironment{Def}[1][]{%
+\definecolor{shadethmcolor}{rgb}{.95,.95,.95}%
+\definecolor{shaderulecolor}{rgb}{0.8,0.8,0.8}%
+\setlength{\shadeboxrule}{1pt}%
+\begin{dumpDefi}[#1]%
+ }{\end{dumpDefi}}
+
+
+
+
+

@@ -1,0 +1,738 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Arch Linux) (format=prv_uebertr01 2010.7.16)  16 JUL 2010 21:47
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**&prv_uebertr01 _region_.tex
+(./_region_.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, german-x-2009-06-19, ngerman-x-2009-06-19, ancientgreek, ibycus, ar
+abic, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danish, dutc
+h, esperanto, estonian, farsi, finnish, french, galician, german, ngerman, mono
+greek, greek, hungarian, icelandic, indonesian, interlingua, irish, italian, ku
+rmanji, latin, latvian, lithuanian, mongolian, mongolian2a, bokmal, nynorsk, po
+lish, portuguese, romanian, russian, sanskrit, serbian, slovak, slovenian, span
+ish, swedish, turkish, ukenglish, ukrainian, uppersorbian, welsh, loaded.
+CUSTOMISED FORMAT. Preloaded files:
+        .
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size12.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+   babel.sty    2008/07/06 v3.8l The Babel package
+ngermanb.ldf    2008/07/06 v2.6n new German support from the babel system
+inputenc.sty    2008/03/30 v1.1d Input encoding file
+    utf8.def    2008/04/05 v1.1m UTF-8 support for inputenc
+   t1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  ot1enc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+  omsenc.dfu    2008/04/05 v1.1m UTF-8 support for inputenc
+ fontenc.sty
+   t1enc.def    2005/09/27 v1.99g Standard LaTeX file
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+ amssymb.sty    2009/06/22 v3.00
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+  amsthm.sty    2004/08/06 v2.20
+latexsym.sty    1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+enumerate.sty    1999/03/05 v3.00 enumerate extensions (DPC)
+subfigure.sty    2002/03/15 v2.1.5 subfigure package
+subfigure.cfg
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2009/08/28 v1.8 graphics configuration of TeX Live
+   dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+multicol.sty    2008/12/05 v1.6h multicolumn formatting (FMi)
+fancyhdr.sty    
+hyperref.sty    2010/01/16 v6.80c Hypertext links for LaTeX
+kvsetkeys.sty    2009/12/22 v1.7 Key value parser (HO)
+infwarerr.sty    2007/09/09 v1.2 Providing info/warning/message (HO)
+etexcmds.sty    2007/12/12 v1.2 Prefix for e-TeX command names (HO)
+pdfescape.sty    2007/11/11 v1.8 Provides hex, PDF name and string conversions 
+(HO)
+pdftexcmds.sty    2009/12/12 v0.7 Utility functions of pdfTeX for LuaTeX (HO)
+ifluatex.sty    2009/04/17 v1.2 Provides the ifluatex switch (HO)
+ ltxcmds.sty    2009/12/12 v1.1 LaTeX kernel commands for general use (HO)
+   ifpdf.sty    2009/04/10 v2.0 Provides the ifpdf switch (HO)
+  ifvtex.sty    2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
+ ifxetex.sty    2009/01/23 v0.5 Provides ifxetex conditional
+ hycolor.sty    2009/12/12 v1.6 Color options of hyperref/bookmark (HO)
+xcolor-patch.sty    2009/12/12 xcolor patch
+  pd1enc.def    2010/01/16 v6.80c Hyperref: PDFDocEncoding definition (HO)
+ intcalc.sty    2007/09/27 v1.1 Expandable integer calculations (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+kvoptions.sty    2009/12/08 v3.6 Keyval support for LaTeX options (HO)
+     url.sty    2006/04/12  ver 3.3  Verb mode for urls, etc.
+  bitset.sty    2007/09/28 v1.0 Data type bit set (HO)
+bigintcalc.sty    2007/11/11 v1.1 Expandable big integer calculations (HO)
+atbegshi.sty    2009/12/02 v1.10 At begin shipout hook (HO)
+  hdvips.def    2010/01/16 v6.80c Hyperref driver for dvips
+ pdfmark.def    2010/01/16 v6.80c Hyperref definitions for pdfmark specials
+rerunfilecheck.sty    2009/12/18 v1.2 Rerun checks for auxiliary files (HO)
+atveryend.sty    2009/12/11 v1.3 Hooks at very end of document (HO)
+uniquecounter.sty    2009/12/18 v1.1 Provides unlimited unique counter (HO)
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+   ulasy.fd    1998/08/17 v2.2e LaTeX symbol font definitions
+  t1cmtt.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+  t1cmss.fd    1999/05/25 v2.5h Standard LaTeX font definitions
+        .
+No file _region_.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+(/usr/share/texmf-dist/tex/latex/preview/preview.sty
+Package: preview 2006/08/25 11.84 (AUCTeX/preview-latex)
+
+(/usr/share/texmf-dist/tex/latex/preview/prtightpage.def
+\PreviewBorder=\dimen128
+)
+(/usr/share/texmf-dist/tex/latex/preview/prauctex.def
+No auxiliary output files.
+
+
+\hbadness=\count123
+\hfuzz=\dimen129
+(/usr/share/texmf-dist/tex/latex/preview/prauctex.cfg))
+(/usr/share/texmf-dist/tex/latex/preview/prfootnotes.def)
+\pr@snippet=\count124
+\pr@box=\box55
+\pr@output=\toks33
+
+Preview: Fontsize 12pt
+)
+
+Package hyperref Warning:  draft mode on.
+
+(/usr/share/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 130.
+
+(/usr/share/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+Package hyperref Info: Link coloring ON on input line 94.
+
+(/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2009/12/18 v2.35 Cross-referencing by name of section
+
+(/usr/share/texmf-dist/tex/latex/oberdiek/refcount.sty
+Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
+)
+(/usr/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2009/12/18 v1.3 Cleanup title references (HO)
+)
+\c@section@level=\count125
+)
+LaTeX Info: Redefining \ref on input line 94.
+LaTeX Info: Redefining \pageref on input line 94.
+\AtBeginShipoutBox=\box56
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+ !name(uebertr01.tex) !offset(-3) 
+! Preview: Snippet 1 started.
+<-><->
+      
+l.154 ...en Spule proportional zur "Anderung des $
+                                                  B$-Feldes ist:
+Not a real error.
+
+Preview: Tightpage -32891 -32891 32891 32891
+! Preview: Snippet 1 ended.(537395+0x624680).
+<-><->
+      
+l.154 ... Spule proportional zur "Anderung des $B$
+                                                  -Feldes ist:
+Not a real error.
+
+[1]
+! Preview: Snippet 2 started.
+<-><->
+      
+l.155 \begin{equation}
+                      
+Not a real error.
+
+! Preview: Snippet 2 ended.(917301+0x25559040).
+<-><->
+      
+l.158 \end{equation}
+                    
+Not a real error.
+
+[2
+
+]
+! Preview: Snippet 3 started.
+<-><->
+      
+l.159 (mit $
+            n$: Windungszahl der kleinen Spule, $A$: Fl"ache der gro"se
+Not a real error.
+
+! Preview: Snippet 3 ended.(338603+0x459657).
+<-><->
+      
+l.159 (mit $n$
+              : Windungszahl der kleinen Spule, $A$: Fl"ache der gro"se
+Not a real error.
+
+[3]
+! Preview: Snippet 4 started.
+<-><->
+      
+l.159 (mit $n$: Windungszahl der kleinen Spule, $
+                                                 A$: Fl"ache der gro"se
+Not a real error.
+
+! Preview: Snippet 4 ended.(537395+0x577257).
+<-><->
+      
+l.159 ... $n$: Windungszahl der kleinen Spule, $A$
+                                                  : Fl"ache der gro"se
+Not a real error.
+
+[4]
+! Preview: Snippet 5 started.
+<-><->
+      
+l.160 Spule) wobei wiederum die "Anderung von $
+                                               B$ mit der "Anderung des Stro...
+
+Not a real error.
+
+! Preview: Snippet 5 ended.(537395+0x624680).
+<-><->
+      
+l.160 Spule) wobei wiederum die "Anderung von $B$
+                                                  mit der "Anderung des Stro...
+
+Not a real error.
+
+[5]
+! Preview: Snippet 6 started.
+<-><->
+      
+l.160 ...ng von $B$ mit der "Anderung des Stroms $
+                                                  I$ in
+Not a real error.
+
+! Preview: Snippet 6 ended.(537395+0x401451).
+<-><->
+      
+l.160 ... von $B$ mit der "Anderung des Stroms $I$
+                                                   in
+Not a real error.
+
+[6]
+! Preview: Snippet 7 started.
+<-><->
+      
+l.162 \begin{equation}
+                      
+Not a real error.
+
+! Preview: Snippet 7 ended.(1608876+0x25559040).
+<-><->
+      
+l.165 \end{equation}
+                    
+Not a real error.
+
+[7
+
+]
+! Preview: Snippet 8 started.
+<-><->
+      
+l.166 ($
+        N$: Windungszahl der gro"sen Spule, $l$: L"ange der gro"sen Spule).
+Not a real error.
+
+! Preview: Snippet 8 ended.(537395+0x698774).
+<-><->
+      
+l.166 ($N$
+          : Windungszahl der gro"sen Spule, $l$: L"ange der gro"sen Spule).
+Not a real error.
+
+[8]
+! Preview: Snippet 9 started.
+<-><->
+      
+l.166 ($N$: Windungszahl der gro"sen Spule, $
+                                             l$: L"ange der gro"sen Spule).
+Not a real error.
+
+! Preview: Snippet 9 ended.(546132+0x246669).
+<-><->
+      
+l.166 ($N$: Windungszahl der gro"sen Spule, $l$
+                                               : L"ange der gro"sen Spule).
+Not a real error.
+
+[9]
+! Preview: Snippet 10 started.
+<-><->
+      
+l.168 Um nun den Strom $
+                        I$ zu bestimmen, verwendet man das Ohmsche Gesetz $I
+Not a real error.
+
+! Preview: Snippet 10 ended.(537395+0x401451).
+<-><->
+      
+l.168 Um nun den Strom $I$
+                           zu bestimmen, verwendet man das Ohmsche Gesetz $I
+Not a real error.
+
+[10]
+! Preview: Snippet 11 started.
+<-><->
+      
+l.168 ...immen, verwendet man das Ohmsche Gesetz $
+                                                  I
+Not a real error.
+
+! Preview: Snippet 11 ended.(589824+196608x2977236).
+<-><->
+      
+l.169 = U / R$
+               am Ohmschen Widerstand mit $R = 1 \Omega$. Die Spannung, die
+Not a real error.
+
+[11]
+! Preview: Snippet 12 started.
+<-><->
+      
+l.169 = U / R$ am Ohmschen Widerstand mit $
+                                           R = 1 \Omega$. Die Spannung, die
+Not a real error.
+
+! Preview: Snippet 12 ended.(537395+0x2569576).
+<-><->
+      
+l.169 ...am Ohmschen Widerstand mit $R = 1 \Omega$
+                                                  . Die Spannung, die
+Not a real error.
+
+[12]
+! Preview: Snippet 13 started.
+<-><->
+      
+l.170 hier gemessen wird, ist $
+                               U_a$, also gilt
+Not a real error.
+
+! Preview: Snippet 13 ended.(537395+117964x851636).
+<-><->
+      
+l.170 hier gemessen wird, ist $U_a$
+                                   , also gilt
+Not a real error.
+
+[13]
+! Preview: Snippet 14 started.
+<-><->
+      
+l.171 \begin{equation}
+                      
+Not a real error.
+
+! Preview: Snippet 14 ended.(1608876+0x25559040).
+<-><->
+      
+l.174 \end{equation}
+                    
+Not a real error.
+
+[14
+
+]
+! Preview: Snippet 15 started.
+<-><->
+      
+l.175 Um diese Spannung $
+                         U_a$ nun bestimmen zu k"onnen, greift man auf die
+Not a real error.
+
+! Preview: Snippet 15 ended.(537395+117964x851636).
+<-><->
+      
+l.175 Um diese Spannung $U_a$
+                              nun bestimmen zu k"onnen, greift man auf die
+Not a real error.
+
+[15]
+! Preview: Snippet 16 started.
+<-><->
+      
+l.176 "Ubertragungsfunktion $
+                             (U_a / U_e) = :q(\omega)$ zur"uck, die in dem
+Not a real error.
+
+! Preview: Snippet 16 ended.(589824+196608x5375735).
+<-><->
+      
+l.176 ...agungsfunktion $(U_a / U_e) = :q(\omega)$
+                                                   zur"uck, die in dem
+Not a real error.
+
+[16]
+
+LaTeX Warning: Reference `eq:3' on page 1 undefined on input line 178.
+
+! Preview: Snippet 17 started.
+<-><->
+      
+l.179 \begin{equation}
+                      
+Not a real error.
+
+! Preview: Snippet 17 ended.(1608876+0x25559040).
+<-><->
+      
+l.182 \end{equation}
+                    
+Not a real error.
+
+[17
+
+]
+! Preview: Snippet 18 started.
+<-><->
+      
+l.183 wobei man die Spannung $
+                              U_e$ genau kennt: Schlie"slich ist es die
+Not a real error.
+
+! Preview: Snippet 18 ended.(537395+117964x814165).
+<-><->
+      
+l.183 wobei man die Spannung $U_e$
+                                   genau kennt: Schlie"slich ist es die
+Not a real error.
+
+[18]
+
+LaTeX Warning: Reference `eq:4' on page 1 undefined on input line 187.
+
+
+LaTeX Warning: Reference `eq:2' on page 1 undefined on input line 187.
+
+
+LaTeX Warning: Reference `eq:1' on page 1 undefined on input line 188.
+
+! Preview: Snippet 19 started.
+<-><->
+      
+l.189 \begin{equation}
+                      
+Not a real error.
+
+! Preview: Snippet 19 ended.(1608876+0x25559040).
+<-><->
+      
+l.193 \end{equation}
+                    
+Not a real error.
+
+[19
+
+]
+
+LaTeX Warning: Reference `eq:5' on page 1 undefined on input line 195.
+
+! Preview: Snippet 20 started.
+<-><->
+      
+l.197 Herleitung von $
+                      q(\omega)$ den (komplexen) Widerstand einer Spule zu $...
+
+Not a real error.
+
+! Preview: Snippet 20 ended.(589824+196608x1476274).
+<-><->
+      
+l.197 Herleitung von $q(\omega)$
+                                 den (komplexen) Widerstand einer Spule zu $...
+
+Not a real error.
+
+[20]
+! Preview: Snippet 21 started.
+<-><->
+      
+l.197 ...n (komplexen) Widerstand einer Spule zu $
+                                                  Z_L = \I
+Not a real error.
+
+! Preview: Snippet 21 ended.(537395+117964x3351093).
+<-><->
+      
+l.198 \omega L$
+               . Die Herleitung diese Terms erfolgt unter der expliziten
+Not a real error.
+
+[21]
+! Preview: Snippet 22 started.
+<-><->
+      
+l.200 \begin{equation}
+                      
+Not a real error.
+
+! Preview: Snippet 22 ended.(950269+0x25559040).
+<-><->
+      
+l.204 \end{equation}
+                    
+Not a real error.
+
+[22
+
+]
+! Preview: Snippet 23 started.
+<-><->
+      
+l.209 Potential f"ur $
+                      U_e$ verwenden, m"ussen wir dieses in Terme der
+Not a real error.
+
+! Preview: Snippet 23 ended.(537395+117964x814165).
+<-><->
+      
+l.209 Potential f"ur $U_e$
+                           verwenden, m"ussen wir dieses in Terme der
+Not a real error.
+
+[23]
+
+LaTeX Warning: Reference `eq:6' on page 1 undefined on input line 210.
+
+! Preview: Snippet 24 started.
+<-><->
+      
+l.214 \begin{equation*}
+                       
+Not a real error.
+
+! Preview: Snippet 24 ended.(3420963+0x17305043).
+<-><->
+      
+l.221 \end{equation*}
+                     
+Not a real error.
+
+[24]
+! Preview: Snippet 25 started.
+<-><->
+      
+l.224 \begin{equation*}
+                       
+Not a real error.
+
+! Preview: Snippet 25 ended.(1578292+0x16463378).
+<-><->
+      
+l.226 \end{equation*}
+                     
+Not a real error.
+
+[25]
+! Preview: Snippet 26 started.
+<-><->
+      
+l.227 sodass die Funktion $
+                           f$ -- die unere Spannung $U_e$ sein soll -- gesch...
+
+Not a real error.
+
+! Preview: Snippet 26 ended.(546132+152916x463527).
+<-><->
+      
+l.227 sodass die Funktion $f$
+                              -- die unere Spannung $U_e$ sein soll -- gesch...
+
+Not a real error.
+
+[26]
+! Preview: Snippet 27 started.
+<-><->
+      
+l.227 ... die Funktion $f$ -- die unere Spannung $
+                                                  U_e$ sein soll -- geschrie...
+
+Not a real error.
+
+! Preview: Snippet 27 ended.(537395+117964x814165).
+<-><->
+      
+l.227 ... Funktion $f$ -- die unere Spannung $U_e$
+                                                   sein soll -- geschrieben ...
+
+Not a real error.
+
+[27]
+! Preview: Snippet 28 started.
+<-><->
+      
+l.228 \begin{equation}
+                      
+Not a real error.
+
+! Preview: Snippet 28 ended.(2075368+0x25559040).
+<-><->
+      
+l.232 \end{equation}
+                    
+Not a real error.
+
+[28
+
+]
+! Preview: Snippet 29 started.
+<-><->
+      
+l.236 \begin{equation}
+                      
+Not a real error.
+
+! Preview: Snippet 29 ended.(2075368+0x25559040).
+<-><->
+      
+l.240 \end{equation}
+                    
+Not a real error.
+
+[29
+
+]
+
+LaTeX Warning: Reference `fig:delta' on page 1 undefined on input line 241.
+
+! Preview: Snippet 30 started.
+<-><->
+      
+l.244 \begin{figure}
+                    
+Not a real error.
+
+
+LaTeX Warning: Reference `eq:8' on page 1 undefined on input line 247.
+
+! Preview: Snippet 30 ended.(16115717+0x25559040).
+<-><->
+      
+l.249 \end{figure}
+                  
+Not a real error.
+
+[30
+
+
+]
+! Preview: Snippet 31 started.
+<-><->
+      
+l.252 ...h nicht die "Ubertragungscharacteristik $
+                                                  q(\omega)$
+Not a real error.
+
+! Preview: Snippet 31 ended.(589824+196608x1476274).
+<-><->
+      
+l.252 ...e "Ubertragungscharacteristik $q(\omega)$
+                                                  
+Not a real error.
+
+[31]
+! Preview: Snippet 32 started.
+<-><->
+      
+l.254 \begin{equation}
+                      
+Not a real error.
+
+! Preview: Snippet 32 ended.(1958093+0x25559040).
+<-><->
+      
+l.257 \end{equation}
+                    
+Not a real error.
+
+[32
+
+]
+
+LaTeX Warning: Reference `eq:8' on page 1 undefined on input line 258.
+
+! Preview: Snippet 33 started.
+<-><->
+      
+l.259 \begin{equation}
+                      
+Not a real error.
+
+! Preview: Snippet 33 ended.(2105952+0x25559040).
+<-><->
+      
+l.264 \end{equation}
+                    
+Not a real error.
+
+[33
+
+]
+! Preview: Snippet 34 started.
+<-><->
+      
+l.266 $
+       O(\omega)$ unter dem Bruchstrich.
+Not a real error.
+
+! Preview: Snippet 34 ended.(589824+196608x1716515).
+<-><->
+      
+l.266 $O(\omega)$
+                  unter dem Bruchstrich.
+Not a real error.
+
+[34]  !name(uebertr01.tex) !offset(-5) 
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 280.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 280.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 280.
+
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 554 strings out of 487811
+ 8554 string characters out of 3071431
+ 170123 words of memory out of 3000000
+ 9688 multiletter control sequences out of 15000+200000
+ 17215 words of font info for 47 fonts, out of 3000000 for 9000
+ 714 hyphenation exceptions out of 8191
+ 28i,11n,22p,193b,320s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on _region_.dvi (34 pages, 7908 bytes).

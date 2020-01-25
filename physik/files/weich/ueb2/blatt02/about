@@ -1,0 +1,10 @@
+mysim.m
+Simulation der Molekularen Ratsche in Matlab
+Verwendet (ge/ueber)daempfte Langevin-Gleichung
+Siehe Kommentare im File
+
+loop_tau.sh
+Loop ueber verschiedene werte fuer Periodendauer tau
+
+tau.eps tau.plt
+Ergebnisse von loop_tau.sh

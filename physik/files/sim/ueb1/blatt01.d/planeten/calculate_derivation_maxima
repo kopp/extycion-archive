@@ -1,0 +1,61 @@
+Maxima 5.21.1 http://maxima.sourceforge.net
+using Lisp SBCL 1.0.43
+Distributed under the GNU Public License. See the file COPYING.
+Dedicated to the memory of William Schelter.
+The function bug_report() provides bug reporting information.
+(%i1) /* interpolationspolynom mit 3 stuetzstellen (x[i], i = 0,1,2): */
+pol :
+sum(
+ y[i] * product(
+   if i # j then (z-x[j])/(x[i]-x[j]) else 1,
+ j,0,2),
+i,0,2);
+      y  (z - x ) (z - x )   y  (z - x ) (z - x )   y  (z - x ) (z - x )
+       0       1        2     1       0        2     2       0        1
+(%o1) -------------------- + -------------------- + --------------------
+      (x  - x ) (x  - x )    (x  - x ) (x  - x )    (x  - x ) (x  - x )
+        0    1    0    2       1    0    1    2       2    0    2    1
+(%i2) /* interp'pol. ableiten : */
+diff( pol , z );
+          y  (z - x )           y  (z - x )           y  (z - x )
+           1       2             0       2             2       1
+(%o2) ------------------- + ------------------- + -------------------
+      (x  - x ) (x  - x )   (x  - x ) (x  - x )   (x  - x ) (x  - x )
+        1    0    1    2      0    1    0    2      2    0    2    1
+                    y  (z - x )           y  (z - x )           y  (z - x )
+                     0       1             2       0             1       0
+              + ------------------- + ------------------- + -------------------
+                (x  - x ) (x  - x )   (x  - x ) (x  - x )   (x  - x ) (x  - x )
+                  0    1    0    2      2    0    2    1      1    0    1    2
+(%i3) /* da wir mittige Ableitung wollen, z = x[1] */
+%o2, z = x[1];
+            (x  - x ) y           y  (x  - x )         y         y
+              1    0   2           0   1    2           1         1
+(%o3)    ------------------- + ------------------- + ------- + -------
+         (x  - x ) (x  - x )   (x  - x ) (x  - x )   x  - x    x  - x
+           2    0    2    1      0    1    0    2     1    2    1    0
+(%i4) /* vereinfachen */
+ratsimp(%);
+         2              2                  2
+(%o4) ((x  - 2 x  x  + x ) y  + (y  - y ) x  + (2 y  x  - 2 x  y ) x
+         1      0  1    0   2     1    0   2       0  1      1  1   2
+                   2           2              2     2    2           2    2
+     + (2 x  x  - x ) y  - y  x )/((x  - x ) x  + (x  - x ) x  + x  x  - x  x )
+           0  1    0   1    0  1     1    0   2     0    1   2    0  1    0  1
+(%i5) /* mehr ist nicht ... ausgeben */
+grind( % );
+
+((x[1]^2-2*x[0]*x[1]+x[0]^2)*y[2]+(y[1]-y[0])*x[2]^2
+                                 +(2*y[0]*x[1]-2*x[1]*y[1])*x[2]
+                                 +(2*x[0]*x[1]-x[0]^2)*y[1]-y[0]*x[1]^2)
+ /((x[1]-x[0])*x[2]^2+(x[0]^2-x[1]^2)*x[2]+x[0]*x[1]^2-x[0]^2*x[1])$
+(%o5)                                done
+(%i6) /* verwende aequidistanz der stuetzstellen: */
+%o2, z : XI, x : [ XI - dt, XI, XI + dt ];
+
+apply: no such list element: [0]
+ -- an error. To debug this try: debugmode(true);
+(%i7) /* rats ... do it again using indexes 1..3 */
+quit();
+
+Process maxima finished

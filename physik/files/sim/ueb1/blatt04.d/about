@@ -1,0 +1,22 @@
+blatt04.pdf
+my solution sheet -- self explaining...
+This is the most important file here...
+
+code.zip
+the programs mentioned in `blatt04.pdf' -- C++ programs
+
+script.zip
+scripts I used to make films or several images (aquire the data for the images
+that is) -- contains it's own `about' file; look there...
+
+2dwave_droplet.mp4
+2dwave_droplet2.mp4
+I expanded `wave.cpp' (found in `code.zip') to a two dimensional version --
+this is an example: It's a gaussian bell on a flat surface. Think of it as a
+droplet of water falling into a basin.
+The code used is in
+wave2d.cpp
+
+other *.mp4
+several movies I made to illustrate different algorithms etc see `blatt04.pdf'
+for further details

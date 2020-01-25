@@ -1,0 +1,11 @@
+Hier sieht man, wie eine Kugelwelle, die sich in einem Koordinatensystem IS mit
+	r(t) = w t
+ausbreitet, in einem System IS' aussieht, wobei sich IS' gegenueber IS mit
+Geschw. v bewegt. Die Bilder sind als EPS und PDF vorhanden und aus
+Platzgruenden gezippt.
+
+Zur Erzeugung der Plots wurde das Script 
+	generator.sh
+verwendet. Die zugrundeliegenden Berechnungen sind aus Blatt11 Aufgabe 2 (b),
+das zugrundeliegende gnuplotscript ist
+	rel_kugelwelle.plt .

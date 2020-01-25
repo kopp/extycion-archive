@@ -1,0 +1,24 @@
+VERSCHIEDENE (HARMONISCHE) OSZILLATOREN
+
+
+Das Programm `oszi01.cpp' loest die diskretisierte 
+Schroedingergleichung fuer ein Teilchen in einem frei
+waehlbaren Potential.
+
+Das Programm ist rudimentaer. Alle Parameter/Optionen etc. 
+muessen direkt im Code eingetragen werden.
+
+Es verfuegt ueber sinnvolle Parameter und ueber drei 
+vorgefertigte Potentiale
+- harmonischer Oszillator
+- anharmonischer Oszillator
+- Morse Potential
+
+Fuer diese drei sind auch die Videos  (MP4) vorhanden, die 
+zeigen, wie sich eine Gaussglocke in dem Potential bewegt.
+
+Neben den Bildern sind die PDFs graphische (dreidimensionale) 
+Darstellungen der Bewegung. Sie (und die Filme) wurden mithilfe 
+der in `plotstuff.tgz' zu findenden PLT files via gnuplot 
+erzeugt. Die Filme dann mit 
+$ ffmpeg -i anharm03_%04d.png anharm03.mp4

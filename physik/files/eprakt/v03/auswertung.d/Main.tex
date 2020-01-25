@@ -1,0 +1,360 @@
+\documentclass[a4paper]{article}
+\usepackage{a4wide}
+\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+
+\newcommand{\NUMBER}[0]{3}
+\newcommand{\TITLE}[0]{Passive Netzwerke}
+\newcommand{\TUTOR}[0]{???} %TODO
+\date{08. November 2010}
+
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx,wrapfig}
+\usepackage[usenames,dvipsnames]{color}
+
+\usepackage{subfigure}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Elektronikpraktikum\\\TITLE}
+\fancyhead[R]{Michael Kopp (Physik BSc)\\Paul Menczel (Physik BSc)}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{25pt}
+
+\newcommand{\dd}[0]{\ensuremath \textrm d}
+\newcommand{\dx}[0]{\dd x}
+\newcommand{\dt}[0]{\dd t}
+\newcommand{\id}[0]{~ \dd}
+\newcommand{\e}[0]{\ensuremath \textrm e}
+\newcommand{\E}[0]{\ensuremath \textrm e}
+\renewcommand{\i}[0]{\ensuremath \textrm j}
+\newcommand{\I}[0]{\ensuremath \textrm j} %ich gew"ohn mich doch nicht um ;-)
+
+\newcommand{\folgt}{\ensuremath{\Rightarrow}} %wichtig
+
+\newcommand{\vectwo}[2]{\ensuremath \begin{pmatrix}#1\\#2\end{pmatrix}}
+\newcommand{\vecthree}[3]{\ensuremath \begin{pmatrix}#1\\#2\\#3\end{pmatrix}}
+
+\newcommand{\naturals}{\ensuremath \mathbb N}
+\newcommand{\integer}{\ensuremath \mathbb Z}
+\newcommand{\rational}{\ensuremath \mathbb Q}
+\newcommand{\real}{\ensuremath \mathbb R}
+\newcommand{\complex}{\ensuremath \mathbb C}
+
+\newcommand{\abs}[0]{\bigskip\noindent}
+
+\title{Elektronikpraktikum\\Versuch \NUMBER: \TITLE}
+\author{Verfasser: Michael Kopp (Physik BSc), Paul Menczel (Physik BSc)\\
+Assistent: \TUTOR}
+
+\begin{document}
+\maketitle
+
+\addtocounter{section}{1}
+\section{Aufgabenstellung}
+In dem Versuch wird das Wechselstromverhalten eines Tiefpasses untersucht. Zuerst wird untersucht, für welche Frequenzbereiche die Multimeter mit ausreichend hoher Genauigkeit messen können. Dann wird an dem Tiefpass sowohl das Übertragungsverhalten, als auch das Integrier- und Differenzierverhalten bei hohen Frequenzen untersucht.
+
+%Außerdem wird noch das Übertragungsverhalten eines ähnlich aufgebauten Hochpasses untersucht, und irgendetwas seltsames mit dem Tastkopf gemacht.
+
+\section{Grundlagen}
+\subsection{Wechselspannungen}
+Um eine allgemeine Wechselspannung zu beschreiben, benötigt man grundsätzlich $4$ Angaben: Die Frequenz, die Amplitude, die Phase und außerdem die genaue Form der Spannung als mathematische Funktion $U(t)$. Für physikalisch umsetzbare Spannungsformen kann man aber davon ausgehen, dass sie als Fourierreihe darstellbar sind, d.h. als Linearkombination von sinusförmigen Spannungsverläufen. Deshalb werden hier nur die Sinusspannungen genauer betrachtet.
+
+Eine Sinusspannung mit Kreisfrequenz $\omega$, Amplitude $U_0$ und Phase $\Phi$ lautet $U(t) = U_0 \cdot \sin(\omega t - \Phi)$. Um mit den Wechselspannungen mathematisch besser umgehen zu können, bemerkt man dass man das auch schreiben kann als
+\begin{equation}
+U(t) = \Re \left( U_0 \cdot \e^{\i(\omega t - \varphi)} \right)
+\end{equation}
+wobei $\varphi = \Phi + \frac \pi 2$. Die Operation $\Re$ wird dabei oft weggelassen und implizit angenommen.
+
+\subsection{Zeigerdiagramme}
+Um so eine Größe zu visualisieren, kann man sogenannte Zeigerdiagramme verwenden. Dazu betrachtet man $U(t)$ zu einem festen Zeitpunkt $t=t_0$ und trägt die komplexe Zahl $U(t_0)$ in die komplexe Zahlenebene ein. Mit fortschreitender Zeit wird sich dieser Zeiger dann in der komplexen Ebene drehen. Die zu einem Zeitpunkt gemessene Spannung ist dabei immer der Realteil des komplexen Vektors.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{Zeigerdiagramm.eps}
+\caption{Zeigerdiagramm}
+\label{fig:zdiagramm}
+\end{figure}
+Dies ist in dem Zeigerdiagramm in Abbildung \ref{fig:zdiagramm} veranschaulicht.
+
+\subsection{Komplexe Widerstände}
+Analog zu diesen komplexen Spannungen kann man auch den Strom als Realteil einer komplexen Größe beschreiben:
+\begin{equation}
+I(t) = \Re \left( I_0 \cdot \e^{\i(\omega t - \tilde \varphi)} \right)
+\end{equation}
+Die Phase $\tilde \varphi$ des Stroms unterscheidet sich im Allgemeinen von der Phase der Spannung: Bei einer Kapazität hinkt die Spannung dem Strom beispielsweise $\frac \pi 2$ nach. Der Quotient
+\begin{equation}
+Z = \frac{U(t)}{I(t)} = \frac{U_0}{I_0} \cdot \e^{\i (\tilde \varphi - \varphi)}
+\end{equation}
+ist also im allgemeinen tatsächlich eine komplexe Größe, sie heißt komplexer Widerstand. Bei einer Kapazität $C$ bzw einer Induktivität $L$ gilt zum Beispiel:
+\begin{eqnarray}
+Z_C &=& \frac{1}{\i \omega C}\\
+Z_L &=& \i \omega L
+\end{eqnarray}
+An einem ohmschen Widerstand $R$ gibt es dagegen keine Phasenverschiebung, es ist einfach $Z = R \in \real$. Mit den komplexen Widerständen kann man dann genauso rechnen, wie mit normalen reellen Widerständen.
+
+Den komplexen Widerstand $Z$ kann man nun natürlich auch wieder ins Zeigerdiagramm eintragen. Um im Zeigerdiagramm $Z$ und $U$ zu multiplizieren, werden die Winkel der Zeiger addiert, und die Längen multipliziert.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.4\textwidth]{Widerstand.eps}
+\caption{Komplexer Widerstand}
+\label{fig:wid}
+\end{figure}
+Ein Beispiel dafür ist in Abbildung \ref{fig:wid} demonstriert. Mit fortschreitender Zeit würden sich die Zeiger $I$ und $U$ synchron weiterdrehen. Zu beachten ist, dass die Längen der Zeiger hier keine spezifische Bedeutung haben, da die Skalierung der Achsen für jede Größe anders gewählt werden muss.
+
+\subsection{Hoch- und Tiefpass}
+\label{seq:hochtiefpass}
+Die komplexen Widerstände von Kapazität und Induktivität hängen von der Frequenz $\omega$ ab. Durch geschickte Kombination verschiedener Bauteile kann man nun Schaltungen konstruieren, bei denen die Amplitude der Ausgangsspannung von der Frequenz abhängt. Eine Schaltung, die langsame Frequenzen unterdrückt, heißt Hochpass, eine Schaltung, die schnelle Frequenzen unterdrückt dagegen Tiefpass.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.35\textwidth]{Tiefpass.eps}
+\caption{Tiefpass}
+\label{fig:tiefpass}
+\end{figure}
+Ein Tiefpass lässt sich zum Beispiel mit der Schaltung in Abbildung \ref{fig:tiefpass} realisieren. Es gilt:\footnote{Dies ist nichts anderes als Rechnung nach den bekannten Gesetzen von \textsc{Ohm} und \textsc{Kirchhoff}, nur mit dem Komplexen Widerstand $R_C = 1/\I \omega C$.}
+\begin{equation}
+\frac{U_a}{U_e} = \frac{1}{1 + \i \omega R C} \;.
+\end{equation}
+Dies ist eine komplexe Zahl, die man in die Darstellung $z = r \E^{\I \varphi}$ bringen kann. Den Betrag $r$ nennt man auch die \emph{"Ubertragungsfunktion}. F"ur Betrag und Phase erh"alt man:
+\begin{equation}
+	r = \left| \frac{U_a}{U_e} \right| = \frac{1}{\sqrt{1 + (\omega R C)^2}}  \text{ und }
+	\varphi = \arctan( - \omega R C) \;.
+	\label{eq:theorie}
+\end{equation}
+Diese beiden Funktionen wurden in Abb. \ref{fig:bode_theorie} geplottet. Hohe Frequenzen werden von der Schaltung offensichtlich unterdrückt. Einen Hochpass erhält man, wenn man $R$ und $C$ in der Schaltung vertauscht.
+
+Die Größe $\left| \frac{U_a}{U_e} \right|$ misst man üblicherweise in Dezibel. Der Dezibelwert des Pegelunterschieds ist:
+\begin{equation}
+20 \cdot \log_{10} \left| \frac{U_a}{U_e} \right|
+\end{equation}
+
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[angle=-90,width=0.6\textwidth]{./bode_theorie.eps}
+	\end{center}
+	\caption{Theoriekurven nach Gl. \eqref{eq:theorie}}
+	\label{fig:bode_theorie}
+\end{figure}
+
+
+\subsection{Integrierende bzw. differenzierende Eigenschaften}\label{sec:theorieverhalten}
+
+Im Tiefpass nach Abb. \ref{fig:tiefpass} addieren sich die Spannungen an Widerstand $U_R$ und am Kondensator $U_C = U_a$ auf zur gesamten angelegten Spannung $U_e$. Der Strom $I$ im System ist anch \textsc{Ohm} gegeben durch 
+$$
+I = \frac{U_R}{R} = \frac{U_e - U_a}{R} \;,
+$$
+gleichzeitig gilt nach Definition der Kapazit"at $C$: 
+$$
+Q = C \, U_C = C \, U_a \folgt \dot Q = I = C \dot U_a \;.
+$$
+Kombiniert man dies, erh"alt man eine inhomogene Differenzialgleichung
+\begin{equation}
+	U_e = R C \, \dot U_a + U_a \;,
+	\label{dq:dgl_integrierverhalten}
+\end{equation}
+%deren L"osung sich einfach angeben l"asst:\footnote{Hier wurde $U_e = \text{const}$ gesetzt, weil wir eine Rechteckspannung betrachten die immer wieder konstante Spannungen anlegt.}
+deren Lösung sich für die Zeiten, in denen sich die angelegte Spannung nicht ändert, einfach angeben lässt\footnote{Wir betrachten eine Rechteckspannung, das gilt also überall außer dort, wo die Spannung umgepolt wird}:
+\begin{equation}
+	U_a = U_e + D \, \E^{-\frac{t}{RC}} \;,
+	\label{eq:integrierverhalten}
+\end{equation}
+Die Konstante $D$ ist dabei unbestimmt. Wir erwarten also i.A. dass wenn eine Spannung $U_e$ angelegt wird, die Ausgangsspannung auf einen bestimmten Wert $U_e + D$ springt und dann exponentiell abf"allt auf der Zeitskale die durch $\tau \sim RC$ gegeben ist.
+
+%Man spricht hier von einem integrierenden Verhalten, weil wir \emph{f"ur gro"se Frequenzen} aus Kap.  \ref{seq:hochtiefpass} wissen, dass $U_a$ vernachl"assigbar klein sein wird; dadurch kann man die Differenzialgleichung \eqref{dq:dgl_integrierverhalten} vereinfachen zu 
+Um zu bestimmen, wie sich die Spannungen bei der Änderung von $U_e$ verhalten, erinnern wir uns daran dass wir \emph{f"ur gro"se Frequenzen} aus Kap.  \ref{seq:hochtiefpass} wissen, dass $U_a$ vernachl"assigbar klein sein wird; dadurch kann man die Differenzialgleichung \eqref{dq:dgl_integrierverhalten} vereinfachen zu:
+$$U_e \approx R C \, \dot U_a \folgt U_a \propto \int U_e \dt \; .$$
+Deshalb spricht man hier von einem integrierenden Verhalten des Tiefpasses.
+
+\abs
+Greift man die Ausgangsspannung dagegen am Widerstand ab ($U_a = U_R$), so f"uhrt $I = \frac{U_R}{R} = C \, \dot U_C% = C \, \frac{\dd}{\dt} ( U_e - U_R )
+$ auf die Differenzialgleichung
+$$
+U_a = RC \, \dot U_C%\frac{\dd (U_e - U_a)}{\dt} \;,
+$$
+wobei man jetzt \emph{f"ur kleine Frequenzen} sagen darf, dass der Kondensator der angelegten Spannung noch m"uhelos folgen kann, sodass man stattdessen
+$$
+U_a = RC \, \dot U_e
+$$
+annehmen kann. Das ist das differenzierende Verhalten des Hochpasses.
+
+
+\addtocounter{section}{1} %Berechnungen
+
+\section{Messprinzip}
+
+\subsection{Messung von Wechselspannungen}
+In diesem Versuchsteil werden die Frequenzbereiche gemessen, innerhalb derer die verschiedenen Messger"ate (d.h. Handmultimeter, Labormultimeter und Oszilloskop) genau genug messen. Dazu wird an dem Signalgenerator eine Sinussignal mit $5V$ Effektivspannung erzeugt.
+
+Um die Ergebnisse nicht zu verf"alschen sollte dabei beachtet werden, den Ausgang des Generators auf hohe Impedanz zu stellen.
+
+Das Signal wird dann mit den verschiedenen Messger"aten abgegriffen und beobachtet, wie sich die angezeigten Spannungen in Abh"angigkeit von der angelegten Frequenz ver"andern. Insbesondere soll herausgefunden werden, innerhalb welcher Grenzen die Abweichung des gemessenen Wertes von den $5V$ kleiner als $2\%$ ist. Deshalb sollten die Messpunkte geh"auft in die Bereiche gelegt werden, bei denen eines der Messger"ate sich gerade in solch einem Umschlagsbereich befindet.
+
+\subsection{Hoch- und Tiefpass}
+Jetzt wird die Schaltung gem"a"s Abbildung \ref{fig:schaltung} aufgebaut, wobei wir zus"atzlich zu den Messungen am Oszilloskop die Spannungen an Widerstand und Kondensator mit den Labor-Multimetern gemessen haben. Gemessen werden sollen in Abh"angigkeit von der Frequenz die Spannungen $U_R$ und $U_C$ und au"serdem die Phasenverschiebung der Signale $U_e$ und $U_c$, die im Oszilloskop angezeigt werden. Dazu wird die Frequenz in gr"o"serwerdenden Schritten zwischen $50Hz$ und $100kHz$ variiert (z.B. mit jeweils $3$ Messwerten pro Dekade) und jeweils die an den Multimetern angezeigten Spannungen, sowie der vom Oszilloskop berechnete Zeitunterschied $\Delta t$ notiert.
+
+$\Delta t$ ist dabei der Zeitunterschied zwischen den Nulldurchg"angen der beiden sichtbaren Signale, der sp"ater "uber $\Delta \varphi = 2\pi f \cdot \Delta t$ in die gesuchte Phasendifferenz umgerechnet werden kann.
+
+Die gleiche Messung (bis auf die Messung von $\Delta t$) wird danach auch noch einmal automatisiert in LabView durchgef"uhrt. Dabei k"onnen dann noch mehr Messwerte genauer aufgenommen werden.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{./schaltplan.eps}
+	\end{center}
+	\caption{Schaltplan f"ur die Untersuchungen am Tiefpass (Quelle: Praktikumsprotokoll)}
+	\label{fig:schaltung}
+\end{figure}
+
+\subsection{Integrier- und Differenzierverhalten}
+In dem letzten Versuchsteil wird nun noch beobachtet, wie sich die aufgebaute Schaltung verh"alt, wenn man eine nicht sinusf"ormige Spannung anlegt. Dazu wird an dem Frequenzgenerator ein Rechtecksignal erzeugt und auf dem Oszilloskop werden wieder $U_e$ und $U_C$ beobachtet.
+
+Auch soll studiert werden, wie sich die Signale bei unterschiedlichen Frequenzen verhalten. Dazu werden verschiedene Frequenzen zwischen $100Hz$ bis $100kHz$ erzeugt und jeweils mittels LabView das am Oszilloskop zu sehende Bild (bzw. die zugeh"origen Datenpunkte) gespeichert.
+
+Das Gleiche wird dann wiederholt mit den Spannungen $U_e$ und $U_R$. Der geschickteste Weg, um $U_R$ statt $U_C$ am Oszilloskop zu beobachten, ist, in der Schaltung einfach den Widerstand mit der Kapazit"at zu vertauschen.
+
+
+\section{Messwerte}
+Siehe Anhang
+
+\section{Auswertung}
+\subsection{Messung von Wechselspannungen}
+Es haben sich f"ur die Messger"ate folgende Obergrenzen f"ur die m"oglichen Frequenzen ergeben:
+\begin{itemize}
+	\item Handmultimeter: $f_c \approx 2186$Hz
+\item Labormultimeter: $f_c \approx 821.3$kHz
+\item Oszilloskop: $f_c \approx 3051$kHz
+\end{itemize}
+Diese Werte wurden aus Abb. \ref{fig:abw_messg} bestimmt.
+
+\begin{figure}
+	\begin{center}
+		\subfigure{\includegraphics[width=0.3\textwidth]{../messbereiche/hand.data.eps}}
+		\subfigure{\includegraphics[width=0.3\textwidth]{../messbereiche/lab.data.eps}}
+		\subfigure{\includegraphics[width=0.3\textwidth]{../messbereiche/oszi.data.eps}}
+	\end{center}
+	\caption{Prozentuale Abweichungen der Messger"ate. Die Abweichung $p$ wurde berechnet via $p = \frac{|u-5|}{5}100$, wobei $u$ die in Volt gemessene Spannung (beim Sollwert $5$) ist.}
+	\label{fig:abw_messg}
+\end{figure}
+
+
+\subsection{Hoch- und Tiefpass}
+In den Plots in Abbildungen \ref{fig:bode} und \ref{fig:phase} wurden die manuell gemessenen Werte aufgetragen. Bei den Spannungen wurde eine doppelt logarithmische Skala (Bode-Diagramm) verwendet, das Winkeldiagramm ist nur einfach logarithmisch. In beiden Diagrammen ist au"serdem eine Theoriekurve nach Formel \eqref{eq:theorie} mit den gegebenen Werten $U_e = 5V$, $R = 1k\Omega$ und $C = 0.1 \mu F$ eingezeichnet. Hierbei is zu beachten, dass diese Angaben logischerweise mit Fehlern behaftet sind: Bei dem Widerstand war eine Genauigkeit von $\pm 5\%$ angegeben, bei dem Kondensator keine. Es ist also durchaus verst"andlich, dass die Kurve von den Messwertern derart abweicht.
+
+Man sieht, dass die Diagramme grob den erwarteten Verl"aufen entsprechen: Wird die Spannung bei $U_R$ abgetragen, entspricht das einen Hochpass, wird sie bei $U_C$ abgetragen ist es ein Tiefpass. Die Phase geht f"ur $f \to \infty$ gegen $\frac \pi 2$. Allerdings gibt es doch einen gro"sen Unterschied zwischen den theoretisch erwarteten und den tats"achlichen Kurvenverl"aufen. Das ist bei den von LabView automatisch aufgenommenen Messwerten nat"urlich besser, deshalb werden im Folgenden vorrangig diese betrachtet.
+
+
+\begin{figure}
+	\begin{center}
+		\subfigure[ohne Normierung]{\includegraphics[angle=-90,width=0.7\textwidth]{../tiefpass_u.eps}}
+		\subfigure[mit Normierung]{\includegraphics[angle=-90,width=0.25\textwidth]{../tiefpass_u_norm.eps}}
+	\end{center}
+	\caption{Manuell ausgemessenes Bodediagramm mit Theoriekurve}
+	\label{fig:bode}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[angle=-90,width=0.7\textwidth]{../tiefpass_phi.eps}
+	\end{center}
+	\caption{Manuell ausgemessene Phasendifferenz des Tiefpasses mit Theoriekurve}
+	\label{fig:phase}
+\end{figure}
+
+
+
+\subsection{Komplexer Widerstand $X_C$}
+
+Den Strom $I$ in der Reihenschaltung k"onnen wir am Widerstand "uber das \textsc{Ohm}sche Gesetz $I=\frac{U}{R}$
+bestimmen. Auch f"ur den Kondensator gilt definitionsgem"a"s\footnote{Wir verwenden in diesem Abschnitt die Widerst"ande nur betragsm"a"sig.} derselbe Zusammenhang $I = \frac{U_C}{X_C}$
+sodass man folgern kann, dass
+\begin{equation}
+        X_C = R \frac{U_C}{U_R}
+        \label{eq:Xc}
+\end{equation}
+gilt. In Abb. \ref{fig:xc} ist dieser Quotient gegen die Frequenz aufgetragen. In der Abbildung sieht man eindeutig eine Gerade (vergleiche die Ausgleichsgerade) mit negativer Steigung $-m$ ($m>0$). Durch die doppeltlogarithmische Auftragung bedeutet dies
+$$ \log X_C = - m \log \omega \folgt \log X_C = m \log \frac{1}{\omega} \folgt \boxed{ X_C \propto \frac{1}{\omega} } \;. $$
+\begin{figure}[<+htpb+>]
+        \begin{center}
+                \includegraphics[angle=-90,width=0.6\textwidth]{../tiefpass_labview_bestimmeXc.eps}
+        \end{center}
+        \caption{Quotient $U_C/U_R$ doppelt logarithmisch aufgetragen.}
+        \label{fig:xc}
+\end{figure}
+
+ 
+\subsection{3dB-Grenzfrequenz}
+
+Zur bestimmung der 3dB-Grenzfrequenz liest man die Frequenz ab, bei der der Quotient $U_a/U_e$ auf $1/\sqrt 2$ abgefallen ist. In dem Diagramm der manuell aufgenommenen Messwerte (Abb. \ref{fig:bode}) bestimmt man hier
+$$
+f_\text{3dB}^M = 1586\text{Hz}
+$$
+und aus dem Diagramm aus Abb. \ref{fig:bode_lab}, welches mit Messwerten aus LabView erstellt wurde, findet man
+$$
+f_\text{3dB}^L = 1441\text{Hz} \;.
+$$
+Hier ist dem zweiten Wert definitiv der Vorzug zu geben. Wie man in Abb. \ref{fig:bode_lab} sehen kann, ist die Fitkurve hier perfekt an den Messwerten.
+
+Verwendet man $f_\text{3dB}^L$, so findet man hier aus Abb. \ref{fig:phase} die \textit{Grenzphase} $$\varphi_\text{3dB}^L \approx 0.689331  \approx \frac{11}{50} \pi = 39.6^\circ$$
+
+\begin{figure}
+        \begin{center}
+                \includegraphics[angle=-90,width=0.6\textwidth]{../tiefpass_labview.eps}
+        \end{center}
+	\caption{Mit LabView ausgemessenes Bodediagramm des Tiefpasses}
+        \label{fig:bode_lab}
+\end{figure}
+
+
+\subsection{Integrier- und Differenzierverhalten}
+In den Abbildungen \ref{fig:differenzierverhalten} und \ref{fig:integrierverhalten} befinden sich die Plots, die mit LabView von dem Oszilloskop gespeichert wurden. Man sieht:
+\begin{itemize}
+\item Der Tiefpass integriert die Eingangsfrequenz, wenn die Eingangsfrequenz gen"ugend hoch ist. Bei kleinen Frequenzen erh"alt man am Ausgang des Tiefpasses wieder ungef"ahr das Eingangssignal.
+\item Der Hochpass differenziert die Eingangsfrequenz, wenn diese nicht zu hoch ist. Bei zu hohen Frequenzen kommt der Hochpass nicht mehr hinterher, und das Ausgangssignal wird dem Eingangssignal "ahnlich.
+\end{itemize}
+Das ist genau das, was in Abschnitt \ref{sec:theorieverhalten} vorausgesagt wurde.
+
+\begin{figure}
+	\begin{center}
+		\subfigure[$f = 100$Hz]{\includegraphics[width=0.3\textwidth]{../bilder_hochpass/hochpass100.lvm.eps}}
+		\subfigure[$f = 300$Hz]{\includegraphics[width=0.3\textwidth]{../bilder_hochpass/hochpass300.lvm.eps}}
+		\subfigure[$f = 1000$Hz]{\includegraphics[width=0.3\textwidth]{../bilder_hochpass/hochpass1k.lvm.eps}}
+		\subfigure[$f = 1500$Hz]{\includegraphics[width=0.3\textwidth]{../bilder_hochpass/hochpass1500.lvm.eps}}
+		\subfigure[$f = 5000$Hz]{\includegraphics[width=0.3\textwidth]{../bilder_hochpass/hochpass5k.lvm.eps}}
+		\subfigure[$f = 50000$Hz]{\includegraphics[width=0.3\textwidth]{../bilder_hochpass/hochpass50k.lvm.eps}}
+		%\subfigure[$f = 50000$Hz]{\includegraphics[width=0.3\textwidth]{../bilder_hochpass/hochpass50k_zoom.lvm.eps}}
+	\end{center}
+	\caption{Vom Oszilloskop aufgenommene Bilder des Differenzierverhaltens f"ur verschiedene Frequenzen}
+	\label{fig:differenzierverhalten}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\subfigure[$f = 3000$Hz]{\includegraphics[width=0.4\textwidth]{../bilder_tiefpass/tiefpass3k.lvm.eps}}
+		\subfigure[$f = 10000$Hz]{\includegraphics[width=0.4\textwidth]{../bilder_tiefpass/tiefpass10k.lvm.eps}}
+		\subfigure[$f = 50000$Hz]{\includegraphics[width=0.4\textwidth]{../bilder_tiefpass/tiefpass50k.lvm.eps}}
+		\subfigure[$f = 100000$Hz]{\includegraphics[width=0.4\textwidth]{../bilder_tiefpass/tiefpass100k.lvm.eps}}
+	\end{center}
+	\caption{Vom Oszilloskop aufgenommene Bilder des Integrierverhaltens f"ur verschiedene Frequenzen}
+	\label{fig:integrierverhalten}
+\end{figure}
+
+\section{Fehlerrechnung}
+
+In Abb. \ref{fig:bode} sieht man eine starke Abweichung zwischen Theoriekurve und Messwerten f"ur kleine Frequenzen $\sim 100$Hz. Hierbei ist jedoch zu beachten, dass durch die Logarithmische Scala hier ein Fehler von $\sim 0.3$V stark vergr"o"sert wird.  Wir vermuten, dass diese Abweichung aus den Abweichungen von Kapazit"at und Widerstand resultieren.
+
+Die Messmethode k"onnen wir ausschlie"sen, weil wir sp"ater mit LabView die selben Messger"ate verwendet hatten, wobei man in Abb. \ref{fig:bode_lab} sieht, wie perfekt hier die Messwerte auf der Theoriekurve liegen, wobei hier die Parameter f"ur Produkt $RC$ und Amplitude der Spannung $U_e$ angefittet wurden. 
+
+Ebenso k"onnen wir ausschlie"sen, dass es sich um Probleme beim Einstellen oder Ablesen der Ger"ate oder Fehlfunktionen der Ger"ate (oder auch Fehlanpassung etc.) handelt.
+
+
+
+\section{Zusammenfassung}
+
+Wir konnten in diesem Versuch das frequenzabh"angige Verhalten passiver Netze beobachten, insbesondere die namensgebenden Eigenschaften von Hoch- und Tiefpass. Mit vorz"uglicher Genauigkeit konnten wir die aus der Theorie komplexer Widerst"ande zu erwartenden Abh"angigkeiten der Ein- und Ausgabespannungen und Phasenverschiebung derselben an Hoch- und Tiefpass verifizieren. Des weiteren konnten wir das differenzierende bzw. integrierende Verhalten von Tief- respektive Hochpass qualitativ beobachten.
+
+Ein Nebeneffekt des Praktikums ist au"serdem ein Zuwachs in unseren F"ahigkeiten im Umgang mit LabView sowie im Rechnen mit komplexen Widerst"anden.
+
+
+\end{document}
+
+

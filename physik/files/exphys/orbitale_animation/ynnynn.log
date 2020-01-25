@@ -1,0 +1,475 @@
+Maxima 5.21.1 http://maxima.sourceforge.net
+using Lisp SBCL 1.0.37
+Distributed under the GNU Public License. See the file COPYING.
+Dedicated to the memory of William Schelter.
+The function bug_report() provides bug reporting information.
+(%i1) y00 : 1/sqrt(4*%pi);
+                                       1
+(%o1)                             -----------
+                                  2 sqrt(%pi)
+(%i2) y10 : sqrt(3/4/%pi) * cos(t);
+                                sqrt(3) cos(t)
+(%o2)                           --------------
+                                 2 sqrt(%pi)
+(%i3) y20 : sqrt(5/16/%pi) * (3*cos(t)**2 - 1);
+                                          2
+                            sqrt(5) (3 cos (t) - 1)
+(%o3)                       -----------------------
+                                  4 sqrt(%pi)
+(%i4) /* y00 -- y10 */ r1(x) := abs(y00 + y10 * exp(%i*x))**2;
+                                                       2
+(%o4)                 r1(x) := abs(y00 + y10 exp(%i x))
+(%i5) /* y10 -- y20 */ r1(x) := abs(y10 + y20 * exp(%i*x))**2;
+                                                       2
+(%o5)                 r1(x) := abs(y10 + y20 exp(%i x))
+(%i6) /* y10 -- y20 */ r2(x) := abs(y10 + y20 * exp(%i*x))**2;
+                                                       2
+(%o6)                 r2(x) := abs(y10 + y20 exp(%i x))
+(%i7) /* y00 -- y10 */ r1(x) := abs(y00 + y10 * exp(%i*x))**2;
+                                                       2
+(%o7)                 r1(x) := abs(y00 + y10 exp(%i x))
+(%i8) /* y00 -- y20 */ r3(x) := abs(y00 + y20 * exp(%i*x))**2;
+                                                       2
+(%o8)                 r3(x) := abs(y00 + y20 exp(%i x))
+(%i9) load("draw")$
+
+(%i10) draw( gr3d( surface_hidden = true, spherical(r1,p,0,2*%pi, t,0,%pi) ) )$
+
+draw: unknown option surface_hidden 
+ -- an error. To debug this try: debugmode(true);
+(%i11) draw( gr3d( surface_hide = true, spherical(r1,p,0,2*%pi, t,0,%pi) ) )$
+
+Maxima encountered a Lisp error:
+
+ Argument X is not a REAL: ((MTIMES SIMP) 1.0 $R1)
+
+Automatically continuing.
+To enable the Lisp debugger set *debugger-hook* to nil.
+(%i12) draw ( gr3d ( surface_hide = true, spherical(r1(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i13) draw ( gr3d ( surface_hide = true, rot_vertical = 80, spherical(r1(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i14) draw ( gr3d ( surface_hide = true, rot_vertical = 80, spherical(r1(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i15) draw ( gr3d ( surface_hide = true, rot_vertical = 80, spherical(r1(0),p,0,2*%pi, t,0,%pi) ) )$
+incorrect syntax: Missing )
+(%i15) draw ( gr3d ( surface_hide = true, rot_vertical = 80, spherical(r1(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i16) draw ( gr3d ( xrange = [-0.25,0.25], yrange = xrange, surface_hide = true, rot_vertical = 80, spherical(r1(0),p,0,2*%pi, t,0,%pi) ) )$
+
+draw: illegal range: xrange 
+ -- an error. To debug this try: debugmode(true);
+(%i17) draw ( gr3d ( xrange = [-0.25,0.25], yrange = [-0.25, 0.25] , surface_hide = true, rot_vertical = 80, spherical(r1(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i18) draw ( gr3d ( xrange = [-0.3,0.3], yrange = [-0.3, 0.3] , surface_hide = true, rot_vertical = 80, spherical(r1(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i19) draw ( gr3d ( xrange = [-0.3,0.3], yrange = [-0.3, 0.3], zrange = [-0.6,0.6] , surface_hide = true, rot_vertical = 80, spherical(r1(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i20) draw ( gr3d ( xrange = [-0.3,0.3], yrange = [-0.3, 0.3], zrange = [-0.6,0.6] , surface_hide = true, rot_vertical = 80, spherical(r1(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i21) movie1(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.3,0.3], yrange = [-0.3, 0.3], zrange = [-0.6,0.6] , surface_hide = true, rot_vertical = 80, spherical(r1(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ),
+      k, 1, n)
+    )
+  ) $
+(%o21) movie1() := apply(draw, append([terminal = animated_gif, delay = 50], 
+makelist(gr3d(xrange = [- 0.3, 0.3], yrange = [- 0.3, 0.3], 
+zrange = [- 0.6, 0.6], surface_hide = true, rot_vertical = 80, 
+spherical(r1(0.05 %pi), p, 0, 2 %pi, t, 0, %pi)), k, 1, 40)))
+(%i22) movie1();
+End of animation sequence
+(%o22) [gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical)]
+(%i23) movie1(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.3,0.3], yrange = [-0.3, 0.3], zrange = [-0.6,0.6] , surface_hide = true, rot_vertical = 80, spherical(r1(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ),
+      k, 1, n)
+    )
+  ) $
+
+(%i24) movie1(40);
+End of animation sequence
+(%o24) [gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical)]
+(%i25) draw ( gr3d ( xrange = [-0.3,0.3], yrange = [-0.3, 0.3], zrange = [-0.6,0.6] , surface_hide = true, rot_vertical = 80, spherical(r2(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i26) draw ( gr3d ( surface_hide = true, rot_vertical = 80, spherical(r2(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i27) draw ( gr3d ( surface_hide = true, rot_vertical = 80, spherical(r2(0.3),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i28) draw ( gr3d ( surface_hide = true, rot_vertical = 80, spherical(r2(0.7),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i29) draw ( gr3d ( surface_hide = true, rot_vertical = 80, spherical(r2(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i30) draw ( gr3d ( surface_hide = true, rot_vertical = 80, spherical(r2(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i31) draw ( gr3d ( xrange = [-0.35,0.35], yrange = [-0.35,0.35], zrange = [-1.25, 1.25], surface_hide = true, rot_vertical = 80, spherical(r2(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i32) draw ( gr3d ( xrange = [-0.35,0.35], yrange = [-0.35,0.35], zrange = [-1.3, 1.3], surface_hide = true, rot_vertical = 80, spherical(r2(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i33) movie2(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.35,0.35], yrange = [-0.35,0.35], zrange = [-1.3, 1.3], surface_hide = true, rot_vertical = 80, spherical(r2(0),p,0,2*%pi, t,0,%pi) ) 
+      k, 1, n)
+    )
+  ) $
+incorrect syntax: K is not an infix operator
+(%i33) incorrect syntax: Too many )'s
+(%i33) incorrect syntax: Illegal use of delimiter )
+(%i33) incorrect syntax: Illegal use of delimiter )
+(%i33) incorrect syntax: Premature termination of input at $.
+(%i33) movie2(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.35,0.35], yrange = [-0.35,0.35], zrange = [-1.3, 1.3], surface_hide = true, rot_vertical = 80, spherical(r2(0),p,0,2*%pi, t,0,%pi) ) ,
+      k, 1, n)
+    )
+  ) $
+
+(%i34) movie2(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.35,0.35], yrange = [-0.35,0.35], zrange = [-1.3, 1.3], surface_hide = true, rot_vertical = 80, spherical(r2(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ) ,
+      k, 1, n)
+    )
+  ) $
+
+(%i35) movie2(40);
+End of animation sequence
+(%o35) [gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical)]
+(%i36) draw ( gr3d ( xrange = [-0.35,0.35], yrange = [-0.35,0.35], zrange = [-1.3, 1.3], surface_hide = true, rot_vertical = 80, enhanced3d = true, spherical(r2(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i37) draw ( gr3d ( xrange = [-0.35,0.35], yrange = [-0.35,0.35], zrange = [-1.3, 1.3], surface_hide = true, rot_vertical = 80, enhanced3d = true, spherical(r2(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i38) movie2(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.35,0.35], yrange = [-0.35,0.35], zrange = [-1.3, 1.3], surface_hide = true, rot_vertical = 80, enhanced3d= true, spherical(r2(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ) ,
+      k, 1, n)
+    )
+  ) $
+
+(%i39) movie2(40)$
+End of animation sequence
+
+(%i40) draw ( gr3d ( xrange = [-0.25,0.25], yrange = [-0.25,0.25], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, spherical(r3(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i41) draw ( gr3d ( xrange = [-0.25,0.25], yrange = [-0.25,0.25], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, spherical(r3(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i41)
+
+(%i42) draw ( gr3d ( xrange = [-0.25,0.25], yrange = [-0.25,0.25], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, spherical(r3(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i41)
+
+(%i42)
+incorrect syntax: DRAW is not an infix operator
+(%i42) 
+(%i43) draw ( gr3d ( xrange = [-0.25,0.25], yrange = [-0.25,0.25], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, spherical(r3(1),p,0,2*%pi, t,0,%pi) ) )$
+incorrect syntax: DRAW is not an infix operator
+(%i43) 
+(%i44) 
+
+(%i41)
+
+(%i42) 1+1;
+incorrect syntax: 1 is not an infix operator
+(%i44) (%o44)                                 1
+(%i45) draw ( gr3d ( xrange = [-0.25,0.25], yrange = [-0.25,0.25], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, spherical(r3(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i46) movie3(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.25,0.25], yrange = [-0.25,0.25], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, spherical(r3(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ) ,
+      k, 1, n)
+    )
+  ) $
+
+(%i47) movie3(40)$
+End of animation sequence
+
+(%i48) movie3(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.35,0.35], yrange = [-0.35,0.35], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, spherical(r3(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ) ,
+      k, 1, n)
+    )
+  ) $
+
+(%i49) draw ( gr3d ( xrange = [-0.25,0], yrange = [0,0.25], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, spherical(r3(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i50) draw ( gr3d ( xrange = [-0.25,0], yrange = [0,0.25], zrange = [-1., 1.], rot_vertical = 80, spherical(r3(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i51) draw ( gr3d ( xrange = [-0.25,0], yrange = [0,0.25], zrange = [-1., 1.], rot_vertical = 80, spherical(r3(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i52) draw ( gr3d ( xrange = [-0.25,0], yrange = [0,0.25], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, spherical(r3(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i53) draw ( gr3d ( xrange = [-0.25,0], yrange = [0,0.25], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, enhanced3d = true, spherical(r3(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i54) draw ( gr3d ( xrange = [-0.25,0], yrange = [0,0.25], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, enhanced3d = true, spherical(r3(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i55) draw ( gr3d ( xrange = [-0.25,0], yrange = [0,0.25], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, enhanced3d = true, spherical(r3(%pi),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i56) draw ( gr3d ( xrange = [-0.4,0], yrange = [0,0.4], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, enhanced3d = true, spherical(r3(%pi),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i57) draw ( gr3d ( xrange = [-0.4,0], yrange = [-0.4,0.4], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, enhanced3d = true, spherical(r3(%pi),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i58) movie3b(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.4,0], yrange = [-0.4,0.4], zrange = [-1., 1.], surface_hide = true, rot_vertical = 80, enhanced3d = true, spherical(r3(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ) ,
+      k, 1, n)
+    )
+  ) $
+
+(%i59) movie3b(40);
+End of animation sequence
+(%o59) [gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical)]
+(%i60) y21 : - sqrt(15/8/%pi) * sin(t)*cos(t)*exp(%i * p);
+                                     %i p
+                          sqrt(15) %e     cos(t) sin(t)
+(%o60)                  - -----------------------------
+                                  3/2
+                                 2    sqrt(%pi)
+(%i61) y22 : -\sqrt(15/32/%pi) * sin(t)**2 * exp(2*%i*p);
+                                       2 %i p    2
+                            sqrt(15) %e       sin (t)
+(%o61)                    - -------------------------
+                                  5/2
+                                 2    sqrt(%pi)
+(%i62) /* y20 y21 */ r4(x) := abs(y21 + y22 * exp(%i * x) )**2$
+
+(%i63) /* y20 y22 */ r5(x) := abs(y20 + y22 * exp(%i * x) )**2$
+
+(%i64) /* y20 y21 */ r4(x) := abs(y20 + y21 * exp(%i * x) )**2$
+
+(%i65) draw( gr3d ( surface_hide = true, spherical (r4,p,0,2*%pi, t,0,%pi) ) );
+
+Maxima encountered a Lisp error:
+
+ Argument X is not a REAL: ((MTIMES SIMP) 1.0 $R4)
+
+Automatically continuing.
+To enable the Lisp debugger set *debugger-hook* to nil.
+(%i66) draw( gr3d ( surface_hide = true, spherical (r4(0),p,0,2*%pi, t,0,%pi) ) );
+(%o66)                         [gr3d(spherical)]
+(%i67) draw( gr3d ( surface_hide = true, spherical (r4(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i68) draw( gr3d ( surface_hide = true, rot_horizontal=30, spherical (r4(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i69) draw( gr3d ( surface_hide = true, rot_horizontal=50, spherical (r4(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i70) draw( gr3d ( surface_hide = true, rot_horizontal=10, spherical (r4(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i71) draw( gr3d ( surface_hide = true, rot_horizontal=10, spherical (r4(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i72) movie4(n) :=
+draw,
+append(
+  [terminal = animated_gif, delay = 40],
+  makelist(
+    gr3d ( surface_hide = true, rot_horizontal=10, spherical (r4(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ), 
+    k, 1, n ),
+  )
+incorrect syntax: Illegal use of delimiter )
+(%i72) movie4(n) :=
+draw,
+append(
+  [terminal = animated_gif, delay = 40],
+  makelist(
+    gr3d ( surface_hide = true, rot_horizontal=10, spherical (r4(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ), 
+    k, 1, n )
+  movie4(n) :=
+draw,
+append(
+  [terminal = animated_gif, delay = 40],
+  makelist(
+    
+    k, 1, n )
+incorrect syntax: MOVIE4 is not an infix operator
+(%i72) incorrect syntax: Too many )'s
+(%i72) incorrect syntax: := is not a prefix operator
+(%i72) movie4(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( surface_hide = true, rot_horizontal=10, spherical (r4(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ), 
+      k, 1, n)
+    )
+  ) $
+incorrect syntax: MOVIE4 is not an infix operator
+(%i72) incorrect syntax: Too many )'s
+(%i72) incorrect syntax: := is not a prefix operator
+(%i72) 
+makelist: fourth argument minus third must be a nonnegative integer; found: 
+                                                                          n - 1
+ -- an error. To debug this try: debugmode(true);
+(%i73) movie4(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( surface_hide = true, rot_horizontal=10, spherical (r4(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ), 
+      k, 1, n)
+    )
+  ) $
+
+(%i74) movie4(40);
+End of animation sequence
+(%o74) [gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical)]
+(%i75) movie4(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.25,0.25], yrange = [-0.25,0.25], zrange = [-0.5,0.5], surface_hide = true, rot_horizontal=10, spherical (r4(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ), 
+      k, 1, n)
+    )
+  ) $
+
+(%i76) movie4(40);
+End of animation sequence
+(%o76) [gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical)]
+(%i77) movie4(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.3,0.3], yrange = [-0.3,0.3], zrange = [-0.6,0.6], surface_hide = true, rot_horizontal=10, spherical (r4(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ), 
+      k, 1, n)
+    )
+  ) $
+
+(%i78) movie4(40);
+End of animation sequence
+(%o78) [gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical), 
+gr3d(spherical), gr3d(spherical), gr3d(spherical), gr3d(spherical)]
+(%i79) draw( gr3d ( surface_hide = true, rot_horizontal=10, spherical (r5(0),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i80) draw( gr3d ( surface_hide = true, rot_horizontal=10, spherical (r5(1),p,0,2*%pi, t,0,%pi) ) )$
+
+(%i81) movie5(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.3,0.3], yrange = [-0.3,0.3], zrange = [-0.6,0.6], surface_hide = true, rot_horizontal=10, spherical (r5(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ), 
+      k, 1, n)
+    )
+  ) $
+
+(%i82) movie5(40)$
+End of animation sequence
+
+(%i83) movie5(n) :=
+apply(
+  draw,
+  append(
+    [terminal = animated_gif, delay = 50],
+    makelist(
+      gr3d ( xrange = [-0.6,0.6], yrange = [-0.6,0.6], zrange = [-0.6,0.6], surface_hide = true, rot_horizontal=10, spherical (r5(0.05*k*%pi),p,0,2*%pi, t,0,%pi) ), 
+      k, 1, n)
+    )
+  ) $
+
+(%i84) movie5(40)$
+End of animation sequence
+
+(%i85) 

@@ -1,0 +1,493 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="http://txt2tags.sf.net">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<TITLE>Der Physiker und die bash</TITLE>
+
+<!-- Included style.css -->
+<STYLE TYPE="text/css">
+body{
+        color: black;
+        font-family: serif;
+        max-width: 900px;
+        min-width: 300px;
+        margin-left: 20px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+}
+
+
+pre{
+        margin-left: 10px;
+        font-family: monospace;
+        background: #e0e0e0;
+}
+
+code{
+        font-family: monospace;
+        background: #e0e0e0;
+}
+
+
+dt{
+        color: #3900E6;
+        font-weight: bold;
+}
+
+
+a{
+        text-decoration: none;
+        color: #0000a0;
+}
+
+a:hover{
+        text-decoration: underline;
+        color: #0000ff;
+}
+
+
+
+h1{
+        font-family: sans-serif;
+        font-weight: bold;
+        color: #003DF5;
+        background-color: #FFCC33;
+        padding-left: 30px;
+        margin-top: 55px;
+        margin-bottom: 35px;
+}
+
+h2{
+        font-family: sans-serif;
+        font-weight: bold;
+        color: #002EB8;
+        background-color: #FFDF80;
+        padding-left: 50px;
+        margin-top: 55px;
+        margin-bottom: 35px;
+}
+
+
+h3{
+        font-family: sans-serif;
+        font-weight: bold;
+        color: #002EB8;
+        background-color: #FFECB3;
+        padding-left: 70px;
+        margin-top: 55px;
+        margin-bottom: 35px;
+}
+
+
+</STYLE>
+
+</HEAD><BODY BGCOLOR="white" TEXT="black">
+<P ALIGN="center"><CENTER><H1>Der Physiker und die bash</H1>
+<FONT SIZE="4">
+<I>Michael Kopp</I><BR>
+2010-11-04
+</FONT></CENTER>
+
+<P></P>
+<HR NOSHADE SIZE=1>
+<P></P>
+  <OL>
+  <LI><A HREF="#toc1">Motivation</A>
+  <LI><A HREF="#toc2">Allgemeines</A>
+    <UL>
+    <LI><A HREF="#toc3">2.1. Variablen</A>
+    <LI><A HREF="#toc4">2.2. Leer-/Sonderzeichen</A>
+    </UL>
+  <LI><A HREF="#toc5">Schleifen</A>
+    <UL>
+    <LI><A HREF="#toc6">3.1. Aufzählung</A>
+    <LI><A HREF="#toc7">3.2. Wildcard</A>
+    <LI><A HREF="#toc8">3.3. Befehl</A>
+    <LI><A HREF="#toc9">3.4. Anwendungsbeispiel</A>
+    </UL>
+  <LI><A HREF="#toc10">Befehle</A>
+  <LI><A HREF="#toc11">Pipes &amp; more</A>
+  <LI><A HREF="#toc12">Programme hintereinander ausführen</A>
+  <LI><A HREF="#toc13">Formatierun und Filtern</A>
+  </OL>
+
+<P></P>
+<HR NOSHADE SIZE=1>
+<P></P>
+<A NAME="toc1"></A>
+<H1>1. Motivation</H1>
+<P>
+Im Allgemeinen ist der Physiker doch noch nicht soo mit der bash (der Linux-Kommandozeile) vertraut. Sie ermöglicht es ihm jedoch, bestimmte Operationen -- besonders im Bezug auf Simulationsmethoden am Komputer -- bedeutend zu beschleunigen.
+</P>
+<A NAME="toc2"></A>
+<H1>2. Allgemeines</H1>
+<A NAME="toc3"></A>
+<H2>2.1. Variablen</H2>
+<P>
+Wichtig ist bei der bash allgemein, dass Variablen ohne <CODE>$</CODE> initialisiert werden, aber mit <CODE>$</CODE> ausgelesen. Auch muss man beachten, wo man seine Leerzeichen setzt -- das ist manchmal etwas unlogisch. Bspw. ist die Zuweisung von <CODE>x</CODE> nur im ersten Fall erfolgreich:
+</P>
+<PRE>
+  x=3
+  # gut so... 
+  x = 3
+  bash: x: Kommando nicht gefunden.
+  x= 3
+  bash: 3: Kommando nicht gefunden.
+  x =3
+  bash: x: Kommando nicht gefunden.
+</PRE>
+<P>
+Das Auslesen geschieht via
+</P>
+<PRE>
+  echo $x
+</PRE>
+<P></P>
+<A NAME="toc4"></A>
+<H2>2.2. Leer-/Sonderzeichen</H2>
+<P>
+Möchte man Leerzeichen nicht als Trenner von Befehlen/Variablen eingeben, sondern als Leer<I>zeichen</I>, so kann man sie (wie andere Sonderzeichen auch) via <CODE>\</CODE> <I>maskieren</I>:
+</P>
+<PRE>
+  x=foo\ bar
+  echo $x
+  foo bar
+</PRE>
+<P>
+Alternativ auch <CODE>x="foo bar"</CODE>. 
+</P>
+<P>
+Die Methoden mit den Anführungszeichen ist besonders dann praktisch, wenn eine Variable -- bspw. <CODE>x</CODE> -- ein Leerzeichen enthält und man diese komplett weitergeben möchte. Am besten tut man das dann, indem man an ander Programme statt <CODE>$x</CODE> einfach <CODE>"$x"</CODE> weitergibt:
+</P>
+<PRE>
+  echo "$x"
+</PRE>
+<P></P>
+<P>
+Hier muss man aber leider bei manchen (fortgeschrittenen) Anwendungen wieder darauf achten, dass die <CODE>"</CODE> keine Probleme machen...
+</P>
+<A NAME="toc5"></A>
+<H1>3. Schleifen</H1>
+<P>
+Manche Rechnungen möchte man gerne öfter für verschiedene Paramter wiederholen. Nun kann man etweder das Programm (hier: <CODE>foo</CODE>) immer wieder ausführen und geänderte Paramter eingeben, den Ouput in einer anderen Datei ausgeben etc. Oder aber, man lässt die bash das tun.
+</P>
+<P>
+Die bash verwendet ein <CODE>for</CODE>-Schleife. Was das ganze etwas seltsam macht ist, dass die bash als Parameter nur eine Liste akzeptiert. Diese Liste kann nun eine -- durch Leerzeichen getrennte -- Aufzählung sein, ein Wildcard oder ein Befehl.
+</P>
+<P>
+Das allgemeine Schema ist
+</P>
+<PRE>
+  for &lt;Iterationsvariable&gt; in &lt;Iterationsmenge&gt;
+  do
+  	&lt;Befehle&gt;
+  done
+</PRE>
+<P></P>
+<P>
+Gibt man die Befehlt interaktiv ein, so tippt man <CODE>foo...</CODE> noch unter der <CODE>PS1</CODE> ein (das ist der <I>normale</I> Prompt -- hört normalerweise mit einem <CODE>$</CODE> auf), die folgenden alle mit <CODE>PS2</CODE> (normalerweise <CODE>&gt;</CODE>). Folgt auf den Befehl <CODE>done</CODE> ein weieres <CODE>PS2</CODE>, so hat man einen Fehler gemacht und muss mit [Strg]+C abbrechen.
+</P>
+<A NAME="toc6"></A>
+<H2>3.1. Aufzählung</H2>
+<P>
+Hat man bspw. einen Ordner mit den (Text)Dateien <CODE>foo</CODE> und <CODE>bar</CODE>, so kann man diese ausgeben mithilfe der erwähnten Möglichkeiten (<CODE>cat</CODE> ist ein Befehl um Textdateien auf der Konsole auszugeben)
+</P>
+<PRE>
+  for f in foo bar
+  do
+  	cat $f
+  done
+</PRE>
+<P></P>
+<A NAME="toc7"></A>
+<H2>3.2. Wildcard</H2>
+<P>
+Eine Wildcard ist ein Symbol, das für mehreres stehen kann. Der Stern <CODE>*</CODE> (asterics) steht dabei für jeden beliebigen Dateinamen. Mit dem folgenden Befehlt iteriert man also über <I>jede</I> (sichtbare) Datei in dem Ordner:
+</P>
+<PRE>
+  for f in *
+  do
+  	cat $f
+  done
+</PRE>
+<P>
+Da dies nicht unbedingt erwünscht ist, kann man die Wildcards exakter machen. Heißen die Dateien <CODE>foo.s</CODE> und <CODE>bar.s</CODE>, so kann man <CODE>for f in *.s</CODE> verwenden.
+</P>
+<A NAME="toc8"></A>
+<H2>3.3. Befehl</H2>
+<P>
+Die bash kennt eine Vielzahl von Befehlen, die eine Ausgabe erzeugen, die man als Liste für eine <CODE>for</CODE>-Schleife verwenden kann. Ein einfaches Beispiel ist der Befehl <CODE>ls</CODE> (Anzeigen von Ordnern). Die Obige Schleife kann man auch schreiben:
+</P>
+<PRE>
+  for f in `ls *.s`
+  do
+  	cat $f
+  done
+</PRE>
+<P>
+Zu beachten sind die <I>Tics</I> um den Befehl (Deutsche Tastatur: [Shift]+<I>Taste links neben dem Rück-Pfeil</I>, Englische: <I>Taste links oben</I> oder <I>Taste neben dem linken Shift</I>). Diese machen der Bash klar, dass hier ein Befehl ausgeführt werden soll und nicht <CODE>ls</CODE> das erste und <CODE>*.s</CODE> das zeite Element einer Liste ist.
+</P>
+<P>
+Nützliche Befehle sind:
+</P>
+<DL>
+<DT><CODE>ls &lt;dateinamen&gt;</CODE></DT><DD>
+</DL>
+
+	<BLOCKQUOTE>
+	verschiedene Dateinamen
+	</BLOCKQUOTE>
+<DL>
+<DT><CODE>find &lt;dir&gt; &lt;option&gt;</CODE> </DT><DD>
+</DL>
+
+	<BLOCKQUOTE>
+	Wie <CODE>ls</CODE> kann nur mehr
+	</BLOCKQUOTE>
+<DL>
+<DT><CODE>seq &lt;anf&gt; &lt;incr&gt; &lt;ende&gt;</CODE></DT><DD>
+</DL>
+
+	<BLOCKQUOTE>
+	Schleife über Zahlen (<CODE>.</CODE> als Dezimaltrenner -- Achtung:  vorher unbedingt <CODE>LANG=us_US</CODE> eingeben, damit bei der Ausgabe der Punkt als Dezimalzeichen verwendet wird!)
+	</BLOCKQUOTE>
+<DL>
+<DT><CODE>$(cat liste)</CODE></DT><DD>
+</DL>
+
+	<BLOCKQUOTE>
+	Gibt die einzelnen Zeilen in der Datei <CODE>liste</CODE> nacheinander aus. Die Zeilen dürfen keine Leerzeichen verwenden. Möchte man so etwas machen, so eignet sich <CODE>xargs</CODE> besser als eine <CODE>for</CODE>-Schleife.
+	</BLOCKQUOTE>
+<P></P>
+<A NAME="toc9"></A>
+<H2>3.4. Anwendungsbeispiel</H2>
+<P>
+Das folgende Script führt ein Programm <CODE>a.out</CODE> wiederholt mit verschiedenen Parametern aus und gibt dem User Auskunft, was gerade abgearbeitet wird:
+</P>
+<PRE>
+  #!/bin/sh
+  LANG=us_US
+  # it's necessary to do so becaus with locales such as de_DE the decimal-sign is
+  # a `,' and the c++-program does not interpret this right.
+  for wahrsch in `seq 0.5 0.001 0.7`
+  do
+          echo -n "$wahrsch  $anzahl ... "
+          anzahl=0
+          for seed in `seq 0 1000`
+          do
+                  i=$(./a.out $wahrsch $seed 100 100 n)
+                  ((anzahl+=$i))
+          done
+  	echo " done"
+  done
+</PRE>
+<P>
+Die doppelte Klammer <CODE>((</CODE> wird verwendet um zu rechnen...
+</P>
+<P>
+Folgendes Script variiert Parameter eines Programms und speichert die in <CODE>trajectory.dat</CODE> ausgegebenen Werte in einer Datei, deren Namen den Parameter enthält:
+</P>
+<PRE>
+  #!/bin/bash
+  ## loop over parameters
+  for f in $(cat wind_params)
+  do
+          ../integrator 50 50 $f 0.01 2000
+          mv ../trajectory.dat wind_$f
+  done
+</PRE>
+<P>
+Anschließend kann man sich für <CODE>gnuplot</CODE> die Plots ausgeben lassen:
+</P>
+<PRE>
+  for f in $(cat wind_params); do echo \'wind_$f\' title \'$f\' , \\; done &gt;&gt; plot.plt
+</PRE>
+<P>
+Hier  muss man nur noch in <CODE>plot.plt</CODE> vor die erste Zeile ein <CODE>plot \</CODE> setzen und in der letzten Zeile das <CODE>, \</CODE> entfernen.
+</P>
+<A NAME="toc10"></A>
+<H1>4. Befehle</H1>
+<P>
+Wichtige Befehle für die Scripte sind
+</P>
+<DL>
+<DT><CODE>echo $&lt;variable&gt;</CODE></DT><DD>
+</DL>
+
+	<BLOCKQUOTE>
+	gibt die Variable aus, aber auch Text -- bspw. <CODE>echo "f enthält $f"</CODE>. Möchte man Hier Steuerzeichen (wie bspw. Zeilenumbruch <CODE>\n</CODE> oder Tab <CODE>\t</CODE> verwenden, so muss man <CODE>echo -e "das ist\nein test"</CODE> verwenden.
+	</BLOCKQUOTE>
+<DL>
+<DT><CODE>cat</CODE></DT><DD>
+</DL>
+
+	<BLOCKQUOTE>
+	Eine Datei ausgeben
+	</BLOCKQUOTE>
+<P></P>
+<A NAME="toc11"></A>
+<H1>5. Pipes &amp; more</H1>
+<P>
+Oft kann man DAten auch elegant von einem Programm ins andere Schleusen. Dazu verwendet die bash <I>stdin</I> und <I>stdout</I>. Viele Programme bekommen die zu verarbeitenden Daten über <I>stdin</I> -- also entweder von einem anderen Programm oder vom Benutzer über die Tastatur --. 
+</P>
+<P>
+Um bspw. dem Befehl <CODE>foo</CODE> die Datei <CODE>bar</CODE> einzugeben, verwendet man das Symbol <CODE>&lt;</CODE>:
+</P>
+<PRE>
+  foo &lt; bar
+</PRE>
+<P></P>
+<P>
+Um nun zwei Programme miteinander zu verknüpfen ohne eine Eingabedtei (wie hier <CODE>bar</CODE>) zu verwenden, verwendet man das Symbol <CODE>|</CODE> (Deutsche Tastatur: (Alt Gr)+<I>Taste neben linkem Shift</I>, Englische: (Shift)+<CODE>\</CODE>). Anstatt der Datei <CODE>bar</CODE> wollen wir nun von einem Programm <CODE>asdf</CODE> die Daten erzeugen lassen, die <CODE>foo</CODE> verarbeiten soll. Dabei ist wichtig, dass <CODE>asdf</CODE> auf <I>stdout</I> (also die Konsole) ausgibt:
+</P>
+<PRE>
+  asdf | foo
+</PRE>
+<P>
+Beispielsweise könnte man nun obigen Befehl auch mit dem Kommando <CODE>cat</CODE> ausführen: 
+</P>
+<PRE>
+  cat bar | foo
+</PRE>
+<P>
+Hier gibt <CODE>cat</CODE> den Inhalt von <CODE>bar</CODE> auf <I>stdout</I> aus und dieser wird mittels <CODE>|</CODE> an <CODE>foo</CODE> weitergegeben.
+</P>
+<P>
+Um den Output eines Programmes in eine Datei umzuleiten, verwendet man entweder <CODE>&gt;</CODE> wenn man diese Datei neu anlegen bzw. überschreiben will oder <CODE>&gt;&gt;</CODE> wenn man an eine Datei anhängen will.
+</P>
+<P>
+Bspw. verwende ich zum kompilieren diesese Dokuments die Zeile
+</P>
+<PRE>
+  umlauts bash.t2t | txt2tags -t html - &gt; foo
+</PRE>
+<P>
+Hier erzeugt <CODE>umlauts</CODE> aus dem Quelltext eine Datei mit UTF-8-Umlauten, welche von <CODE>txt2tags</CODE> dann weiterverarbeitet wird. Hier habe ich als Parameter <CODE>-</CODE> angegeben -- das ist bei Programmen nötig, die eigentlich eine Datei verarbeiten wollen (<CODE>-</CODE> nimmt dann die Stelle der Datei ein). Anschließend wird der Text als <CODE>foo</CODE> ausgegeben.
+</P>
+<A NAME="toc12"></A>
+<H1>6. Programme hintereinander ausführen</H1>
+<P>
+Manchmal möchte man, dass ein Programm <CODE>bar</CODE> erst ausgeführt wird, nachdem <CODE>foo</CODE> (erfolgreich) beendet wurde, oder eben, wenn <CODE>foo</CODE> nicht erfolgreich war. Dazu dienen die Logischen Verknüpfungen <CODE>&amp;&amp;</CODE> und <CODE>||</CODE>; logisches <I>und</I> und <I>oder</I>. Bei
+</P>
+<PRE>
+  foo &amp;&amp; bar
+</PRE>
+<P>
+wrird <CODE>bar</CODE> nur ausgeführt, wenn <CODE>foo</CODE> <I>wahr</I> als <I>return</I>-Wert hatte (Achtung: Bei bash ist <CODE>0</CODE> wahr und alle anderen Zahlen falsch!). War <CODE>foo</CODE> nämlich nicht erfolgreich, so bricht die bash die Zeile ab -- schließlich kann sie kein <I>globales Wahr</I> mehr erreichen, weil dazu ja <I>alle</I> Bedingungen wahr sein müssen.
+</P>
+<P>
+Bei
+</P>
+<PRE>
+  foo || bar
+</PRE>
+<P>
+wird <CODE>bar</CODE> genau dann ausgeführt, wenn <CODE>foo</CODE> <I>falsch</I> als <I>return</I>-Wert hat: Da es ausreicht, wenn einer der beiden Befehle ein <I>wahr</I> zurückgibt, damit die Zeile insgesamt ein <I>warh</I> ergibt, hofft bash, dass <CODE>bar</CODE> das erhoffte <I>wahr</I> gibt.
+</P>
+<P>
+Beispielsweise kann man so eine Warnung ausgeben, wenn etwas schiefläuft
+</P>
+<PRE>
+  foo || beep
+</PRE>
+<P>
+oder ein Programm <CODE>bar</CODE> macht nur Sinn, wenn <CODE>foo</CODE> nicht abgebrochen ist
+</P>
+<PRE>
+  foo &amp;&amp; bar
+</PRE>
+<P></P>
+<P>
+Um explizit die Ausführung eines Befehls abzuwarten -- dies ist besonders in Scripten notwendig -- kann man <CODE>wait</CODE> verwenden: Bei
+</P>
+<PRE>
+  foo
+  wait
+  bar
+</PRE>
+<P>
+wartet bash mit der Ausführung von <CODE>bar</CODE>, bis <CODE>foo</CODE> auch sicher beendet ist.
+</P>
+<P>
+Manchmal ist es zudem nötig, eine kleine Pause einzulegen -- das kann <CODE>sleep</CODE> erledigen; 
+</P>
+<PRE>
+  sleep 100000
+</PRE>
+<P>
+ist eher langweilig -- wartet aber 100000 Sekunden...
+</P>
+<A NAME="toc13"></A>
+<H1>7. Formatierun und Filtern</H1>
+<P>
+Um aus einem unübersichtlichen Output ein bestimmtes Wort zu filtern, verwendet man <CODE>grep</CODE>:
+</P>
+<PRE>
+  grep foo bar
+</PRE>
+<P>
+zeigt alle Zeilen der Datei <CODE>bar</CODE> an, die mit <CODE>foo</CODE> beginnen. Hier kann man auch den Output eines Befehls <CODE>duh</CODE> angeben; 
+</P>
+<PRE>
+  duh | grep foo
+</PRE>
+<P>
+zeigt alle Zeilen von <CODE>duh</CODE>s Output an, die <CODE>foo</CODE> enthalten.
+</P>
+<P>
+Um sich diese Zeilen zu <I>ersparen</I> (wir haben mittlerweile oft genug <CODE>foo</CODE> gelesen und können es nicht mehr sehen), kann man <CODE>grep -v</CODE> verwenden:
+</P>
+<PRE>
+  duh | grep -v foo
+</PRE>
+<P>
+kehrt das Suchkriterium um.
+</P>
+<P>
+Logischerweise kann man so nach mehreren Sachen Suchen:
+</P>
+<PRE>
+  duh | grep -v foo | grep -v bar
+</PRE>
+<P>
+verschweigt sowohl <CODE>foo</CODE> als auch <CODE>bar</CODE>.
+</P>
+<P>
+Ein kleiner Trick, der auf den Begriff der <I>regexp</I> führt ist alle <CODE>foo</CODE> zu finden, die am <I>Zeilenanfang</I> stehen: <CODE>grep '^foo'</CODE> oder am <I>Zeilenende</I>: <CODE>grep 'foo$'</CODE>. Hier bedeutet <CODE>^</CODE> eben Zeilenanfang und <CODE>$</CODE> Zeilenende.
+</P>
+<P>
+Die Stream-Editoren <CODE>sed</CODE> oder <CODE>awk</CODE> können wesentlich mehr -- sind aber wesentlich schwerer zu bedienen. Mit <CODE>sed</CODE> kann man beispielsweise in einem Text ein Zeichen durch ein anderes ersetzen
+</P>
+<PRE>
+  cat text | sed s/a/b/g
+</PRE>
+<P>
+ersetzt alle <CODE>a</CODE> gegen <CODE>b</CODE>. Damit kann man auch Textstellen finden und neu formatieren. Betrachten wir dazu die Datei <CODE>text</CODE> mit Inhalt
+</P>
+<PRE>
+  das ist ein test
+  das ist noch ein test
+  und das nicht mehr
+</PRE>
+<P>
+dann liefert
+</P>
+<PRE>
+  cat text | sed s/'das \(.*\) test'/'zwischen das und test stand \1'/
+</PRE>
+<P>
+die Ausgabe
+</P>
+<PRE>
+  zwischen das und test stand ist ein
+  zwischen das und test stand ist noch ein
+  und das nicht mehr
+</PRE>
+<P>
+Offensichtlich wurde der Text zwischen den Klammern <CODE>\(</CODE> und <CODE>\)</CODE> gemerkt und anstelle von <CODE>\1</CODE> eingefügt (bei mehreren solcher Klammern entsprechend <CODE>\2</CODE> etc.). Für Suchen und Ersetzen ist der <CODE>sed</CODE>-Befehl <CODE>s/&lt;suche&gt;/&lt;ersetze&gt;</CODE> verantwortlich. Das Symbol <CODE>.*</CODE> in der Klammer bedeutet, dass hier ein beliebiger Buchstabe (<CODE>.</CODE>) gesucht wird und dieser beliebig oft (<CODE>*</CODE>) vorkommen darf. Anstelle von <CODE>.*</CODE> kann man auch andere Texte verwenden -- hier kommt man wieder auf die oben erwähnten <I>regexp</I>...
+</P>
+
+<!-- html code generated by txt2tags 2.5 (http://txt2tags.sf.net) -->
+<!-- cmdline: txt2tags -t html -\-css-inside -\-enum-title -\-style=style.css -\-toc -\-toc-level=3 -\-quiet - -->
+</BODY></HTML>

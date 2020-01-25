@@ -1,0 +1,617 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="http://txt2tags.sf.net">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf8">
+<TITLE>Daten mit Gnuplot auswerten</TITLE>
+<STYLE TYPE="text/css">
+body{
+	color: black;
+	font-family: serif;
+	max-width: 900px;
+	min-width: 300px;
+	margin-left: 20px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+
+pre{
+	margin-left: 10px;
+	font-family: monospace;
+	background: #e0e0e0;
+}
+
+
+dt{
+	color: #3900E6;
+	font-weight: bold;
+}
+
+
+a{
+	text-decoration: none;
+	color: #0000a0;
+}
+
+a:hover{
+	text-decoration: underline;
+	color: #0000ff;
+}
+
+
+
+h1{
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #003DF5;
+	background-color: #FFCC33;
+	padding-left: 30px;
+	margin-top: 55px;
+	margin-bottom: 35px;
+}
+
+h2{
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #002EB8;
+	background-color: #FFDF80;
+	padding-left: 50px;
+	margin-top: 55px;
+	margin-bottom: 35px;
+}
+
+
+h3{
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #002EB8;
+	background-color: #FFECB3;
+	padding-left: 70px;
+	margin-top: 55px;
+	margin-bottom: 35px;
+}
+
+	
+</STYLE>
+</HEAD><BODY BGCOLOR="white" TEXT="black">
+<P ALIGN="center"><CENTER><H1>Daten mit Gnuplot auswerten</H1>
+<FONT SIZE="4">
+<I>Michael Kopp</I><BR>
+13. 11. 2009
+</FONT></CENTER>
+
+<P></P>
+<HR NOSHADE SIZE=1>
+<P></P>
+  <OL>
+  <LI><A HREF="#toc1">Installation</A>
+    <UL>
+    <LI><A HREF="#toc2">1.1. Windows</A>
+    <LI><A HREF="#toc3">1.2. Linux</A>
+    </UL>
+  <LI><A HREF="#toc4">Daten aufbereiten</A>
+  <LI><A HREF="#toc5">Grundlegendes zur Bedienung</A>
+  <LI><A HREF="#toc6">Einfaches Plotten von Messwerten</A>
+    <UL>
+    <LI><A HREF="#toc7">4.1. Nicht nur Punkte plotten</A>
+    <LI><A HREF="#toc8">4.2. Datein verarbeiten</A>
+    <LI><A HREF="#toc9">4.3. Funktionen</A>
+    <LI><A HREF="#toc10">4.4. Ranges</A>
+    <LI><A HREF="#toc11">4.5. Scalen</A>
+    <LI><A HREF="#toc12">4.6. Achsen</A>
+    </UL>
+  <LI><A HREF="#toc13">fit</A>
+  <LI><A HREF="#toc14">Ein- und Ausgabe</A>
+    <UL>
+    <LI><A HREF="#toc15">6.1. Speichern</A>
+    <LI><A HREF="#toc16">6.2. Laden</A>
+    <LI><A HREF="#toc17">6.3. Bilder ausgeben</A>
+    </UL>
+  <LI><A HREF="#toc18">Layout</A>
+    <UL>
+    <LI><A HREF="#toc19">7.1. Beschriftungen</A>
+    <LI><A HREF="#toc20">7.2. Key</A>
+    <LI><A HREF="#toc21">7.3. Sonderzeichen</A>
+    <LI><A HREF="#toc22">7.4. Linienart</A>
+    <LI><A HREF="#toc23">7.5. Gitter</A>
+    <LI><A HREF="#toc24">7.6. Errorbars</A>
+    </UL>
+  <LI><A HREF="#toc25">Hilfe</A>
+  </OL>
+
+<P></P>
+<HR NOSHADE SIZE=1>
+<P></P>
+<A NAME="toc1"></A>
+<H1>1. Installation</H1>
+<A NAME="toc2"></A>
+<H2>1.1. Windows</H2>
+<PRE>
+  http://sourceforge.net/projects/gnuplot/files/
+</PRE>
+<P></P>
+<P>
+Zip der aktuellen version runterladen und entpacken. Gnuplot läuft ohne installation aus dem Ordner <CODE>bin</CODE>: hier <CODE>wgnuplot.exe</CODE> ausführen.
+</P>
+<P>
+Bei Windows-Usern ist das Problem, dass sie die zu bearbeitenden Daten immer in das <I>bin</I> Verzeichnis schieben müssen! Dies kann man umgehen, wenn man dieses <I>bin</I>-Verzeichnis zur <CODE>PATH</CODE>-Variablen hinzufügt.
+</P>
+<P>
+<I>Edit: Laut Michi ~ ist das kein Problem; es gibt wohl eine Schaltfläche, mit der man das Arbeitsverzeichnis wechseln kann.</I>
+</P>
+<A NAME="toc3"></A>
+<H2>1.2. Linux</H2>
+<P>
+Debian, Ubuntu uvm.
+</P>
+<PRE>
+  apt-get install gnuplot
+</PRE>
+<P></P>
+<P>
+Sonst analog mit <CODE>yast</CODE> u.ä.
+</P>
+<A NAME="toc4"></A>
+<H1>2. Daten aufbereiten</H1>
+<P>
+Gnuplot braucht einfache Text-files, in denen die Daten in Spalten angeordnet sind. Die einzelnen Spalten am besten mit <I>tab</I>s trennen.
+</P>
+<P>
+Wichitg ist: Keine <CODE>,</CODE> verwenden, sondern <CODE>.</CODE>! Sonst wird alles nach dem <I>unleserlichen Zeichen</I> abgeschnitten. (Das kann man gezielt einsetzen: Wenn man einen Punkt in der Liste vom Plotten ausschließen möche, setzt man vor den entsprechenden Messwert <CODE>#</CODE> o.ä. 
+</P>
+<P>
+Um die Daten-Dateien übersichtlichern zu halten, kann man kommentare mit <CODE>#</CODE> einfügen; ab dem <CODE>#</CODE> wird die aktuelle Zeile nicht mehr gelesen.
+</P>
+<P>
+Eine einfache Methode ist, die Daten in Excel / OpenOfficeSpreadsheet aufzuarbeiten und dann einfach die Spalten markieren, kopieren und in eine frische Textdatei zu kopieren.
+</P>
+<A NAME="toc5"></A>
+<H1>3. Grundlegendes zur Bedienung</H1>
+<P>
+Ist gnuplot gestartet, bekommt man einen prompt <CODE>gnuplot&gt;</CODE>. Hinter diesem gibt man die gewünschten Befehlen ein. Mit <CODE>&lt;Enter&gt;</CODE> werden diese umgesetzt.
+</P>
+<P>
+Gnuplot kann i.A. nicht mit Sonderzeichen und Sondertasten (<I>Pos1</I> usw) umgehen -- also nur mit dem Pfeiltasten navigieren. 
+</P>
+<P>
+Den letzten Befehl bekommt man tmi <CODE>&lt;Pfeilhoch&gt;</CODE>.
+</P>
+<P>
+Allgemein kann man mit Gnuplot Variablen setzen via
+</P>
+<PRE>
+  set &lt;var&gt; &lt;wert&gt;
+</PRE>
+<P>
+und sich ihrem Wert anzeigen lassen via
+</P>
+<PRE>
+  show &lt;var&gt;
+</PRE>
+<P>
+Solche Variablen sind bspw einfach Zahlen, aber auch Angaben wie Diagrammbreite oder Beschriftungen. Mit
+</P>
+<PRE>
+  unset &lt;var&gt;
+</PRE>
+<P>
+wird die Variable (besonders wenn sie nur boolsche Werte beinhaltet) auf <CODE>0</CODE> bzw. <CODE>false</CODE> zurückgesetzt.
+</P>
+<P>
+<I>Wichitg</I> ist, dass Gnuplot die Kreiszahl pi nicht eingespeichert hat; sie muss bei Anwendungen entweder jedes mal neu gespeichert werden, oder man legt sie in einer config-datei ab; dazu erstellt man eine Textdatei <CODE>.gnuplot</CODE>, welche man in <I>bin</I> (also bei <CODE>wgnuplot.exe</CODE>) speichert. Was man hier reinschreibt, liest Gnuplot ein. So stehen hier abgelegte Variablen immer zur Verfügung.
+</P>
+<P>
+Weil Zeilen manchmal unübersichtlich lang werden können, kann man sie umbrechen; dazu hängt man einen <CODE>\&lt;enter&gt;</CODE> an:
+</P>
+<PRE>
+  das wird wie EINE \
+  lange Zeile inter\
+  pretiert
+</PRE>
+<P></P>
+<P>
+Mathematisch ist wichtig, dass man für Potenzen <CODE>**</CODE> verwendet; sonst ist alles, wie man denkt. Dezimalzahlen haben Punkte, keine Kommas und wenn man auf Nummer sicher gehen will, schreibt man Zahlen immer mit <CODE>.</CODE>, also <CODE>2.0</CODE> statt <CODE>2</CODE> -- dann ist die Gefahr geringer, dass Gnuplot <CODE>2</CODE> als Integer (also Ganze Zahl) interpretiert und so automatisch das Ergebnis in ganzen Zahlen darstellt ...
+</P>
+<A NAME="toc6"></A>
+<H1>4. Einfaches Plotten von Messwerten</H1>
+<P>
+In <CODE>foo.d</CODE> liegen unsere Messwerte (wie die Datei heißt -- auch Endungen -- ist egal. Keine Leerzeichen oder Sonderzeichen sind zu bevorzugen) in drei Spalten. Um die erste gegen die zweite zu plotten einfach
+</P>
+<PRE>
+  plot "foo.d"
+</PRE>
+<P>
+oder
+</P>
+<PRE>
+  plot "foo.d" using 1:2
+</PRE>
+<P>
+analog für die <CODE>n</CODE>te gegen die <CODE>m</CODE>te Spalte:
+</P>
+<PRE>
+  plot "foo.d" using n:m
+</PRE>
+<P></P>
+<A NAME="toc7"></A>
+<H2>4.1. Nicht nur Punkte plotten</H2>
+<P>
+Möchte man die Datenpunkte noch durch Linien verbinden, so kann man dies tun, indem man an den <CODE>plot</CODE>-Befehl noch ein <CODE>with</CODE>-Befehl anhängt. Mit
+</P>
+<PRE>
+  plot "foo.d" with linespoints
+</PRE>
+<P>
+bekommt man Punkte, die durch Linien verbunden sind. Statt <CODE>linespoints</CODE> kann man noch <CODE>lines</CODE> verwenden
+</P>
+<P>
+Oder für glatte Kurven statt <CODE>with</CODE>: <CODE>smooth &lt;technik&gt;</CODE> verwenden, sobei <CODE>&lt;technik&gt;</CODE> eines von <CODE>bezier</CODE>, <CODE>sbezier</CODE>, <CODE>csplines</CODE> sein kann <CODE>acsplines</CODE>. Einfach rumprobieren, wie die Messwerte am besten aussehen.
+</P>
+<P>
+Hat man bspw. mit <CODE>smooth bezier</CODE> nur eine Linie erhalten, so muss man die Punkte über einen zweiten Plot noch hinzufügen; also um Punkte und glatte Linie zu erhalten:
+</P>
+<PRE>
+  plot "foo.d" smooth bezier, "foo.d"
+</PRE>
+<P></P>
+<A NAME="toc8"></A>
+<H2>4.2. Datein verarbeiten</H2>
+<P>
+Möchte man die Daten noch vorverarbeiten -- bspw. Um den Faktor 2 Strecken o.ä. kann nman dies mit <CODE>using</CODE> tun:
+</P>
+<PRE>
+  plot "foo.d" using ($1*2):(sin($2)+7)
+</PRE>
+<P>
+Mit <CODE>$1</CODE> kann man die Spalte wie eine Variable verwenden, die Befehle müssen in Klammern stehen.
+</P>
+<P>
+(Praktisch, wenn die Messwerten in Gradmaß angegeben sind, man aber mit Bogenmaß rechnen möchte.
+</P>
+<A NAME="toc9"></A>
+<H2>4.3. Funktionen</H2>
+<P>
+Eine Funktion definiert man einfach über
+</P>
+<PRE>
+  f(x) = 3+4**3-sin(x)
+</PRE>
+<P>
+wobei man den namen frei wählen kann.
+</P>
+<P>
+Plotten via 
+</P>
+<PRE>
+  plot f(x)
+</PRE>
+<P></P>
+<P>
+Hier kann man beliebig Variablen eingeben. Diese werden mit Werten versorgt:
+</P>
+<PRE>
+  A = 1.4
+</PRE>
+<P>
+oder
+</P>
+<PRE>
+  asdf = sin(A)+4
+</PRE>
+<P></P>
+<A NAME="toc10"></A>
+<H2>4.4. Ranges</H2>
+<P>
+Die Bereiche für x-Werte und y-Werte der Funktion können angegeben werden mit
+</P>
+<PRE>
+  set xrange [a:b]
+</PRE>
+<P>
+und 
+</P>
+<PRE>
+  set yrange [a:b]
+</PRE>
+<P>
+Will man, dass Gnuplot dies selbst erledigt, gibt man
+</P>
+<PRE>
+  set xrange [*:*]
+</PRE>
+<P>
+ein.
+</P>
+<A NAME="toc11"></A>
+<H2>4.5. Scalen</H2>
+<P>
+Möchte man eine Achse logarithmisch skalieren, gibt man 
+</P>
+<PRE>
+  set logscale x
+</PRE>
+<P>
+ein oder entsprechend die anderen Achsen.
+</P>
+<A NAME="toc12"></A>
+<H2>4.6. Achsen</H2>
+<P>
+Man kann Funktionen nicht nur auf der <CODE>x</CODE> und <CODE>y</CODE>-Achse angeben; Gnuplot stellt außerdem eine <CODE>y2</CODE> Achse rechts und eine <CODE>x2</CODE>-Achse oben zur Verfügung. Man weist mit dem <CODE>axis</CODE>-Befehl Gnuplot an, eine solche Achse zu verwenden.
+</P>
+<P>
+Um die untre x-Achse gegen die rechte y-Achse zu plotten bspw.
+</P>
+<PRE>
+  plot f(x) axis x1y2
+</PRE>
+<P></P>
+<A NAME="toc13"></A>
+<H1>5. fit</H1>
+<P>
+Man definiert sich eine Funktion, die Unbekannte enthält. Diese werden von Gnuplot so gewählt, dass die Funktion möglichst optimal zu einer Menge von in einer Datei gegebenen Punkte passt; das bedeutet, dass für jeden Datenpunkt die Abweichung von Y-Wert der Daten zum Y-Wert der anzufittenden Funktion der Abstand gemessen wird, dieser quadriert wird und über alle Punkte aufsummiert; dies ergibt die quadratische Abweichung, die minimiert wird.
+</P>
+<P>
+Unsere Werte liegen in <CODE>foo.d</CODE> und zwar in der ersten und der dritten Spalte, außerdem ist die erste Spalte im Gradmaß angegeben -- was wir nicht brauchen können, weil in unserer Formel ein Sinus auftaucht und wir in Bogenmaß rechnen wollen (das wird durch einen <CODE>using</CODE>-Befehl beseitigt).
+</P>
+<P>
+Wir definieren eine Zielfunktion
+</P>
+<PRE>
+  f(x) = A * sin(B * x)**2 + C
+</PRE>
+<P>
+mit den zu bestimmenden Großen <CODE>A</CODE>, <CODE>B</CODE>, <CODE>C</CODE> und fitten:
+</P>
+<PRE>
+  fit f(x) "foo.d" using ($1/180*pi):3 via A, B, C
+</PRE>
+<P></P>
+<P>
+Anschließend rechnet Gnuplot ein wenig und als Ergebnis hat man dann die Werte von <CODE>A</CODE>, <CODE>B</CODE> und <CODE>C</CODE>. Nun kann man sich die angefittete Funktion anzeigen lassen -- am besten zusammen mit den Datenpunkten:
+</P>
+<PRE>
+  plot f(x) title "Fit", "foo.d" using ($1/180*pi):3 title "Messwerte"
+</PRE>
+<P></P>
+<P>
+Vor der Zielfunktion kann man in den <CODE>fit</CODE>-Befehl noch ein <CODE>xrange</CODE> und ein <CODE>yrange</CODE> angeben.
+</P>
+<P>
+Es kann nun leider sein, dass Gnuplot eine völlig falsche Funktion durch die Messwerte legt. Dies kommt dann vor, wenn er mit kleinen Zahlen rechnen muss. Ein netter Workaround ist dann, einfach die Funktion an den richtigen Stellen mit großen Zaheln multiplizieren. Also bspw. als Zielfunktion
+</P>
+<PRE>
+  f(x) = A * sin(B * x/1000)**2 + C
+</PRE>
+<P>
+verwenden. Anschließend muss man die Funktion plotten mit
+</P>
+<PRE>
+  plot f(x*1000)
+</PRE>
+<P>
+und schon hat man bessere Chancen, dass die Parameter besser bestimmt werden... Hier gilt es, Durchhaltevermögen und Phantasie zu zeigen ;-)
+</P>
+<A NAME="toc14"></A>
+<H1>6. Ein- und Ausgabe</H1>
+<A NAME="toc15"></A>
+<H2>6.1. Speichern</H2>
+<P>
+Mit 
+</P>
+<PRE>
+  save "foo.plt"
+</PRE>
+<P>
+wird das aktuelle <I>Arbeitsblatt</I> gespeichert. Man kann es später wieder laden, sodass man an genau dem Punkte weiterrechnen kann, an dem man gespeichert hat. Man kann außerdem diese Datei direkt editieren, wodurch man bspw. Titel und Bezeichnungen gut eingebenkann.
+</P>
+<A NAME="toc16"></A>
+<H2>6.2. Laden</H2>
+<P>
+Mit 
+</P>
+<PRE>
+  load "foo.plt"
+</PRE>
+<P>
+wird eine wie oben gespeicherte Datei geladen. Man kann auch alle Gnuplotbefehle, die man vorhat zu machen, in einer Datei speichern und diese per <CODE>load</CODE> laden (-&gt; <I>Batch</I>-Modus).
+</P>
+<A NAME="toc17"></A>
+<H2>6.3. Bilder ausgeben</H2>
+<P>
+Mit 
+`` set terminal
+gewinnt man einen Überblick über alle vorhandenen Terminals -- das sind die Ausgabemöglichkeiten. Sie weichen von System zu System ab und haben alle ihre Vor- und Nachteile.
+</P>
+<P>
+Auswählen kann man eines z.B. über 
+</P>
+<PRE>
+  set terminal postscript enhanced color
+</PRE>
+<P>
+und meist kann man noch sonderoptionen (hier <CODE>color</CODE>), wie Farben, Größe, Schriftart usw. angeben.
+</P>
+<P>
+Mit 
+</P>
+<PRE>
+  set output "foo.eps"
+</PRE>
+<P>
+legt man fest, in welcher Datei die zu plottenden Bilder gespeichert werden sollen.
+</P>
+<P>
+<I>Wichtig</I>: Wird ein <CODE>plot</CODE> Befehl (auch <CODE>replot</CODE>) ausgeführt, so schreibt Gnuplot immer direkt an das bei <CODE>output</CODE> angegebene Ziel. Hat man also einen Output festgelegt, ist noch nichts dort gespeichert; man muss erst noch <CODE>replot</CODE> ausführen. 
+</P>
+<P>
+<I>Wichtig</I>: Viele Terminals unterstützen es <I>nicht</I>, dass man nacheinander mehrere Bilder auf den gleichen <CODE>output</CODE> umleitet. Versucht man es trotzdem, kann dies zu sehr nervigen Ergebnissen führen. Stattdessen vor jedem Plot in eine Datei einen neuen <CODE>output</CODE> festlegen.
+</P>
+<P>
+Möchte man die Bilder wieder <CODE>normal</CODE> ausgeben, also direkt auf den Bildschirm, so stellt man zurück auf den terminal, der beim Start von Gnuplot angezeigt wurde. <I>Wichtig</I>: Hat man den Bildschirm-Terminal eingegeben, muss man <CODE>output</CODE> noch auf `` `` umstellen; also
+</P>
+<PRE>
+  set output
+</PRE>
+<P></P>
+<A NAME="toc18"></A>
+<H1>7. Layout</H1>
+<A NAME="toc19"></A>
+<H2>7.1. Beschriftungen</H2>
+<P>
+Mit 
+</P>
+<PRE>
+  set title "foo"
+</PRE>
+<P>
+wird ein Diagrammtitel oben festgesetzt, mit
+</P>
+<PRE>
+  set xlabel "blubb"
+</PRE>
+<P>
+eine Beschriftung für die <CODE>x</CODE>-Achse. Analog mit <CODE>ylabel</CODE>, <CODE>x2label</CODE>, <CODE>y2label</CODE> etc.
+</P>
+<P>
+Einzelne Spalten des Plots bekommen einen Namen beim Plotten:
+</P>
+<PRE>
+  plot "foo.d" title "&lt;titel&gt;"
+</PRE>
+<P></P>
+<P>
+Die Achsenbeschriftungen kann man mit <CODE>xtics</CODE>, <CODE>ytics</CODE>, <CODE>y2tics</CODE> usw festlegen. Um bspw Punkte von 1 aufwärts in 0.5er Schritten zu erhalten:
+</P>
+<PRE>
+  set xtics 1 0.5
+</PRE>
+<P>
+Um diskret Werte zu setzen, klammert man diese kommagetrennt ein:
+</P>
+<PRE>
+  set xtics (0,3,4,5,5.25)
+</PRE>
+<P></P>
+<A NAME="toc20"></A>
+<H2>7.2. Key</H2>
+<P>
+Hier wird zu jedem Plot (ob Funktion oder Daten) eine Beschriftung angezeigt. Hat man beim Plot keine via <CODE>title "foo"</CODE> angegeben, wird die Funktion bzw der Dateiname mit dem <CODE>using</CODE>-Befehl angegeben.
+</P>
+<P>
+Mit
+</P>
+<PRE>
+  set key title "foo"
+</PRE>
+<P>
+kann man dem Key einen Titel geben und mit
+</P>
+<PRE>
+  set key box
+</PRE>
+<P>
+zieht man eine Box darum.
+</P>
+<P>
+Die <I>Position</I> von Key kann man mit 
+</P>
+<PRE>
+  set key &lt;posH&gt; &lt;posV&gt;
+</PRE>
+<P>
+bestimmen, wobei <CODE>&lt;posH&gt;</CODE> eines von <CODE>left</CODE>, <CODE>right</CODE>, <CODE>center</CODE> und <CODE>&lt;posV&gt;</CODE> eines von <CODE>top</CODE>, <CODE>bottom</CODE> oder center ist. <CODE>posH</CODE> und <CODE>posV</CODE> können kombiniert werden oder nur einer der beiden angegeben.
+</P>
+<P>
+Um den Key unter das Diagramm selbst zu setzen, nutzt man
+</P>
+<PRE>
+  set key below
+</PRE>
+<P></P>
+<A NAME="toc21"></A>
+<H2>7.3. Sonderzeichen</H2>
+<P>
+Ein Heikles Thema ...
+</P>
+<P>
+Mit dem terminal (s.u.) <CODE>postscript enhanced color</CODE> kann man Griechische Symbole verwenden; dazu im Text <CODE>/Symbol a</CODE> angeben, wobei <CODE>a</CODE> ein Buchstabe ist, der dann vergriechisiert wird.
+</P>
+<P>
+Mit dem Terminal kann man auch Text hoch- und Tiefstellen; dazu in LaTeX-Syntax bspw <CODE>X_0</CODE> schreiben...
+</P>
+<A NAME="toc22"></A>
+<H2>7.4. Linienart</H2>
+<P>
+Mit dem Befehl
+</P>
+<PRE>
+  test
+</PRE>
+<P>
+wird auf dem aktuellen Terminal eine Testdatei ausgegeben, auf der man alle verfügbaren Linientypen, größen und Farben ablesen kann, die verfügbar sind.
+</P>
+<P>
+Setzt man hinter einen Plot-Befehl <CODE>lw</CODE> für <I>l</I>ine<I>w</I>idth und eine Zahl, so bekommt man die entsprechende Linienstärke. Mit <CODE>lt</CODE> für <I>l</I>ine<I>t</I>ype und einer Zahl bekommt man eine entsprechende Linienart (je nach Terminal gepunktet usw).
+</P>
+<A NAME="toc23"></A>
+<H2>7.5. Gitter</H2>
+<P>
+Um ein schönes Gitter zu erhalten, gibt man einfach
+</P>
+<PRE>
+  set grid
+</PRE>
+<P>
+ein. Es werden die Tics der Achsen mit gepunkteten Linien zu einem Gitter gemacht.
+Mit 
+</P>
+<PRE>
+  unset grid
+</PRE>
+<P>
+wird man es wieder los ;-)
+</P>
+<A NAME="toc24"></A>
+<H2>7.6. Errorbars</H2>
+<P>
+Hängt man an seinen <CODE>plot</CODE>-Befehl ein <CODE>with yerrorbars</CODE> (analog <CODE>xerrorbars</CODE>) plottet Gnuplot Fehlerbalken. Die Informationen, wo die Daten dazu liegen, mus man in <CODE>using</CODE> angeben, sonst nimmt Gnuplot automatisch an, dass es sich um Spalte 3 --  und falls vorhanden 4 -- handelt.
+</P>
+<P>
+Sind die Werte bspw. in den ersten beiden Spalten angegeben und der Fehler in der 5, gibt man ein
+</P>
+<PRE>
+  plot "foo.d" using 1:2:5 with yerrorbars
+</PRE>
+<P></P>
+<P>
+Hat man für <CODE>x</CODE> und <CODE>y</CODE> verschiedene Fehler, kann man diese in zwei Spalten eingeben: Dazu muss man in <CODE>using</CODE> eben noch diese zweite Datenspalte mit übergeben.
+</P>
+<P>
+Ein netter Trick ist es, die Fehler direkt von Gnuplot berechnen zu lassen. Möchte man bspw Fehlerbalken mit 3% nach unten und 7% nach oben, in der Liste sind aber nur die Daten (Spalten 1 und 2) angegeben, verwendet man
+</P>
+<PRE>
+  plot "foo.d" using 1:2:($2*0.97):($2*1.07) with yerrorbars
+</PRE>
+<P></P>
+<P>
+In die Klammerausdrücke kann man wieder beliebig komplizierte Ausdrücke setzen...
+</P>
+<P>
+Man kann die Fehler auch einfach konstant setzen; den Wert einfach in Klammern im <CODE>using</CODE>-Argument angeben:
+</P>
+<PRE>
+  plot "foo.d" using 1:2:(34.734) with yerrorbars
+</PRE>
+<P>
+erzegt Fehlerbalken der Länge 34.734.
+</P>
+<A NAME="toc25"></A>
+<H1>8. Hilfe</H1>
+<P>
+Der <CODE>help</CODE>-Befehl gibt für jeden Befehl die wichtigesten Hilfestellungen direkt aus.
+</P>
+
+<!-- html code generated by txt2tags 2.3 (http://txt2tags.sf.net) -->
+<!-- cmdline: txt2tags -\-toc -n -\-style=/home/skunk/programme/templates/txt2tags/style_html_01.css -\-css-inside -t html gnuplot.t2t -->
+</BODY></HTML>

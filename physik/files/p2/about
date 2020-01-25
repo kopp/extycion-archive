@@ -1,0 +1,6 @@
+Die Auswertung lief wieder per SVN. Die Daten kann man per Browser einsehen und herunterladen von
+
+http://xp-dev.com/svn/prakt2/
+
+Um die Daten mit Subversion (SVN) herunterzuladen:
+ $ svn checkout http://xp-dev.com/svn/prakt2/

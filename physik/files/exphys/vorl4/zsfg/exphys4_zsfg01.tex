@@ -1,0 +1,926 @@
+\documentclass[a4paper,draft]{article}
+
+\input{./define}
+
+\usepackage[ngerman]{babel} %%necessary so that emacs does the
+                            %%`"'-Thing right
+
+
+\begin{document}
+
+
+\input{./titlepage} % titelseite
+
+\section*{Vorwort}
+\input{./vorwort}
+
+\tableofcontents
+\clearpage % eine Leerseite folgt
+
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+
+
+\section{Atomare Gr"o"sen}\label{sec:atomare_grosen}
+
+\subsection{Einige Hausnummern (Zahlenwerte)}
+\label{sec:einige_hausnummern_zahlenwerte}
+
+Ein paar interessante Zahlen sind in Tab. \ref{tab:hausnummern}
+zusammengefasst.\footnote{Quelle: Vorlesung.}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{l l}
+    \toprule
+\textbf{L"angen} \\
+Gr"o"se des Atomkerns & $5 \cdot 10^{-15}\operatorname{m}$\\
+Ansdehnung der H"ulle & $1 \cdot 10^{-10}\operatorname{m}$\\
+\midrule
+\textbf{Massen}\\
+Elektron & $9.11 \cdot 10^{-31}\operatorname{kg}$\\
+Proton & $1.67261 \cdot 10^{-27}\operatorname{kg}$\\
+Neutron & $1.67482 \cdot 10^{-27}\operatorname{kg}$\\
+\bottomrule
+  \end{tabular}
+  \caption{Einige atomare Gr"o"sen}
+  \label{tab:hausnummern}
+\end{table}
+
+
+Um sich eine Vorstellung von \textbf{Energieskalen} zu machen,
+betrachtet man:\footnote{Quelle: Vorlesung}
+\begin{description}
+\item[Elektrostatische WW] $E \sim -\frac{1}{4\pi \varepsilon_0}
+  \frac{Z e^2}{a_0 / Z} \sim 4 \operatorname{eV}$
+\item[Relativistische Effekte] Aus $E = \gamma m c^2$ folgt f"ur die
+  \emph{kinetische Energie}: $T = (\gamma-1) m c^2$ und f"ur $v \ll c$
+  mit Taylor: $T \sim \frac{1}{2}mv^2 + \frac{3}{8}\frac{mv^4}{c^2}$;
+  diese Korrekturen spielen nur bei sehr gro"sen Energien eine Rolle.
+\item[Feinstruktur: Spin-Bahn-WW] Das kreisende Elektron erzeugt ein
+  B-Feld -- nach Biot-Savart $B = \frac{\mu_0}{4\pi} Z e (\vec v
+  \times \vec r) / r^3$ und mit $\vec L = m \vec v \times \vec r$ ist
+  $\vec B = - \frac{Z e \mu_0}{4\pi r^3 m_e}\vec L$ --, das Elektron
+  selbst hat magn. Dipolmoment $\mu \sim \mu_B = \frac{e\hbar}{2m_e}$
+  und damit ist die Kopplungsenergie $E \sim - \vec \mu \cdot \vec B =
+  \frac{\mu_0}{4\pi} \frac{\mu_B^2}{a_0^3}\cdot Z^4$. Durch diese
+  $Z^4$-Abh"angigkeit ist dies f"ur schwere Atome sehr wichtig; Zahlen
+  sind im Bereich $10^{-4}\operatorname{eV}$ bis $10^{-1}\operatorname{eV}$.
+\item[Hyperfeinstruktur: Kern-Bahn-WW] Das magnetische Moment des
+  Kernes $\mu_K$ verh"alt sich wie $\mu_K / \mu_B \sim m_e/m_K$; damit
+  ist die Kopplung wesentlich schw"acher (f"ur das H-Atom $E \sim
+  \frac{1}{1836}\mu_B B_e$). So ergeben sich Gr"o"senordnungen
+  $10^{-7}\operatorname{eV}$ bis $10^{-4}\operatorname{eV}$.
+\end{description}
+
+
+
+
+
+\subsection{Bestimmung atomarer Gr"o"sen}
+\label{sec:bestimmung_atomarer_grosen}
+
+
+to be done soon
+
+
+
+\subsection{Endliche Breite von Spektrallinien}
+\label{sec:endliche_breite_von_spektrallinien}
+
+\begin{Wichtig}
+  Eine Spektrallinie kann niemals die Breite $0$ haben.
+\end{Wichtig}
+
+\paragraph{Nat"urliche Linienbreite}
+\label{sec:naturliche_linienbreite}
+
+
+Dies kommt daher, dass die emittierte Welle Anf"angt und aufh"ort. Da
+sich das Spektrum als Fouriertransformierte der Wellengleichung
+ergibt, die Wellengleichung aber nicht mehr absolut periodisch ist
+reicht ein Fourierkoeffizient einfach nicht aus... Das Ergebnis ist
+eine (kontinuierliche) Funktion.
+
+Modelliert man das Spektrum durch einen Hertz-Dipol mit Ladung $e$ udn
+AMplitude $x_0$, der mit $\omega$ schwingt, so strahlt dieser die
+Leistung $P = \omega^4 e^2 x_0^2 / (6\pi\varepsilon_0 c^3)$ ab. Die
+gesamtenergie des (harmonischen) Dipoloszillators
+ist\footnote{Entweder die kinetische Energie ist maximal und die
+  potentielle ist verschwindet oder anderst herum} $E = mv_{max}^2/2 =
+m\omega^2 x_02 /2$; damit ist nach der Zeit
+\begin{equation}
+  \label{eq:abklingzeit_dipol}
+  \tau = \frac{E}{P} = \frac{m\omega^2x_0^2 \, 6 \pi \varepsilon_0
+    c^3}{2 \, \omega^4 e^2 x_0^2}
+=
+\frac{3m \pi \varepsilon_0 c^3}{\omega^2 e^2} 
+\end{equation}
+die Energie abgegeben.
+
+Hat man einen Harmonischen Oszillator mit 
+\begin{equation*}
+  m\ddot x + D \dot x + k x = 0
+\end{equation*}
+so folgt mit dem Ansatz $x = A \, \E^{\lambda t}$:
+\begin{equation*}
+  \lambda = -\delta \pm \I \cdot \sqrt{\omega_0^2 - \delta^2} \text{
+    mit } \delta = \frac{D}{2m} \text{ und } \omega_0^2 = \frac{k}{m} \;.
+\end{equation*}
+In der L"osungsfunktion schl"agt sich das dann nieder, dass man einen
+Sin/Cos-Term mit $\omega = \sqrt{\omega_0^2 - \delta^2}$ hat und einen
+D"ampfungsterm mit $\E^{-\delta t}$. 
+% Nach Definition ist in diesem
+% Modell die Abklingdauer die Zeit, wann die Amplitude auf den
+% $1/\E$-ten Teil abgefallen ist -- also $\tau = 1/\delta$ bzw. $\delta
+% = 1/\tau$
+
+F"uhrt man von der Schwingungsgleichung die Fouriertransformation
+durch, so erh"alt man einen Term, dessen Realteil (wenn man die Welle
+in komplexer Darstellung hat) \emph{proportional}\footnote{bspw
+  ignoriere ich hier die $1/2\pi$ der Fourierkoeffizienten und die Dipolamplitude}
+\begin{equation*}
+  \Re \int_{0}^{\infty }{e^{t\,\left(-\delta+\I\,\omega_0-\I\,\omega\right)}
+ \;dt} = 
+\frac{\delta}{\delta^2 + (\omega_0 - \omega)^2} \;.
+\end{equation*}
+Diese Funktion\footnote{Dies ist eine \emph{Lorentzlinie}.} hat bei $\omega = \omega_0$ ihr Maximum von
+$1/\delta$ und bei $\omega = \omega_0 \pm \delta$ den Wert
+$\frac{1}{2} \, 1/\delta$ -- also die halbe H"ohe. Damit ergibt sich
+eine \emph{Halbwertsbreite von $\Delta \omega = \delta$}.
+
+\begin{Def}
+  [Halbwertsbreite]
+Nimmt eine Glockenkurve $f(x)$ ihr Maximum bei $x'$ an, und den Wert
+$f(x')/2$ an den Stellen $x_1$ und $x_2$, so ist $|x_1-x'| = |x_2-x'|
+=: \Delta x$ die Halbwertsbreite.
+\end{Def}
+
+Mit der Unsch"arferelation\footnote{In Exphysschreibweise} ist
+$\Delta  E \cdot \Delta t \approx \hbar / 2$ und damit $\Delta
+\omega \approx 1/(2\Delta t)$. Ist $\tau = \Delta t $ die mittlere
+Lebensdauer folgt 
+\begin{equation}
+  \label{eq:12}
+  \delta \approx \frac{1}{2 \tau}  
+\end{equation}
+ und damit f"ur die Halbwertsbreite $2\Delta \omega = 2\delta = \frac{1}{\tau}$.
+
+
+
+\paragraph{Dopplereffekt}
+\label{sec:dopplereffekt}
+
+Ein weiterer Effekt ist der Dopplereffekt: Die Licht emittierenden
+Elektronen bewegen sich auf den Betrachter zu oder von ihm weg,
+dadurch wird ihr Licht ins Blaue bzw. ins Rote verschoben. Dabei
+ver"andert sich die Frequenz nach
+\begin{equation}
+  \label{eq:dopplerfrequenz}
+  \omega = \omega_0 \cdot (1 \pm v/c) \;.
+\end{equation}
+
+Setzt man nun f"ur die Geschwindigkeitsverteilung eine
+Boltzmann-Verteilung an, so folgt f"ur die Besetzungsdichte von
+Teilchen mit der Geschwindigkeit\footnote{die mittlere Klammer ist die
+Normierung, der $\exp$-Teil ist die Boltzmann-Verteilung mit der
+Kinetischen Energie $mv^2/2$} $v$:
+\begin{equation*}
+  n(v) \diff v = N \cdot \left ( \frac{m}{2\pi k T} \right )^{1/2}
+  \cdot \exp\frac{-mv^2 / 2}{kT} 
+\end{equation*}
+mit der Gesamtteilchenzahl $N$. Setzt man hier
+(\ref{eq:dopplerfrequenz}) nach $v$ aufgel"ost ein erh"alt man unter
+der Annahme $I(\omega) \propto n(\omega)$ die Intensit"atsverteilung
+\begin{equation*}
+  I(\omega) \propto \exp \frac{-m  \left ( \frac{c\omega_0 -
+        c\omega}{\omega_0} \right )^2}{2kT} \;.
+\end{equation*}
+Diese hat ihr Maximum ($1$) bei $\omega = \omega_0$ und nimmt $1/2$
+bei $\omega = \pm \frac{ \omega_0 \sqrt{2\ln(2) \cdot k m T} \pm c
+  m}{c m}$; damit ergibt sich aus der Differenz der beiden Werte:
+\begin{equation}
+  \label{eq:14}
+  \Delta \omega = \frac{\omega_0}{c} \left ( 8\ln(2) \frac{kT}{m}
+  \right )^{1/2} \;.
+\end{equation}
+
+
+
+
+
+
+\section{Bor'sches Atommodell}
+\label{sec:borsches_atommodell}
+
+
+
+  Die \textbf{Bohr'sche Postulate}:
+  \begin{enumerate}[(i)]
+  \item Elektronen strahlen beim Kreiseln keine Energie ab sondern
+    nur, wenn sie eine Bahn wechseln.
+    Die Abgabe erfolgt dann "uber eine Lichtwelle mit $E_n - E_{n'} -
+    h \nu = \hbar \omega$.
+  \item Korrespondenzprinzip: F"ur weit au"sen liegende Schalen geht
+    die "`neue"' Mechanik in die "`gewohnte"' "uber.
+  \end{enumerate}
+
+
+Durch das zweite Postulat kann man die Energie der au"sen liegenden
+Bahnen klassisch berechnen; dazu verwendet man die Coulomb-Anziehung
+und setzt sie mit der Zentripetalkraft gleich:
+\begin{equation}
+  \label{eq:1}
+  F = \frac{1}{4\pi\varepsilon_0} \frac{e^2}{r^2} = mr \omega^2 \;.
+\end{equation}
+
+
+Die \textbf{Bohr-Sommenfeld-Quantisierung} stellt eine gewisse
+Erweiterung des eigentlichen -- noch klassischeren -- Bohr'schen
+Atommodells dar:
+\begin{equation}
+  \label{eq:bohr-sommerfeld}
+  \oint p \diff q = n \cdot h  ~ \text{ mit } n \in \mathbb N\;.
+\end{equation}
+Setzt man f"ur die Bewegung des Elektrons $\vec p = m \cdot \vec v$
+ein und geht von einer konstanten Geschwindigkeit aus, wobei $\vec v$
+stets tangential zur Kreisbahn auf der die Elektronen sich bewegen --
+also $\vec v = v \cdot \vec e_\varphi$ -- steht, so erh"alt man (f"ur
+den Fall dass die Elektronen sich auf einer Kreisbahn mit Radius $r$ bewegen)
+\begin{equation*}
+  \oint m \, \vec v \diff \vec q = \int_{0}^{2 \pi} m \, v \vec
+  e_\varphi \cdot r \, \vec e_\varphi \diff \varphi 
+=
+m v r \cdot 2 \pi \;.
+\end{equation*}
+Setzt man dies in (\ref{eq:bohr-sommerfeld}) ein, erh"alt man
+\begin{equation*}
+  mvr = n \frac{h}{2\pi} = n \, \hbar \;.
+\end{equation*}
+
+Nun kann man noch den Drehimpuls $L$ mit der linken Seite
+identifizieren und erh"alt als Bedingung aus der
+Bohr-Sommerfeld-Quantisierung:
+\begin{equation}
+\label{eq:2}
+  { L = n \cdot \hbar } ~ ~  \text{ mit } n \in \mathbb N \;.
+\end{equation}
+
+\abs
+Aus \eqref{eq:1} und \eqref{eq:2} folgt nun (unter anderem)
+\begin{equation}
+  \label{eq:3}
+\boxed{  E_n = \frac{1}{2} E_n^\text{pot} =\frac{1}{2} \frac{-e^4
+    m}{(4\pi\varepsilon_0)^2 \hbar^2} \cdot \frac{1}{n^2} } \;.
+\end{equation}
+Zusammen mit dem ersten Bohr'schen Postulat kann man daraus elegant
+die verallgemeinterte Lymann-Formel herleiten:
+\begin{equation}
+  \label{eq:4}
+  \frac{1}{\lambda} = \bar \nu = R \cdot \left ( \frac{1}{n^2} -
+    \frac{1}{{n'}^2}\right )  \;,
+\end{equation}
+wobei $R$ die \emph{Rydberg-Konstante} ist mit\footnote{Quelle: Wikipedia} $R = \frac{\mu
+  e^4}{8\varepsilon_0^2 h^3 c}$. Diese ergibt sich aus \eqref{eq:3},
+wobei die Elektronenmasse $m$ durch die relative Masser $\mu :=
+\frac{m_e \cdot m_n}{m_e + m_k}$ ersetzt wurde.
+
+\abs
+Diese Ersetzung hat ihre Ursache darin, dass man bei der Verwendung
+von $m$ die Mitbewegung des Kerns vernachl"assigt -- mit der
+Relaitvmasse $\mu$ jedoch nicht.\footnote{Es l"asst sich in Strenge
+  zeigen, dass man diese Ersetzung vornehmen kann; dazu f"urht man die
+oben skizzierte Rechnung in relativkoordinaten wie man sie aus dem
+Kepler-Problem kennt durch; dann sieht man, dass man $m$ durch $\mu$
+ersetzen darf.}
+
+Man unterscheidet die beiden Rydberg-Konstanten $R$ und $R_\infty$,
+wobei letztere sich rechnerisch ergibt, wenn man die Kernmasse gegen
+$\infty$ laufen l"asst; damit ist die Relativbewegung des Kerns
+ignoriert. Die Umrechung ist damit
+\begin{equation*}
+  R = R_{\infty} \cdot \frac{\mu}{m_e} = R_\infty \cdot
+  \frac{1}{1+m_e/m_n} \;.
+\end{equation*}
+F"ur Wasserstoff ist diese Korrektur $\approx 0.99946$ -- also im
+vertretbaren Rahmen.
+
+Verwendet man  $m_n = m_\text{Proton} + m_\text{Neutron}$, so erh"alt
+man $R$ f"ur \emph{Deuterium}. Um die $R$ zu unterscheiden schreibt
+man $R_H = R$ f"ur Wasserstoff, $R_D$ f"ur Deuterium usw.
+
+
+
+\subsection{Wasserstoff"ahnliche Spektren}
+\label{sec:wasserstoffahnliche_spektren}
+
+Die oben durchgef"uhrte Rechnung gilt f"ur das Wasserstoffatom;
+trotzdem kann man sie auch auf Systeme mit einem Elektron -- den
+sog. \textsc{Wasserstoff"ahnlichen Systemen} -- anwenden.
+
+Die bedeutendsten Unterschiede ergeben sich in der Kernladungszahl
+$Z$, welche die Coulomb-Anziehung variieren
+\begin{equation}
+  \label{eq:5}
+  F_C = \frac{1}{4\pi\varepsilon_0} \frac{Z e^2}{r^2} \;,
+\end{equation}
+wobei die Kernmasse keinen zu gro"sen Effekt bewirkt\footnote{Wenn die
+Protonenmasse verdoppelt wird, "andert sich der Faktor $1/(1-m_e/m_n)$
+nur in der vierten Nachkommastelle}, da die Effektive
+Masse des Elektrons $\mu$ davon nur wenig abh"angt. Die
+Kernladungszahl geht dagegen mit $Z^2$ in $R$ ein:
+\begin{equation}
+  \label{eq:6}
+  R(\mu,Z) = \frac{\mu Z^2 e^4}{8 \varepsilon_0 h^3 c} \;.
+\end{equation}
+
+F"ur den Bahnradius kann man aus \eqref{eq:1} (durch (\ref{eq:5})
+modifiziert) und \eqref{eq:2} die Gleichung 
+\begin{equation}
+  \label{eq:7}
+  r_n = \frac{4\pi\varepsilon_0\hbar^2}{Ze^2 \mu} \cdot n^2
+\end{equation}
+ableiten.
+
+
+\begin{Anw}
+  [Myonen Atome]
+Myonen Atome haben anstatt eines Elektrons ein Myon in der
+Umlaufbahn. Dieses ist ca. 207 mal so schwer wie ein Elektron. Setzt
+man Werte f"ur Elektronen und Myonen eines wasserstoff"ahnlichen
+Systems ($Z=1, m_n = m_p$) in (\ref{eq:7}) ein, so erh"alt
+man
+\begin{align*}
+r_1(e^-) & \approx 5.29 \cdot 10^{-11}\operatorname{m}\\
+r_1(\mu) & \approx 2.84 \cdot 10^{-13}\operatorname{m} \;;
+\end{align*}
+die Myon-Atome haben also eine wesentlich kleinere
+Ausdehnung. Vergleicht man dies mit Tab. \ref{tab:hausnummern}, so
+sieht man dass das um zwei Gr"o"senordnungen kleiner als ein
+gew"ohnliches Atom ist und schon fast in den Bereich der Ausdehnung
+des Kerns geht.
+\end{Anw}
+
+
+
+
+
+\subsection{Einf"uhrung der $l$-Quantenzahl im Bohr'schen Modell}
+\label{sec:einf_der_l_quant_ansch}
+
+
+Aus dem Bohr'schen Modell war bisher nur $n$-Quantenzahl bekannt mit
+der $E_n$, $r_n$ etc bestimmt werden konnten. In Experimenten konnt
+man jedoch sehen, dass jede einzelne dieser Spektrallinien etwas
+unscharf waren -- unscharf deshalb, weil statt einer einzigen sich
+viele feine Linien nebeneinander zeigten.
+
+\textsc{Sommerfeld} nahm nun an, dass die Elektronen sich im
+Bohr'schen Keplerproblem nicht unbedingt auf Kreisen bewegen m"ussen
+-- so wie sich die Planeten auf ihren Bahnen auch auf Ellipsen bewegen
+k"onnen. Die alte Quantenzahl $n$ bestimmte so die "`Hauptachse"' der
+Ellipse, die kleine Hauptachse wurde durch $k$ bestimmt, wobei $k$ so
+gew"ahlt werden muss, dass der Drehimpuls $k \cdot \hbar$ ist. 
+
+Die Energie $E_n$ der Bewegung h"angt nur von der Hauptachse $a_n$ ab,
+die verschiedenen Bahnformen sind characterisiert durch die Kleine
+Halbachse $b_{n, k}$.
+
+Die Nebenquantenzahl $k$ wurde durch die Bahndrehimpulsquantenzahl $l$
+mit $l = k-1$ ersetzt; es gilt der Zusammenhang mit dem Drehimpuls:
+\begin{equation}
+  \label{eqn-drehimpuls-quantenzahl}
+  | \vec L | = \sqrt{ l \cdot (l+1) } \cdot \hbar \;.
+\end{equation}
+F"ur die $l$-Quantenzahlen haben sich folgende Trivialnamen
+eingeb"urgert:
+\begin{center}
+\begin{tabular}[h]{l  l l l l l l}
+  Quantenzahl $l$ & 0 & 1 & 2 & 3 & 4 & 5 \\
+  Drehimpuls $|\vec L|$ & $0$ & $\sqrt 2 \hbar$ & $\sqrt 6 \hbar$ &
+  $\sqrt{12} \hbar$ & $\sqrt{20} \hbar$ & $\sqrt{30} \hbar$\\
+  Name & s & p & d & f & g & h
+\end{tabular}
+\end{center}
+
+\abs
+F"ur die eigentliche Entartung verantwortlich -- also weswegen
+verschiedene Spektrallinien beobachtet werden, obwohl die Bahnen auch
+als Ellipsen die selbe Energie haben -- sind \emph{relativistische
+  Effekte}: In Kernn"ahe sind die Elektronen schneller  als
+"`au"sen"' -- sie scheinen schwerer zu sein, beschreiben also einen
+kleineren Radius. Je n"aher das Elektron dem Radius kommt, desto
+st"arker ist dieser Effekt; deshalb sind die feinen Linien f"ur ein
+$n$ leicht verschieden.
+
+
+
+
+
+\subsection{Quantenspr"unge durch St"o"se}
+\label{sec:quantensprunge_durch_stose}
+
+Elektronen k"onnen ihre kinetische Energie ungequantelt durch
+Sto"svorg"ange an Atome "ubergeben, die daraufhin angeregt werden. 
+
+Nachgewiesen wurde das beim Versuch von \textsc{Lenard} und dem
+\textsc{Frank-Hertz}-Versuch. 
+
+\paragraph{Lenard-Versuch}
+\label{sec:lenard_versuch}
+
+Es werden Elektronen beschleunigt und in eine Gas-Probe geschickt,
+dann aber wieder abgebremst. Die Abbremsung ist st"arker als
+die Beschleunigung. Elektronen schaffen es damit nicht bis zur
+gegen"uberliegenden, negativ geladenen Platte. Schafft es allerdings
+ein Elektron ein Gasteilchen zu ionisieren, so wird dieses Positive
+Ion an die negative Platte gezogen und es flie"st ein Strom.
+
+Man beobachtet, dass dieser Strom erst flie"st, wenn die
+Beschleunigungsspannung eine gewisse Mindestspannung
+"uberschreitet. (Dieses Beschleunigungspotential bezeichnet man dann
+auch als \emph{Ionisationspotential}.)
+
+\paragraph{Frank-Hertz-Versuch}
+\label{sec:lenard_versuch-1}
+
+Hier ist der Aufbau "ahnlich, nur dass die Bremsspannung nicht so hoch
+ist: Elektronen k"onnen im Normalfall an die gegen"uberliegende Platte
+gelangen. Erreicht die Beschleunigungsspannung einen
+characteristischen Wert $U_r$, so f"allt jedoch pl"otzlich der Strom
+an der gegen"uberliegenden Platte, der die auftreffenden Elektronen
+anzeigt, stark ab; ebenso bei $2 \cdot U_r$, $3 \cdot U_r$,
+\dots. Dies liegt daran, dass die Elektronen bei einem unelastischen
+sto"s die "`Energie"' $U_r$ an ein Gasteilchen abgeben k"onnen um
+dieses anzuregen; haben sie genut kinetische Energie, k"onnen sie
+mehrmals sto"sen. Der Strom Steigt also so lange wie die Elektronen
+noch $E_{kin} < n \cdot eU_r$ mit $n \in \mathbb N$ haben.
+
+\abs
+Die so bestimmte Spannung $U_r$ findet man wieder wenn man sich die
+optischen Spektren des Gases anschaut -- doch gibt es noch weitere
+Energien, die \emph{nicht} im Optischen Spektrum auftauchen. Es gibt
+also Anregungszust"ande, auf die ein Sto"s das Atom bringen kann, ein
+Photon jedoch nicht. Das liegt daran, dass es f"ur optische
+"Uberg"ange besondere \textbf{Auswahlregeln} gibt, welche "Uberg"ange
+erlaubt sind und welche nicht; die Auswahlregeln f"ur die Anregung
+durch St"o"se sind verschieden von diesen "`optischen"' Auswahlregeln.
+
+\abs
+Weiter interessant: Die kinetische Energie ist nicht gequantelt: Auch
+wenn die Elektronen eine gr"o"sere Energie haben als die
+Anregungsenergie, so k"onnen sie doch anregen. Bei Anregung durch
+Lichtquanten ist jedoch \emph{genau} der Energiebetrag n"otig.
+
+
+
+
+
+
+
+
+
+
+
+\section{Quantenmechanische Betrachtungen}
+\label{sec:quantenmechanische_betrachtungen}
+
+
+\subsection{Wasserstoffatom -- Skizze}
+\label{sec:wasserstoffatom}
+
+Um die Schr"odingergleichung\footnote{$H\psi = E\psi$} des mit dem
+Wasserstoffatom verbunden Hamilton
+\begin{equation}
+  \label{eq:Hamilton_h-atom}
+  H = \frac{p_e^2}{2m_e} + \frac{p_n^2}{2m_n} -
+  \frac{1}{4\pi\varepsilon_0} \frac{Ze^2}{r}
+\end{equation}
+zu l"osen geht man in Schwerpunkts- und Relativkoordinaten "uber,
+separiert Radial- und Winkelteil ab ($\psi(r,\vartheta,\varphi) = R(r)
+\cdot \chi(\vartheta,\varphi)$) und l"ost den Radialteil mit der
+Polynommethode, wobei der Winkelanteil die Kugelfl"achenfunktionen sind.
+
+
+Als L"osungen\footnote{Quelle: Wikipedia: "`Wasserstoffatom"'} findet
+man:
+\begin{equation*}
+  \Psi_{nlm}(r,\vartheta,\varphi) = R_{nl}(r) \cdot Y_{lm}(\vartheta,
+  \varphi )  \;,
+\end{equation*}
+wobei der Radialteil beschrieben wird durch
+\begin{equation*}
+  R_{nl}(r) = \sqrt {{\left(\frac{2}{n
+          a_0}\right)}^3\frac{(n-l-1)!}{2n[(n+l)!]} } e^{- \rho / 2}
+  \rho^{l} L_{n-l-1}^{2l+1}(\rho) \;,
+\end{equation*}
+wobei $ \rho = {2r \over {n a_0}} $ mit dem Bohr-Radius $a_0$ und $
+L_{n-l-1}^{2l+1}(\rho) $ die \emph{zugeordneten Laguerre-Polynome}
+sind und $Y_{lm}(\vartheta, \varphi ) $ die oben angesprochenen
+Kugelfl"achenfunktionen.
+
+\paragraph{Kugelfl"achenfunktionen}
+\label{sec:kugelflachenfunktionen}
+
+Die Kugelfl"achenfunktionen sind definiert "uber ihre Eigenschaft,
+Eigenfunktionen des Drehimpulsoperators $L$ (bzw. $\vec L$) zu sein:
+\begin{align*}
+  {\vec L}^2 \cdot Y_{lm} & \propto l(l+1)  \cdot Y_{lm} \\
+  L_z \cdot Y_{lm} &\propto m \cdot Y_{lm} \;.
+\end{align*}
+Eine Allgemeine Formel ist
+\begin{equation*}
+  Y_{lm}(\vartheta,\varphi) = 
+\frac{(-1)^{l+m}}{2^l l!}
+\sqrt{ \frac{2l + 1}{4\pi} \frac{(l-m)!}{(l+m)!} } \cdot \E^{ \I m
+  \varphi} \cdot (\sin\vartheta)^m \cdot 
+\frac{\diff ^{l+m}}{\diff (\cos\vartheta)^{l+m} }
+(\sin\vartheta)^{2l} \;.
+\end{equation*}
+Die ersten sind in Tab. \ref{tab:kugelflaechenfunktionen} zu finden.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{l | l l l l}
+\toprule
+    ~ & $l=0$ & $l=1$ & $l=2$ & $l=3$ \\
+\midrule
+$m=-3$ & & & & $\sqrt{\tfrac{35}{64 \pi}} \sin^{3}{\vartheta}\,e^{-3i
+  \varphi}$\\
+$m=-2$ & & & $\sqrt{\tfrac{15}{32 \pi}} \sin^{2}{\vartheta} \, e^{-2i
+  \varphi}$ & $\sqrt{\tfrac{105}{32\pi}}
+\sin^{2}{\vartheta}\cos{\vartheta}\,e^{-2i \varphi}$\\
+$m=-1$ & & $\sqrt{\tfrac{3}{8 \pi}}   \sin{\vartheta} \, e^{-i
+  \varphi}$ & $\sqrt{\tfrac{15}{8 \pi}}  \sin{\vartheta} \,
+\cos{\vartheta} \, e^{-i \varphi}$ & $\sqrt{\tfrac{21}{64 \pi}}
+\sin{\vartheta}\left( 5 \cos^{2}{\vartheta} - 1\right)\,e^{-i
+  \varphi}$ \\
+$m=0$ & $\sqrt{\tfrac{1}{4 \pi}}$ & $\sqrt{\tfrac{3}{4 \pi}}
+\cos{\vartheta}$ & $\sqrt{\tfrac{5}{16 \pi}}  \left( 3
+  \cos^{2}{\vartheta} - 1 \right)$ & $\sqrt{\tfrac{7}{16 \pi}}  \left(
+  5 \cos^{3}{\vartheta} - 3 \cos{\vartheta}\right)$ \\
+$m=1$ & & $-\sqrt{\tfrac{3}{8 \pi}}  \sin{\vartheta} \, e^{i \varphi}$
+& $-\sqrt{\tfrac{15}{8 \pi}} \sin{\vartheta} \, \cos{\vartheta} \,
+e^{i \varphi}$ & $-\sqrt{\tfrac{21}{64\pi}} \sin{\vartheta}\left( 5
+  \cos^{2}{\vartheta} - 1\right)\,e^{i \varphi}$ \\
+$m=2$ & & & $\sqrt{\tfrac{15}{32 \pi}}  \sin^{2}{\vartheta} \, e^{2i
+  \varphi}$ & $\sqrt{\tfrac{105}{32 \pi}}
+\sin^{2}{\vartheta}\cos{\vartheta}\,e^{2i \varphi}$\\
+$m=3$ & & & & $-\sqrt{\tfrac{35}{64 \pi}} \sin^{3}{\vartheta}\,e^{3i \varphi}$\\
+\bottomrule
+  \end{tabular}
+  \caption{Die ersten Kugelfl"achenfunktionen -- Quelle: Wikipedia}
+  \label{tab:kugelflaechenfunktionen}
+\end{table}
+
+Wichtige Eigenschaften der Kugelfl"achenfunktionen sind
+\begin{itemize}
+\item Orthonormalit"at
+\item Parit"at: F"ur $\vec r \mapsto - \vec r$ gilt $r \mapsto r,
+  \vartheta \mapsto \pi - \vartheta, \varphi \mapsto \pi +
+  \varphi$. Die Kugelfl"achenfunktionen verhalten sich dann:
+  $Y_{lm}(\pi-\vartheta,\pi+\varphi) = (-1)^l \cdot Y_{lm}(\vartheta,\varphi)$.
+\item Konjugiertheit: Durch komplexes Konjugieren wird die $m$-Zahl
+  gekehrt und die Funktion bekommt Parit"at $(-1)^m$: 
+$\left[ Y_{l,m} \right ]^\ast = (-1)^m \cdot Y_{l,-m}$.
+\end{itemize}
+
+
+\paragraph{Zugeordnete Laguerre-Polynome}
+\label{sec:zugeordnete_laguerre_polynome}
+
+Die Zugeordneten Laguerre-Polynome\footnote{Die zugeordneten
+  Laguerre-Polynome hängen mit den gewöhnlichen Laguerre-Polynomen
+  über$$L_n^k(x) = (-1)^k \, \frac{{\rm d}^k}{{\rm d}x^k} \,
+  L_{n+k}(x)$$ zusammen; es gilt die
+  \emph{Rodrigues-Formel} $$L_n(x):=\frac{e^x}{n!} \frac{{\rm
+      d}^n}{{\rm d}x^n}(x^n e^{-x}) \;.$$} erh"alt man "uber die
+\emph{Rodrigues-Formel}:
+\begin{equation*}
+  L_n^k(x) = \frac{e^x \, x^{-k}}{n!} \, \frac{{\rm d}^n}{{\rm d}x^n}
+  \, (e^{-x}\,x^{n+k}) \;;
+\end{equation*}
+die ersten lauten:
+\begin{align*}
+L_0^k(x) &= 1\\
+L_1^k(x) &= -x + k + 1\\
+L_2^k(x) &= \frac{1}{2}\,\left[x^2 - 2\,(k+2)\,x + (k+1)(k+2)\right]\\
+L_3^k(x) &= \frac{1}{6}\,\left[-x^3 +3\,(k+3)\,x^2 -
+  3\,(k+2)\,(k+3)\,x + (k+1)\,(k+2)\,(k+3)\right] \;.
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Kopplung mit dem Elektrischen Feld}
+\label{sec:kopplung_mit_dem_elektrischen_feld}
+
+
+\subsubsection{Der Stark-Effekt}
+\label{sec:der_stark_effekt}
+
+\begin{Erfahrung}
+Die Spektrallinien von Atomen in einem elektrischen Feld  spalten
+sich auf.
+\end{Erfahrung}
+
+Im Wasserstoffatom und wasserstoff"ahnlichen Systemen ist diese
+Aufspaltung f"ur Terme mit $l \neq 0$ ist proportional zu  $\| \vec
+E\| = E$. Dieser \emph{lineare} Stark-Effekt kommt dann vor, wenn die
+$l$-Entartung\footnote{Mehrere Zust"ande mit der selben $n$, aber
+  verschiedenen $l$-Quantenzahlen haben die selbe Energie} nicht
+aufgehoben ist.
+
+Ist die $l$-Entartung dagegen schon ohne das E-Feld aufgehoben, so ist
+die Verschiebung und Aufspaltung der Terme proportional zu $E^2$; der
+\emph{quadratische Stark-Effekt}. 
+
+Dieser ist anschaulich erkl"arbar, weil in einem Atom ein
+elektrischesDipolmoment $\vec p = \Ten \alpha \cdot \vec E$ induziert
+wird ($\Ten \alpha$ ist die Polarisierbarkeit\footnote{Bei gro"sen
+  Atomen (oder gro"sem $n$) ist der Effekt besonders gut bemerkbar, da
+  diese einfacher polarisierbar sind.  }) und dieses wiederum ein
+Wechselwirkungspotential\footnote{$V = \int \vec p \cdot \diff \vec E
+  = \frac{1}{2} \alpha E^2$} $V \propto \vec p \cdot \vec E = \Ten \alpha
+\cdot E^2 \propto E^2$ hat.
+
+Der lineare Stark-Effekt ist dagegen nur quantentheoretisch zu
+verstehen.
+
+
+
+
+\subsubsection{Quanthentheorie des linearen Stark-Effekts}
+\label{sec:quanth_des_line_stark_effekts}
+
+
+
+
+\subsubsection{Quantentheorie des quadratischen Stark-Effekts}
+\label{sec:quant_des_quadr_stark_effekts}
+
+
+Der Hamiltonoperator $H^0$ des Atoms  wird durch
+das E-Feld gest"ort; diese St"orung macht sich als Term $H^S$
+bemerkbar, der sich aus dem Wechselwirkungspotential zwischen Dipol
+$e\vec r$ und dem E-Feld\footnote{Die Schreibweise dient das E-Feld
+  von der Energie $E$ abzugrenzen} $\vec {\mathcal E}$ ergibt:
+\begin{equation} 
+\label{eq:8}
+  H = H^0 + H^S = H^0 + (- \, e\vec r \cdot \vec {\mathcal E} ) =: H^0
+  + \lambda H_1 \;,
+\end{equation}
+wobei $\lambda$ proportional zu $\mathcal E = \|\vec {\mathcal E}\|$
+ist; damit k"onnen wir nun St"orungstheorie machen. Wichtig ist dabei,
+dass beim quadratischen Start-Effekt die Atome \emph{nicht entartet}
+sind; dadurch wird die St"orungsrechnung "`menschlich"'. Wir
+entwickeln eine L"osung $\psi$ von $H\psi = E\psi$ als Potenzreihe in
+$\lambda$ 
+\begin{equation*}
+  \psi = \psi_0 + \lambda^1 \psi_1 + \lambda^2 \psi_2 + ... \; \text{
+    und }
+E = E_0 + \lambda^1 E_1 + \lambda^2 E_2 + ... \;,
+\end{equation*}
+und setzen dies in (\ref{eq:8}) ein. Dabei gilt zu beachten, dass
+$\psi_0$ eine ungest"orte L"osung sein muss: $\psi_0 = \phi_n^0$ (f"ur
+ein bestimmtes $n$ und $H^0\phi_n^0 = E^0_n\phi_n^0$). Setzt man dies
+in (\ref{eq:8}) ein dann erh"alt man eine Polynomgleichung in
+$\lambda$, deren Koeffizienten man vergleichen kann -- also erh"alt
+man f"ur jede Ordnung von $\lambda$ eine Gl. Auf diese wendet man  $\langle
+\psi_0|$ an, und kann
+mit der Bedingung\footnote{Diese darf man annehmen, weil man die
+  Gleichungen auf der Linken Seite stets nach $(H^0 -
+  E^0)|\psi_i\rangle = ...$ aufl"osen kann und hier eine Addition von
+  $\psi_0$ keine Ver"anderung bringt.} $\langle \psi_0 \,|\,\psi_i
+\rangle = \delta_{i0}$ weiter vereinfachen. Um $E_i$ zu erhalten,
+wendet man $\langle \psi_0|$ auf die Gleichung von $\lambda^i$ an:
+\begin{equation*}
+  E_i = \langle \psi_0 | H^S | \psi_{i-1}  \rangle \;.
+\end{equation*}
+Um $\psi_i$ zu erhalten, entwickelt man es in\footnote{die $n$-te
+  Komponente kommt nicht mit, weil $\langle \psi_0 \,|\,\psi_i
+\rangle = \delta_{i0}$} $\{\phi_l^0\}_{l\neq n}$ und
+wendet $\langle \phi_l|$ an:
+\begin{equation*}
+  \langle \psi_l \,|\, \psi_1 \rangle = \frac{\langle \psi_l | H^S | \psi_0
+  \rangle}{E_l-E_n}
+\end{equation*}
+
+
+
+% Mit (\ref{eq:8}) k"onnen wir nun "`St"orungstheorie"' machen: Mit
+% $\phi^0_n$ sind L"osungen von $H^0$ bezeichnet; wir entwickeln eine 
+% L"osung $\psi$ von $H\psi = E\psi$ in $\{\phi^0_n\}_n$:
+% \begin{equation}
+%   \label{eq:9}
+%   |\psi\rangle 
+% = 
+% \sum_{n} \langle \phi^0_n | \psi \rangle \,| \phi^0_n \rangle 
+% \;; 
+% \end{equation}
+% wendet man dies auf (\ref{eq:8}) an, so kann man (der Linearit"at sei
+% Dank) f"ur jedes $H^0 |\phi^0_n \rangle = E^0_n |\phi^0_n\rangle$
+% schreiben; wendet man nun $\langle \phi_\nu^0|$ auf die Gl. an,
+% erh"alt man -- durch die Orthonormalit"at der $\phi_n^0$:
+% \begin{equation}
+%   \label{eq:10}
+%   E_\nu^0 \langle \phi_\nu^0 | \psi \rangle + \sum_{n} \langle
+%   \phi^0_n | \psi \rangle \langle \phi_\nu^0 | H^S | \phi^0_n \rangle 
+% =
+% E \langle \phi_\nu^0 | \psi \rangle \;.
+% \end{equation}
+
+% F"ur die eigentliche St"orungstheorie nehmen wir nun an, dass unsere
+% L"osung $\psi$ in $\lambda$ entwickelbar ist. F"ur $\lambda = 0$ muss
+% $\psi = \phi_\mu^0$ sein (f"ur ein bestimmtes $\mu$) 
+
+
+
+
+
+
+
+
+\subsection{Licht-Atom Wechselwirkung}
+\label{sec:lichat_atom_wechselwirkung}
+
+
+\subsubsection{Wechselwirkung Zwei-Atom-System mit koh"arentem resonanten Lichtfeld}
+\label{sec:wechselwirkung_zwei_atom_system_mit}
+
+Wir modellieren unser Atom als System mit nur zwei
+Zust"anden. D.h. wir nehmen an, dass alle weiteren Zust"ande durch das
+betrachtete Lichtfeld nicht angeregt werden k"onnen.
+
+Der Hamilton des Systems setzt sich zusammen aus dem f"ur das Atom
+$H^0$ und einem St"orfaktor $H^S$. Das E-Feld des Lichts ist
+\begin{equation*}
+  \vec {\mathcal E} = \vec {\mathcal E}_0 \cos(\vec k \cdot \vec r -
+  \omega t) \;.
+\end{equation*}
+Wir nehmen weiter an, dass das Atom sich bei $\vec r = \vec 0$
+befindet. 
+
+Die Lichtwellenl"ange ($\sim 10^{-6}\operatorname{m}$) ist sehr gro"s
+im Vergleich zum Atom ($\sim 10^{-10}\operatorname{m}$) -- damit darf
+man die Ortsabh"angigkeit von $\vec{\mathcal E}$ getrost
+vernachl"assigen, au"serdem sei o.B.d.A. $\vec {\mathcal E}_0 =
+\mathcal E_0 \cdot \vec e_z$.
+
+F"ur die Lichtwelle ist das Atom ein Dipol; das Potential der
+Wechselwirkung ist $V^S = - \vec p \cdot \vec {\mathcal E}$ und $\vec
+p = e \vec r$; damit
+\begin{equation}
+  \label{eq:11}
+  V^S = H^S = - e z \mathcal E_0 \cos(\omega t) \;.
+\end{equation}
+
+
+
+
+
+
+
+
+
+\section{Laser}
+\label{sec:laser}
+
+
+Wichtige Eigenschaften des Lasers:\footnote{Zahlen aus Haken Wolf} (a)
+hohe Koh"arenzl"ange ($\sim 300 000\operatorname{km}$) -- damit hohe
+zeitliche Koh"arenz (b) starke B"undelung des Lichts (c) hohe
+Strahlungsintensit"at (d) es ist m"oglich, Lichtimpulse bis $\sim
+10^{-13}\operatorname{s}$ zu erzeugen.
+
+
+
+
+
+
+\subsection{Aufbau und Funktionsweise}
+\label{sec:aufbau_und_funktionsweise}
+
+
+
+Atome eines aktiven Mediums werden durch Photonen ($E_1 \to E_2$) angeregt
+("`\emph{Pumpen}"').  Diese relaxieren (zuf"allig) durch
+\emph{Spontane Emission} ($E_2 \to E_1$) und strahlen ein Photon aus.
+Diese Photonen regen andere Atome durch \emph{Stimulierte Emission}
+an, Photonen mit genau den selben Eigenschaften (gleiche Frequenz,
+Amplitude, Richtung) abzugeben.
+
+Um einen Verst"arkung dieser Photonenlawine zu erhaltne, sind an zwei
+Seiten des aktiven Materials Spiegel angebracht -- einer davon
+halbdurchl"assig. Durch diese Spiegel k"onnen sich in dem Laser nur
+Stehende Wellen mit bestimmten Wellenl"angen ($k \cdot \lambda/2 = L$
+mit $k \in \mathbb N$, $L$: Abstand der Spiegel) aufhalten. Au"serdem
+werden diejenigen Photonen, die nicht parallel zur Normalen der beiden
+Spiegel stehen, nicht mehr reflektiert und entweichen.
+
+Damit nun st"andig Photonen durch stimulierte Emission abgegeben
+werden k"onnen, muss das Niveau $E_2$ st"andig st"arker besetzt sein,
+als $E_1$; dann ist Emission h"aufiger als Absorption -- schlie"slich
+sollen die einmal freigesetzten Photonen nicht gleich wieder
+absorbiert werden.
+
+Die Photonen, mit denen diese st"andige Anregung erfolgen soll,
+sollten aber nicht direkt den gew"unschten Energiebetrag mitbringen,
+weil sie sonst selbst Emissionen induzieren. Da das Pumpen von der
+Seite geschieht, w"aren diese Photoenn nicht mehr auf der Gespiegelten
+Linie zwischen den beiden Spiegeln -- w"urden also keinen gro"sen
+Beitrag liefern. Stattdessen bringen die frisch eingebrachten Photonen
+das System auf eine Energie $E_3$ ($E_1 < E_2 < E_3$); von dort regt
+sich das System \emph{schnell} ab auf $E_2$ und ist so bereit f"ur
+induzierte Emission.
+
+
+
+
+\subsection{Beispiel: He-Ne-Laser}
+\label{sec:he_ne_laser}
+
+Zwischen zwei Elektroden findet eine Gasentladung statt. Diese
+Elektronen regen durch Sto"s Helium auf $20.61$ oder $19.82$eV an. Die
+He-Atome sto"sen gegen Neon und regen dieses vom Grudnzustand auf
+"ahnliche Energien an ($20.66$ bzw. $19.78$eV) und von dort relaxiert
+das Neon unter Aussendung von Licht auf verschiedene Niveaus
+(induzierte Emission), wodurch Licht mit $\lambda \in \{ 3391.2,
+1152.3, 632.8 \}\operatorname{nm}$ frei wird; Neon hat danach
+mindestens noch $18.7\operatorname{eV}$, die es durch St"o"se wieder
+abgibt.
+
+
+
+
+
+
+\subsection{Laserbilanz}
+\label{sec:laserbilanz}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Anwendung: Laserk"uhlung}
+\label{sec:laserkuhlung}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+%%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% %%%%%%%%%% 
+
+
+
+
+
+\end{document}
+
+
+

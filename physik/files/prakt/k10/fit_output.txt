@@ -1,0 +1,37 @@
+== ALUMINIUM ==
+
+
+After 7 iterations the fit converged.
+final sum of squares of residuals : 727.135
+rel. change during last iteration : -3.59603e-15
+
+degrees of freedom    (FIT_NDF)                        : 5
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 12.0593
+variance of residuals (reduced chisquare) = WSSR/ndf   : 145.427
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+A               = 1493.62          +/- 10.65        (0.7128%)
+B               = 0.136431         +/- 0.001778     (1.303%)
+
+
+
+
+
+== BLEI ==
+
+
+After 6 iterations the fit converged.
+final sum of squares of residuals : 1963.57
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 16.7484
+variance of residuals (reduced chisquare) = WSSR/ndf   : 280.51
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+C               = 1479.11          +/- 13.82        (0.9346%)
+D               = 0.515165         +/- 0.008507     (1.651%)

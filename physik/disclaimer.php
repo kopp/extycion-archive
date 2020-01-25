@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Physiker-Blog: Disclaimer</title>
+    <meta name=Author content="Michael Kopp">
+		<link rel=stylesheet tpye=text/css href=style.css>
+    <style></style>
+  </head>
+  <body>
+
+
+
+
+<div id=navi>
+<?php
+include("navi.incl");
+?>
+</div>
+
+
+
+
+<div id=inhalt>
+
+
+<h1 id=seitentitel>Disclaimer</h1>
+
+
+<h3>Fehler</h3>
+
+<p>Ich &uuml;bernehme keine Verantwortung f&uuml;r Fehler die sich hier einschleichen m&ouml;gen. Ich arbeite nach bestem Wissen und Gewissen, aber sicher sein kann man nie. Wen's beruhigt: Ich lerne selber mit den Sachen, also werde ich mir schon M&uuml;he geben....</p>
+
+
+<h3>Darstellung</h3>
+
+<p>Noch schnell ein paar kleine einf&uuml;hrende Worte rund um das Thema Darstellung: Ich teste die Seite mit W3C-konformen Browsern (<tt>Mozilla Firefox</tt>, <tt>Konqueror</tt>). Sollten irgendwelche darstellungsbedingten Probleme mit dem Internet-Explorer auftreten, werde ich diese (sofern sie nicht zu schwerwiegend sind) ignorieren...</p>
+
+
+
+
+
+
+
+</div>
+  
+  
+  
+  
+  </body>
+</html>

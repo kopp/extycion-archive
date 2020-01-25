@@ -1,0 +1,18 @@
+\begin{titlepage}
+	\begin{center}
+
+
+\vspace{4em}
+{ {\large \sc Michael Kopp} } \\[11em]
+
+\hrule ~\\[0.6em]
+{\bf \fontsize{35px}{1px} \selectfont Physik der Atome und Kerne}\\[0.4em]
+\hrule ~\\[8em]
+{\bf \fontsize{24px}{1px} \selectfont Eine Zusammenfassung}\\[8em]
+{ Bei Prof. Dr. Wrachtrupp, 2010 }
+\vfill
+{ \today \\Version 0.1 $\alpha$ }
+
+
+	\end{center}
+\end{titlepage}
