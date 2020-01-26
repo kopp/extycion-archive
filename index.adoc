@@ -1,0 +1,10 @@
+= Extycion Archiv
+
+Extycion selbst wurde aufgelöst.
+
+Hier sind die Daten der Website www.extycion.de noch weiter verfügbar.
+
+- Material zu Mathe, Physik und Chemie der Oberstufe (Gymnasium) sind
+  link:./files[hier] zu finden
+- Übungen/Notizen aus dem Physikstudium in Stuttgart sind unter
+  link:./physik[`physik`] zu finden.
